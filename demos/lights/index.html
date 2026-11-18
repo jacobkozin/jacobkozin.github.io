@@ -32,6 +32,7 @@
   .light :focus-visible{outline-color:var(--berry)}
 
   .demo{background:var(--gold);color:var(--night);text-align:center;font-size:.82rem;font-weight:700;padding:9px 16px;line-height:1.35}
+  .demo a{color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:6px 2px;white-space:nowrap}
 
   header{background:var(--night);color:var(--on-dark);position:sticky;top:0;z-index:5;border-bottom:1px solid var(--pine-line)}
   header .wrap{display:flex;justify-content:space-between;align-items:center;min-height:var(--head);gap:12px}
@@ -167,7 +168,7 @@
 </style>
 </head>
 <body>
-<div class="demo" id="demoBar">Demo site with sample content, built by <a href="../../">Jacob Kozin</a></div>
+<div class="demo" id="demoBar">Demo site with sample content · <a href="../../">&larr; Back to Jacob Kozin's portfolio</a></div>
 
 <header><div class="wrap">
   <div class="logo"><span data-k="name">Desert Twinkle Lights</span><small><span data-k="tagline">Christmas lights · Permanent lighting</span></small></div>
@@ -279,7 +280,7 @@
 
 <footer><div class="wrap">
   <span>© <span data-k="name">Desert Twinkle Lights</span><span id="footArea"> · <span data-k="area">Scottsdale &amp; North Phoenix</span></span></span>
-  <span id="credit">Demo website by <a href="../../">Jacob Kozin</a></span>
+  <span id="credit">Demo website by Jacob Kozin · <a href="../../">&larr; Back to the portfolio</a></span>
 </div></footer>
 
 <div class="bar"><a class="c" data-tel href="tel:5555550123">Call</a><a href="#quote">Free quote</a></div>
@@ -315,6 +316,7 @@
   if (concept) {
     const bar = document.getElementById("demoBar");
     bar.textContent = "Concept preview made for " + CONFIG.name + " by Jacob Kozin. Not live, not affiliated.";
+    const see = document.createElement("a"); see.href = "../../"; see.textContent = "See my work →"; bar.append(" ", see);
     const m = document.createElement("meta"); m.name = "robots"; m.content = "noindex"; document.head.appendChild(m);
     document.body.classList.add("concept");
     // Don't put claims we haven't verified in someone else's name.
@@ -324,7 +326,7 @@
     // Without an area in the link we don't know where they work, so don't say.
     if (q.get("area") || q.get("areas")) document.getElementById("areaNote").remove();
     else { document.getElementById("serving").remove(); document.getElementById("footArea").remove(); }
-    document.getElementById("credit").innerHTML = 'Concept preview by <a href="../../">Jacob Kozin</a> · call or text <a href="tel:+16029359847">(602) 935-9847</a>';
+    document.getElementById("credit").innerHTML = 'Concept preview by Jacob Kozin · <a href="../../">see my work</a> · call or text <a href="tel:+16029359847">(602) 935-9847</a>';
   }
 
   document.querySelectorAll("[data-k]").forEach(el => el.textContent = CONFIG[el.dataset.k]);
