@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roblox Systems &amp; Websites</title>
+<meta name="description" content="Roblox scripting commissions and fast, clean websites for local businesses. Fixed quotes, clear deadlines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0e11; --panel:#15171c; --panel2:#1b1e25; --line:#262a33;
+    --text:#eceef2; --muted:#9aa1ad; --rbx:#7cf29a; --web:#7cc4ff; --r:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;line-height:1.1;margin:0}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:10;background:rgba(13,14,17,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-family:"Space Grotesk";font-weight:700;text-decoration:none;font-size:18px}
+  .brand span{color:var(--rbx)}
+  .nav nav{display:flex;align-items:center;gap:22px}
+  .nav nav a{color:var(--muted);text-decoration:none;font-size:14px}
+  .nav nav a:hover{color:var(--text)}
+  .nav nav a.cta{color:var(--bg);background:var(--text);padding:8px 14px;border-radius:9px;font-weight:600}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--line);transition:transform .15s ease,background .15s ease;cursor:pointer;font:600 15px Inter,sans-serif;color:var(--text);background:transparent}
+  .btn:hover{transform:translateY(-1px);background:var(--panel2)}
+  .btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
+  .btn.primary:hover{background:#fff}
+
+  /* hero */
+  .hero{padding-top:96px;padding-bottom:80px}
+  .status{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);border:1px solid var(--line);padding:6px 12px;border-radius:99px;margin-bottom:26px}
+  .status i{width:8px;height:8px;border-radius:50%;background:var(--rbx);box-shadow:0 0 0 4px rgba(124,242,154,.15)}
+  h1{font-size:clamp(40px,6.4vw,72px);max-width:15ch}
+  h1 .r{color:var(--rbx)} h1 .w{color:var(--web)}
+  .hero p{color:var(--muted);font-size:19px;max-width:56ch;margin:22px 0 34px}
+  .actions{display:flex;flex-wrap:wrap;gap:12px}
+
+  section{padding:80px 0;border-top:1px solid var(--line)}
+  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:12px;font-weight:600}
+  h2{font-size:clamp(28px,4vw,42px);margin-bottom:32px;max-width:22ch}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+  .card h3{font-size:24px;margin-bottom:6px}
+  .card .from{color:var(--muted);font-size:14px;margin-bottom:18px}
+  .card .from b{color:var(--text);font-size:18px}
+  .card ul{margin:0;padding:0;list-style:none}
+  .card li{padding:9px 0 9px 26px;border-top:1px solid var(--line);position:relative;color:#d5d8de}
+  .card li:first-child{border-top:0}
+  .card li::before{content:"";position:absolute;left:2px;top:17px;width:10px;height:10px;border-radius:3px;background:var(--accent)}
+  .rbx{--accent:var(--rbx)} .web{--accent:var(--web)}
+  .pill{display:inline-block;font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;margin-bottom:16px;color:var(--bg);background:var(--accent)}
+
+  /* work */
+  .work{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .work a{text-decoration:none;display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s ease,transform .2s ease}
+  .work a:hover{border-color:#3a404c;transform:translateY(-2px)}
+  .thumb{height:180px;display:flex;align-items:flex-end;padding:18px;font-family:"Space Grotesk";font-weight:700;font-size:26px}
+  .t1{background:linear-gradient(135deg,#1a1a1a,#3b2f22);color:#e9c58a}
+  .t2{background:linear-gradient(135deg,#0f3b2a,#2f6b3e);color:#ffe7b0}
+  .t3{background:radial-gradient(circle at 20% 20%,#1d3b28,#0f1512);color:var(--rbx);font-family:ui-monospace,Consolas,monospace;font-size:15px;align-items:center;white-space:pre;line-height:1.5;font-weight:500}
+  .t4{background:radial-gradient(circle at 80% 30%,#1b2b3f,#0f1218);color:var(--web);font-family:ui-monospace,Consolas,monospace;font-size:15px;align-items:center;white-space:pre;line-height:1.5;font-weight:500}
+  .work .meta{padding:18px 20px}
+  .work .meta b{display:block;font-size:17px}
+  .work .meta span{color:var(--muted);font-size:14px}
+
+  /* pricing */
+  .price{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+  .price:first-of-type{border-top:0}
+  .price div span{display:block;color:var(--muted);font-size:14px}
+  .price strong{font-family:"Space Grotesk";font-size:20px;white-space:nowrap}
+  .note{color:var(--muted);font-size:14px;margin-top:20px}
+
+  /* steps */
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+  .step b{font-family:"Space Grotesk";font-size:14px;color:var(--muted)}
+  .step h3{font-size:19px;margin:8px 0 6px}
+  .step p{margin:0;color:var(--muted);font-size:15px}
+
+  /* faq */
+  details{border-top:1px solid var(--line);padding:18px 0}
+  details:last-child{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between}
+  summary::after{content:"+";color:var(--muted);font-size:22px;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--muted);margin:10px 0 0;max-width:70ch}
+
+  /* contact */
+  .contact{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+  .contact h2{margin-bottom:12px}
+  .contact p{color:var(--muted);margin:0}
+  .contact .actions{flex-direction:column;align-items:stretch}
+  .toast{font-size:13px;color:var(--rbx);min-height:18px}
+
+  footer{padding:36px 0 48px;color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  @media (max-width:860px){
+    .grid4{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:720px){
+    .grid2,.work,.contact{grid-template-columns:1fr}
+    .nav nav a:not(.cta){display:none}
+    .hero{padding-top:64px;padding-bottom:56px}
+    section{padding:60px 0}
+    .contact{padding:28px}
+  }
+  @media (max-width:460px){ .grid4{grid-template-columns:1fr} }
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important;scroll-behavior:auto!important} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#"><span data-c="name">Your Name</span>.dev</a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#pricing">Pricing</a>
+      <a class="cta" href="#contact">Get a quote</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div class="status"><i></i> Taking new projects · replies within 24h</div>
+    <h1>I build <span class="r">Roblox systems</span> and <span class="w">websites</span> that just work.</h1>
+    <p>I script game systems for Roblox developers and build fast, clean websites for local businesses. Fixed quotes, clear deadlines, and you pay the second half only when you're happy with it.</p>
+    <div class="actions">
+      <a class="btn primary" href="#contact">Get a free quote</a>
+      <a class="btn" href="#work">See my work</a>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="eyebrow">Services</div>
+      <h2>Two things, done properly.</h2>
+      <div class="grid2">
+        <div class="card rbx">
+          <span class="pill">Roblox</span>
+          <h3>Roblox scripting</h3>
+          <div class="from">From <b>$25</b> · paid in USD, not Robux</div>
+          <ul>
+            <li>Player data &amp; saving (DataStores, session locking, no data loss)</li>
+            <li>Shops, game passes &amp; developer products, handled server-side</li>
+            <li>Round systems, lobbies, intermissions &amp; map voting</li>
+            <li>Pets, inventories, upgrades, and hooking them up to your UI</li>
+            <li>Bug fixes, exploit hardening &amp; performance cleanup</li>
+          </ul>
+        </div>
+        <div class="card web">
+          <span class="pill">Web</span>
+          <h3>Websites for local businesses</h3>
+          <div class="from">From <b>$250</b> · live in about a week</div>
+          <ul>
+            <li>Your hours, services or menu, location, and a tap-to-call button</li>
+            <li>Built for phones first, which is where most of your customers are</li>
+            <li>Booking or ordering links (Square, Calendly, Toast, and others)</li>
+            <li>Google Business Profile setup so people find you on Maps</li>
+            <li>Hosting and small updates for a flat monthly fee</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="eyebrow">Work</div>
+      <h2>Recent builds.</h2>
+      <div class="work">
+        <a href="demos/barber/">
+          <div class="thumb t1">Northside Fade Co.</div>
+          <div class="meta"><b>Barbershop website</b><span>Services and prices, booking, hours, and a mobile call bar</span></div>
+        </a>
+        <a href="demos/taqueria/">
+          <div class="thumb t2">Casa Verde Taqueria</div>
+          <div class="meta"><b>Restaurant website</b><span>Full menu, online ordering, and hours that update open/closed live</span></div>
+        </a>
+        <a data-href="github" href="#">
+          <div class="thumb t3">DataService:Load(player)
+  ✓ session locked
+  ✓ reconciled
+  ✓ autosave 120s</div>
+          <div class="meta"><b>DataService (Luau)</b><span>Crash-safe player saving with retries, session locking and shutdown handling</span></div>
+        </a>
+        <a data-href="github" href="#">
+          <div class="thumb t4">ProcessReceipt(receipt)
+  ✓ idempotent
+  ✓ saved before grant
+RoundService → InRound</div>
+          <div class="meta"><b>ShopService + RoundService (Luau)</b><span>Server-validated shop, safe dev-product receipts, and a full round loop</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="eyebrow">Pricing</div>
+      <h2>Straight prices. No surprises.</h2>
+      <div class="grid2">
+        <div class="card rbx">
+          <span class="pill">Roblox</span>
+          <div class="price"><div>Quick fix or small script<span>A bug, a tool, a single mechanic</span></div><strong>$25–60</strong></div>
+          <div class="price"><div>Full system<span>Saving, shop, rounds, pets, inventory</span></div><strong>$80–200</strong></div>
+          <div class="price"><div>Game framework<span>Several systems wired together and documented</span></div><strong>from $300</strong></div>
+        </div>
+        <div class="card web">
+          <span class="pill">Web</span>
+          <div class="price"><div>Starter<span>One page with everything a customer needs</span></div><strong>$250</strong></div>
+          <div class="price"><div>Business<span>Up to 5 pages, menu or booking, Google setup</span></div><strong>$450</strong></div>
+          <div class="price"><div>Care plan<span>Hosting, domain renewals, small edits</span></div><strong>$25/mo</strong></div>
+        </div>
+      </div>
+      <p class="note">50% up front, 50% on delivery. Two rounds of revisions included. You get a fixed quote before any work starts.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">How it works</div>
+      <h2>From message to done.</h2>
+      <div class="grid4">
+        <div class="step"><b>01</b><h3>Tell me what you need</h3><p>A few sentences is enough. Screenshots help.</p></div>
+        <div class="step"><b>02</b><h3>Get a fixed quote</h3><p>Price, deadline, and exactly what's included.</p></div>
+        <div class="step"><b>03</b><h3>I build it</h3><p>After the deposit. You'll see progress along the way.</p></div>
+        <div class="step"><b>04</b><h3>Review &amp; launch</h3><p>Pay the rest when it works the way you wanted.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions people ask.</h2>
+      <details><summary>Do you take Robux?</summary><p>I work in USD through PayPal invoices. That keeps pricing clear and protects both of us.</p></details>
+      <details><summary>Will my Roblox code be readable?</summary><p>Yes. Everything is organized into modules with comments and a short setup guide, so you or another scripter can keep building on it.</p></details>
+      <details><summary>I already have a Facebook page. Why do I need a website?</summary><p>People search Google and Maps before they visit. A site with your hours, prices and a call button shows up there and answers their questions in five seconds. Facebook pages often don't.</p></details>
+      <details><summary>What if I need changes later?</summary><p>The care plan covers small edits every month. Bigger changes get their own quote, same as the first project.</p></details>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2>Tell me what you're building.</h2>
+          <p>Send a quick message with what you need and when you need it. You'll get a fixed quote back within a day.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" data-href="mailto" href="#">Email me</a>
+          <button class="btn" id="discordBtn" type="button">Discord: <span data-c="discord">yourdiscord</span></button>
+          <div class="toast" id="toast" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> <span data-c="name">Your Name</span></span>
+    <span>Based in <span data-c="area">your city</span> · working remotely worldwide</span>
+  </div>
+</footer>
+
+<script>
+  // ===== EDIT THESE AND YOU'RE DONE =====
+  const CONFIG = {
+    name:    "Your Name",
+    email:   "you@example.com",
+    discord: "yourdiscord",
+    github:  "https://github.com/yourname/roblox-systems",
+    area:    "your city"
+  };
+  // ======================================
+
+  document.querySelectorAll("[data-c]").forEach(el => { el.textContent = CONFIG[el.dataset.c]; });
+  document.querySelectorAll('[data-href="github"]').forEach(a => { a.href = CONFIG.github; a.target = "_blank"; a.rel = "noopener"; });
+  document.querySelectorAll('[data-href="mailto"]').forEach(a => {
+    a.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Project quote");
+  });
+  document.title = CONFIG.name + " · Roblox Systems & Websites";
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  const toast = document.getElementById("toast");
+  document.getElementById("discordBtn").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(CONFIG.discord); toast.textContent = "Copied Discord username"; }
+    catch { toast.textContent = "Add me on Discord: " + CONFIG.discord; }
+  });
+</script>
+</body>
+</html>

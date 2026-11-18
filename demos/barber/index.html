@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northside Fade Co. · Demo</title>
+<meta name="description" content="Demo barbershop website: cuts, fades, beard work. Book online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#111;--ink:#f3efe7;--muted:#a8a197;--gold:#e9c58a;--line:#2a2724;--card:#1a1816}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;padding-bottom:72px}
+  a{color:inherit}
+  .demo{background:var(--gold);color:#111;text-align:center;font-size:13px;font-weight:600;padding:6px 12px}
+  .demo a{font-weight:700}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  h1,h2{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;letter-spacing:.02em;line-height:.95;margin:0}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;height:70px}
+  .logo{font-family:"Bebas Neue";font-size:28px;letter-spacing:.06em}
+  .logo span{color:var(--gold)}
+  .book{background:var(--gold);color:#111;text-decoration:none;font-weight:700;padding:11px 18px;border-radius:6px;display:inline-block}
+  .hero{min-height:72vh;display:flex;align-items:center;background:
+      linear-gradient(90deg,rgba(17,17,17,.96) 35%,rgba(17,17,17,.55)),
+      repeating-linear-gradient(135deg,#2b2117 0 22px,#1d1712 22px 44px)}
+  .hero h1{font-size:clamp(64px,11vw,140px)}
+  .hero h1 span{color:var(--gold)}
+  .hero p{color:var(--muted);font-size:19px;max-width:42ch;margin:18px 0 28px}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .ghost{border:1px solid #4a443d;text-decoration:none;padding:11px 18px;border-radius:6px;font-weight:600}
+  section{padding:80px 0;border-top:1px solid var(--line)}
+  h2{font-size:clamp(44px,6vw,68px);margin-bottom:28px}
+  .menu{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+  .item{display:flex;align-items:baseline;gap:12px;padding:16px 0;border-bottom:1px dashed #3a352f}
+  .item b{font-size:18px;font-weight:600}
+  .item small{display:block;color:var(--muted);font-size:14px}
+  .item .dots{flex:1}
+  .item .p{font-family:"Bebas Neue";font-size:28px;color:var(--gold)}
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .barber{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .barber .ph{height:220px;display:grid;place-items:center;font-family:"Bebas Neue";font-size:72px;color:#8a7a63;background:linear-gradient(160deg,#241f1a,#15120f)}
+  .barber div{padding:16px 18px}
+  .barber b{display:block;font-size:18px}
+  .barber span{color:var(--muted);font-size:14px}
+  .info{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  table{width:100%;border-collapse:collapse}
+  td{padding:10px 0;border-bottom:1px solid var(--line)}
+  td:last-child{text-align:right;color:var(--muted)}
+  tr.today td{color:var(--gold);font-weight:600}
+  .map{border-radius:10px;min-height:260px;border:1px solid var(--line);background:
+      linear-gradient(#1a1816 1px,transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg,#1a1816 1px,transparent 1px) 0 0/40px 40px,#141210;
+      display:flex;align-items:flex-end;padding:20px}
+  .map p{margin:0;background:var(--bg);padding:12px 14px;border-radius:8px;border:1px solid var(--line)}
+  footer{padding:40px 0;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+  .callbar{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);z-index:5}
+  .callbar a{background:#161412;text-align:center;padding:16px;text-decoration:none;font-weight:700}
+  .callbar a.b{background:var(--gold);color:#111}
+  @media (min-width:900px){ .callbar{display:none} body{padding-bottom:0} }
+  @media (max-width:760px){ .menu,.info{grid-template-columns:1fr} .team{grid-template-columns:1fr} header .book{display:none} }
+</style>
+</head>
+<body>
+<div class="demo">Demo site with sample content, built by <a href="../../">this developer</a></div>
+<header><div class="wrap">
+  <div class="logo">Northside <span>Fade</span> Co.</div>
+  <a class="book" href="#book">Book a cut</a>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <h1>Sharp cuts.<br><span>No wait.</span></h1>
+  <p>Fades, tapers, beard work and hot towel shaves. Book online in 30 seconds, or walk in when the chair's open.</p>
+  <div class="row">
+    <a class="book" href="#book">Book online</a>
+    <a class="ghost" href="tel:+15555550142">Call (555) 555-0142</a>
+  </div>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <h2>Services</h2>
+  <div class="menu">
+    <div class="item"><div><b>Signature Fade</b><small>Skin, low, mid or high. Includes lineup.</small></div><span class="dots"></span><span class="p">$35</span></div>
+    <div class="item"><div><b>Classic Cut</b><small>Scissor or clipper, styled.</small></div><span class="dots"></span><span class="p">$30</span></div>
+    <div class="item"><div><b>Beard Sculpt</b><small>Shape, line, hot towel, oil.</small></div><span class="dots"></span><span class="p">$20</span></div>
+    <div class="item"><div><b>Cut + Beard</b><small>The full reset.</small></div><span class="dots"></span><span class="p">$50</span></div>
+    <div class="item"><div><b>Hot Towel Shave</b><small>Straight razor, 40 minutes.</small></div><span class="dots"></span><span class="p">$40</span></div>
+    <div class="item"><div><b>Kids Cut</b><small>12 and under.</small></div><span class="dots"></span><span class="p">$22</span></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>The chairs</h2>
+  <div class="team">
+    <div class="barber"><div class="ph">MR</div><div><b>Marcus</b><span>Owner · fades &amp; designs</span></div></div>
+    <div class="barber"><div class="ph">DJ</div><div><b>Dre</b><span>Tapers &amp; beard work</span></div></div>
+    <div class="barber"><div class="ph">LS</div><div><b>Luis</b><span>Classic cuts &amp; shaves</span></div></div>
+  </div>
+</div></section>
+
+<section id="book"><div class="wrap info">
+  <div>
+    <h2>Hours</h2>
+    <table id="hours">
+      <tr data-d="1"><td>Monday</td><td>Closed</td></tr>
+      <tr data-d="2"><td>Tuesday</td><td>10am – 7pm</td></tr>
+      <tr data-d="3"><td>Wednesday</td><td>10am – 7pm</td></tr>
+      <tr data-d="4"><td>Thursday</td><td>10am – 8pm</td></tr>
+      <tr data-d="5"><td>Friday</td><td>9am – 8pm</td></tr>
+      <tr data-d="6"><td>Saturday</td><td>8am – 5pm</td></tr>
+      <tr data-d="0"><td>Sunday</td><td>Closed</td></tr>
+    </table>
+    <p style="margin-top:24px"><a class="book" href="#">Book on Square</a></p>
+  </div>
+  <div>
+    <h2>Find us</h2>
+    <div class="map"><p><b>123 Main Street</b><br>Next to the coffee shop · parking out back</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© Northside Fade Co. · Sample business for demonstration</div></footer>
+
+<div class="callbar"><a href="tel:+15555550142">Call</a><a class="b" href="#book">Book</a></div>
+
+<script>
+  const row = document.querySelector('#hours tr[data-d="' + new Date().getDay() + '"]');
+  if (row) row.classList.add("today");
+</script>
+</body>
+</html>
