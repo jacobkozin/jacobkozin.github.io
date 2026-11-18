@@ -11,30 +11,52 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
 <style>
-  :root{--paper:#F5F2EA;--ink:#1B1A17;--soft:#55524A;--rule:#D6CFBE;--blue:#2440C4;
+  :root{--paper:#F5F2EA;--sheet:#FFFDF7;--ink:#1B1A17;--soft:#55524A;--rule:#D6CFBE;--blue:#2440C4;--on-ink:#F5F2EA;--on-ink-soft:#C2BDB0;
     --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
     --text:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-  *{box-sizing:border-box}
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-padding-top:84px;-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--text);-webkit-font-smoothing:antialiased}
-  .top{border-bottom:1px solid var(--rule)}
-  .top div,main{max-width:720px;margin:0 auto;padding:0 20px}
-  .top div{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:12px}
+  a{color:var(--blue);text-underline-offset:3px}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+  .top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:2px solid var(--ink)}
+  .top div,main,footer div{max-width:760px;margin:0 auto;padding:0 20px}
+  .top div{display:flex;align-items:center;justify-content:space-between;min-height:62px;gap:12px}
+  .top a:first-child{display:inline-flex;align-items:center;min-height:44px}
   .top img{display:block;width:151px;height:28px}
-  .top a.back{font-weight:700;color:var(--blue);text-underline-offset:3px}
-  main{padding-top:36px;padding-bottom:64px}
+  /* same pressable button as the homepage: one outline and a lip */
+  .back{display:inline-flex;align-items:center;min-height:44px;padding:8px 15px;border:2px solid var(--ink);border-radius:9px;background:var(--sheet);color:var(--ink);font-weight:700;font-size:.95rem;text-decoration:none;white-space:nowrap;box-shadow:0 3px 0 var(--ink);transition:transform .09s ease,box-shadow .09s ease}
+  .back:hover{background:#fff;transform:translateY(-1px);box-shadow:0 4px 0 var(--ink)}
+  .back:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+  main{padding-top:40px;padding-bottom:72px}
   h1,h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.1}
-  h1{font-size:2.3rem;margin:0 0 6px} h2{font-size:1.35rem;margin:34px 0 8px}
-  .muted{color:var(--soft)} a{color:var(--blue);text-underline-offset:3px}
+  h1{font-size:clamp(2.4rem,9vw,3.2rem);margin:0 0 22px}
+  /* same panel shell as the homepage price sheets */
+  .sheet{background:var(--sheet);border:2px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:0 22px 34px -22px rgba(27,26,23,.4)}
+  .sheet-head{display:flex;align-items:center;gap:12px;padding:13px 20px;color:var(--on-ink);background:var(--ink) linear-gradient(115deg,transparent 0 64%,rgba(255,255,255,.08) 64% 72%,transparent 72% 76%,rgba(255,255,255,.05) 76% 79%,transparent 79%)}
+  .sheet-head img{width:26px;height:28px;flex:none}
+  .sheet-head p{margin:0;font-size:.95rem;color:var(--on-ink-soft)}
+  .doc{padding:4px 20px 24px}
+  .doc h2{font-size:1.4rem;margin:28px 0 8px;padding-top:22px;border-top:1px solid var(--rule);display:flex;gap:10px;align-items:baseline}
+  .doc h2::before{content:"";flex:none;width:8px;height:14px;background:var(--blue);transform:skewX(-30deg);margin-left:3px}
+  .doc>p:first-child{margin-top:20px}
+  .doc ul{padding-left:1.2em}
   li{margin:6px 0}
   a[href^="tel:"],a[href^="mailto:"]{white-space:nowrap}
-  :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+  footer{background:var(--ink);color:var(--on-ink-soft);padding:26px 0 32px;font-size:.93rem}
+  footer a{color:var(--on-ink-soft);display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+  footer :focus-visible{outline-color:var(--on-ink)}
+  @media (min-width:700px){.doc{padding:8px 32px 34px}.sheet-head{padding:14px 32px}}
+  @media (prefers-reduced-motion:reduce){.back{transition:none}.back:hover,.back:active{transform:none}}
 </style>
 </head>
 <body>
 <header class="top"><div><a href="./"><img src="logo.svg" alt="Jacob Kozin" width="151" height="28"></a><a class="back" href="./">&larr; Back to the site</a></div></header>
 <main>
   <h1>Privacy</h1>
-  <p class="muted">Version 1.0 · Last updated November 18, 2026</p>
+  <div class="sheet">
+  <div class="sheet-head"><img src="logo-mark-reverse.svg" alt="" width="26" height="28"><p>Version 1.0 · Last updated November 18, 2026</p></div>
+  <div class="doc">
 
   <p>This site belongs to Jacob Kozin, an individual web developer in Scottsdale, Arizona. Here's what happens to information when you visit or contact me.</p>
 
@@ -58,10 +80,13 @@
   <p>Ask me to stop contacting you and I will. Ask me to delete our messages and I'll delete what I control, except records I have to keep for taxes or an active job. Contact: <a href="mailto:jacobkozin.support@gmail.com">jacobkozin.support@gmail.com</a> · <a href="tel:+16029359847">(602) 935-9847</a>.</p>
 
   <h2>Demo pages</h2>
-  <p>The demo sites under "Recent builds" are samples. Their quote forms only open your phone's text app or your email app, and they don't store anything. Concept previews made for real businesses are labeled as not affiliated and are hidden from search engines.</p>
+  <p>The demo sites on the homepage are samples. Their quote forms only open your phone's text app or your email app, and they don't store anything. Concept previews made for real businesses are labeled as not affiliated and are hidden from search engines.</p>
 
   <h2>Changes</h2>
   <p>If this site starts doing something new, like adding analytics, I'll update this page first.</p>
+  </div>
+  </div>
 </main>
+<footer><div>© Jacob Kozin · <a href="./">Home</a> · <a href="terms.html">Terms</a> · <a href="#">Back to top</a></div></footer>
 </body>
 </html>

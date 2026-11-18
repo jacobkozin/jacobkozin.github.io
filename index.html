@@ -21,14 +21,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F5F2EA; --sheet:#FFFDF7; --tint:#E9E4D6; --rule:#D6CFBE;
+    --paper:#F5F2EA; --sheet:#FFFDF7; --tint:#E9E4D6; --tint-2:#EFEADC; --rule:#D6CFBE;
     --ink:#1B1A17; --soft:#55524A;
-    --blue:#2440C4; --blue-d:#1A2F99;
-    --on-ink:#F5F2EA; --on-ink-soft:#C2BDB0; --ink-rule:#3A3832; --green:#8FE3A5;
+    --blue:#2440C4; --blue-d:#1A2F99; --blue-tint:#E4E8FA;
+    --on-ink:#F5F2EA; --on-ink-soft:#C2BDB0; --ink-rule:#3A3832; --ink-edge:#6B675C; --green:#8FE3A5;
     --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
     --text:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --mono:ui-monospace,"Cascadia Mono",Consolas,Menlo,monospace;
-    --gutter:20px; --head:60px;
+    /* the kit: one outline weight, one hairline, one lip for anything you can press */
+    --line:2px; --hair:1px; --lip:4px; --r:12px; --r-sm:9px;
+    --gutter:20px; --head:62px;
   }
   *,*::before,*::after{box-sizing:border-box}
   html{scroll-padding-top:calc(var(--head) + 16px);-webkit-text-size-adjust:100%}
@@ -43,22 +45,28 @@
   .band :focus-visible,.contact :focus-visible,footer :focus-visible{outline-color:var(--on-ink)}
   .skip{position:absolute;left:12px;top:-60px;z-index:30;background:var(--ink);color:var(--on-ink);padding:10px 14px;border-radius:6px;font-weight:700}
   .skip:focus{top:8px}
+  .sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+  /* ---------- icons: one drawn set, one stroke weight ---------- */
+  .ic{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .tile{width:44px;height:44px;flex:none;display:grid;place-items:center;border:var(--line) solid var(--ink);border-radius:10px;background:var(--sheet);color:var(--blue)}
 
   /* ---------- header ---------- */
-  .top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
-  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:var(--head)}
+  .top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:var(--line) solid var(--ink)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;height:var(--head)}
   .brand{display:inline-flex;align-items:center;min-height:44px;flex:none}
   .brand img{width:151px;height:28px}
   .top nav{display:none}
-  .top nav a{text-decoration:none;font-weight:600;font-size:.97rem;padding:12px 2px}
+  .top nav a{text-decoration:none;font-weight:700;font-size:.97rem;padding:12px 2px}
   .top nav a:hover{color:var(--blue)}
   /* phone menu: the section links drop down under the header */
-  .menu-btn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:2px solid var(--ink);border-radius:8px;background:transparent;color:var(--ink);font:700 .95rem/1 var(--text);cursor:pointer}
-  .menu-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round}
+  .menu-btn{margin-left:auto}
+  .menu-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round}
   .menu-btn[aria-expanded="true"] .bars{display:none}
   .menu-btn:not([aria-expanded="true"]) .close{display:none}
-  .top nav.open{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:var(--paper);border-bottom:1.5px solid var(--ink);padding:4px var(--gutter) 12px;box-shadow:0 14px 24px rgba(0,0,0,.12)}
-  .top nav.open a{padding:15px 2px;font-size:1.08rem;border-top:1px solid var(--rule)}
+  .top nav.open{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:var(--paper);border-bottom:var(--line) solid var(--ink);padding:4px var(--gutter) 12px;box-shadow:0 16px 26px rgba(27,26,23,.16)}
+  .top nav.open a{display:flex;justify-content:space-between;align-items:center;padding:15px 2px;font-size:1.08rem;border-top:var(--hair) solid var(--rule)}
+  .top nav.open a::after{content:"";width:8px;height:14px;background:var(--blue);transform:skewX(-30deg)}
   .top nav.open a:first-child{border-top:0}
   @media (max-width:430px){
     .top .wrap{gap:10px}
@@ -66,209 +74,243 @@
     .menu-btn{padding:8px 11px}
   }
 
-  /* ---------- buttons ---------- */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:11px 20px;border:2px solid var(--ink);border-radius:8px;background:transparent;color:var(--ink);font:700 1rem/1.2 var(--text);text-decoration:none;text-align:center;cursor:pointer;transition:background-color .15s ease,color .15s ease,border-color .15s ease}
-  .btn:hover{background:var(--ink);color:var(--paper)}
-  .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
-  .btn.primary:hover{background:var(--blue-d);border-color:var(--blue-d);color:#fff}
-  .btn.small{min-height:44px;padding:8px 16px;font-size:.95rem}
+  /* ---------- buttons: face, one outline, a lip that presses ---------- */
+  .btn,.menu-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:11px 20px;border:var(--line) solid var(--ink);border-radius:var(--r-sm);background:var(--sheet);color:var(--ink);font:700 1rem/1.2 var(--text);text-decoration:none;text-align:center;cursor:pointer;box-shadow:0 var(--lip) 0 var(--ink);-webkit-tap-highlight-color:transparent;transition:transform .09s ease,box-shadow .09s ease,background-color .15s ease}
+  .btn:hover,.menu-btn:hover{background:#fff;transform:translateY(-1px);box-shadow:0 calc(var(--lip) + 1px) 0 var(--ink)}
+  .btn:active,.menu-btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+  .btn.primary{background:var(--blue);color:#fff}
+  .btn.primary:hover{background:var(--blue-d)}
+  .btn.small,.menu-btn{min-height:44px;padding:8px 15px;font-size:.95rem;--lip:3px}
   .btn svg{width:1.05em;height:1.05em;flex:none;fill:currentColor}
   .num{font-variant-numeric:tabular-nums;white-space:nowrap}
   .wide-only{display:none}
 
   /* ---------- shared pieces ---------- */
-  .label{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:14px}
-  .label::before{content:"";width:9px;height:15px;background:var(--blue);transform:skewX(-30deg);flex:none;margin-left:4px}
+  .label{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.82rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink);background:var(--sheet);border:var(--line) solid var(--ink);border-radius:7px;padding:5px 11px 5px 9px;margin-bottom:16px}
+  .label::before{content:"";width:8px;height:14px;background:var(--blue);transform:skewX(-30deg);flex:none;margin-left:3px}
   section{padding:64px 0}
-  section h2{font-size:clamp(1.9rem,5.2vw,2.9rem);max-width:20ch;margin-bottom:14px}
-  .lede{color:var(--soft);max-width:58ch;margin-bottom:32px}
-  .ruled{border-top:2px solid var(--ink)}
-  .ticks li{position:relative;padding:11px 0 11px 30px;border-top:1px solid var(--rule)}
-  .ticks li:first-child{border-top:0}
-  .ticks li::before{content:"";position:absolute;left:5px;top:1.02em;width:8px;height:14px;background:var(--blue);transform:skewX(-30deg)}
+  section h2{font-size:clamp(1.95rem,5.4vw,3rem);max-width:20ch;margin-bottom:14px}
+  .lede{color:var(--soft);max-width:58ch;margin-bottom:30px}
+  .ruled{border-top:var(--line) solid var(--ink)}
+  .tinted{background:var(--tint-2)}
+  .feature li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;padding:12px 0;border-top:var(--hair) solid var(--rule)}
+  .feature li:first-child{border-top:0;padding-top:0}
 
-  /* ---------- price sheet ---------- */
-  .sheet{background:var(--sheet);border:1.5px solid var(--ink);border-radius:6px}
-  .sheet-head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1.5px solid var(--ink)}
+  /* ---------- panel shell: ink header band, light interior ---------- */
+  .sheet{background:var(--sheet);border:var(--line) solid var(--ink);border-radius:var(--r);overflow:hidden;box-shadow:0 22px 34px -22px rgba(27,26,23,.4)}
+  .sheet-head{display:flex;align-items:center;gap:12px;padding:13px 18px;color:var(--on-ink);background:var(--ink) linear-gradient(115deg,transparent 0 64%,rgba(255,255,255,.08) 64% 72%,transparent 72% 76%,rgba(255,255,255,.05) 76% 79%,transparent 79%)}
   .sheet-head img{width:26px;height:28px;flex:none}
-  .sheet-head b{display:block;font-family:var(--display);font-weight:800;font-size:1.12rem;line-height:1.15;letter-spacing:-.01em}
-  .sheet-head span{display:block;font-size:.88rem;color:var(--soft);line-height:1.3}
-  .rows li{display:grid;grid-template-columns:auto minmax(12px,1fr) auto;align-items:baseline;column-gap:8px;padding:13px 18px;border-top:1px solid var(--rule)}
+  .sheet-head b{display:block;font-family:var(--display);font-weight:800;font-size:1.14rem;line-height:1.15;letter-spacing:-.01em}
+  .sheet-head span{display:block;font-size:.88rem;color:var(--on-ink-soft);line-height:1.3}
+  .rows li{display:grid;grid-template-columns:auto minmax(12px,1fr) auto;align-items:baseline;column-gap:8px;padding:14px 18px;border-top:var(--hair) solid var(--rule)}
   .rows li:first-child{border-top:0}
   .rows b{font-weight:700}
   .rows .dots{border-bottom:2px dotted #A9A292;transform:translateY(-4px)}
-  .rows strong{font-weight:700;font-size:1.12rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .rows strong{font-weight:700;font-size:1.16rem;font-variant-numeric:tabular-nums;white-space:nowrap}
   .rows small{grid-column:1/-1;font-size:.93rem;color:var(--soft);line-height:1.4;margin-top:2px;max-width:46ch}
-  .rows li.season{background:var(--tint)}
-  .rows .flag{grid-column:1/-1;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:2px}
-  .sheet-foot{padding:13px 18px;border-top:1.5px solid var(--ink);font-size:.93rem;color:var(--soft)}
+  .rows li.season{background:var(--blue-tint)}
+  .rows .flag{grid-column:1/-1;justify-self:start;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);border-radius:5px;padding:2px 8px;margin-bottom:6px}
+  .sheet-foot{padding:13px 18px;border-top:var(--line) solid var(--ink);font-size:.93rem;color:var(--soft);background:var(--paper)}
   .sheet-foot a{color:var(--blue);font-weight:700;white-space:nowrap}
 
   /* ---------- hero ---------- */
-  .hero{padding:28px 0 56px}
-  .hero-grid{display:grid;gap:32px}
-  .status{display:flex;align-items:center;gap:9px;font-size:.9rem;font-weight:600;color:var(--soft);margin-bottom:14px}
-  .status i{width:9px;height:9px;border-radius:50%;background:#1E8E4E;flex:none}
-  h1{font-size:clamp(2.4rem,10.4vw,4.4rem);line-height:.98;max-width:13ch}
+  .hero{padding:26px 0 56px;background:linear-gradient(#ECE7D9 1px,transparent 1px) 0 14px/100% 38px}
+  .hero-grid{display:grid;gap:26px}
+  .status{display:flex;align-items:center;gap:10px;font-size:.92rem;font-weight:700;color:var(--soft);margin-bottom:14px}
+  .status i{position:relative;width:10px;height:10px;border-radius:50%;background:#1E8E4E;flex:none}
+  .status i::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid #1E8E4E;opacity:0}
+  h1{font-size:clamp(2.45rem,10.6vw,4.5rem);line-height:.97;max-width:13ch}
   h1 em{font-style:normal;color:var(--blue)}
-  .hero .intro{font-size:1.09rem;max-width:50ch;margin:18px 0 24px}
-  .hero-cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:440px}
-  .hero-cta .primary{grid-column:1/-1}
-  .also{margin-top:18px;font-size:.97rem;color:var(--soft)}
+  .hero .intro{font-size:1.09rem;max-width:46ch;margin:16px 0 22px}
+  .hero-cta{display:grid;grid-template-columns:1fr 1fr;gap:14px 10px;max-width:440px}
+  .hero-cta .primary{grid-column:1/-1;min-height:56px;font-size:1.08rem}
+  .promises{display:grid;gap:8px;max-width:46ch}
+  .promises li{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start;font-weight:600}
+  .promises .ic{width:22px;height:22px;stroke-width:2.6;color:var(--blue);margin-top:2px}
+  .also{margin-top:16px;font-size:.97rem;color:var(--soft)}
   .also a{color:var(--ink);font-weight:700;text-underline-offset:3px}
   .hero .rows li{padding-top:11px;padding-bottom:11px}
 
   /* ---------- demos ---------- */
-  .demos{display:grid;gap:18px}
-  .demo{display:grid;background:var(--sheet);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
-  .demo:not(.compact){grid-template-rows:auto 1fr}
-  .demo:hover{transform:translateY(-3px);box-shadow:0 10px 0 -6px var(--ink)}
-  .shot{background:var(--bg,var(--tint));height:270px;overflow:hidden;display:flex;justify-content:center;padding-top:26px;border-bottom:1.5px solid var(--ink)}
-  .shot img{width:228px;height:auto;align-self:flex-start;border:3px solid var(--ink);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:0 14px 30px rgba(27,26,23,.28)}
-  .demo-body{padding:18px 18px 20px;display:flex;flex-direction:column;align-items:flex-start}
-  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--ink);border-radius:4px;padding:2px 7px;margin-bottom:10px}
-  .demo h3{font-size:1.5rem;margin-bottom:2px}
+  .demos{display:grid;gap:22px}
+  .demo{position:relative;display:grid;grid-template-rows:auto 1fr;background:var(--sheet);border:var(--line) solid var(--ink);border-radius:14px;overflow:hidden;text-decoration:none;box-shadow:0 5px 0 var(--ink);-webkit-tap-highlight-color:transparent;transition:transform .12s ease,box-shadow .12s ease}
+  .demo:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--ink)}
+  .demo:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
+  .stage{position:relative;background:var(--bg,var(--tint));height:310px;overflow:hidden;display:flex;justify-content:center;padding-top:50px;border-bottom:var(--line) solid var(--ink)}
+  .stage img{width:240px;height:auto;align-self:flex-start;border:3px solid var(--ink);border-bottom:0;border-radius:20px 20px 0 0;box-shadow:0 14px 30px rgba(27,26,23,.3)}
+  .tag{position:absolute;left:12px;top:12px;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-ink);background:var(--ink);border-radius:6px;padding:4px 9px}
+  .demo-body{padding:18px 18px 22px;display:flex;flex-direction:column;align-items:flex-start}
+  .demo h3{font-size:1.55rem;margin-bottom:3px}
   .demo .kind{font-weight:700;margin-bottom:6px}
   .demo .desc{color:var(--soft);font-size:1rem;margin-bottom:auto}
-  .demo .offer{align-self:stretch;margin-top:12px;padding:10px 12px;background:var(--tint);border-radius:4px;font-size:.95rem}
-  .go{display:inline-block;margin-top:12px;font-weight:700;color:var(--blue);text-decoration:underline;text-underline-offset:3px}
-  .demo.compact{grid-template-columns:118px 1fr}
-  .demo.compact .shot{height:100%;min-height:176px;padding-top:16px;border-bottom:0;border-right:1.5px solid var(--ink)}
-  .demo.compact .shot img{width:88px;border-width:2px;border-radius:9px 9px 0 0;box-shadow:none}
-  .demo.compact .demo-body{padding:14px 14px 16px}
-  .demo.compact h3{font-size:1.22rem}
-  .honest{margin-top:22px;font-size:.95rem;color:var(--soft);max-width:62ch}
+  .demo .offer{align-self:stretch;margin-top:12px;padding:10px 12px;background:var(--blue-tint);border-radius:8px;font-size:.96rem}
+  .go{display:inline-flex;align-items:center;gap:7px;margin-top:16px;padding:9px 14px;border:var(--line) solid var(--ink);border-radius:8px;background:var(--blue);color:#fff;font-weight:700;font-size:.97rem;box-shadow:0 3px 0 var(--ink)}
+  .demo.compact{grid-template-rows:none;grid-template-columns:128px 1fr}
+  .demo.compact .stage{height:100%;padding:16px 14px 44px;border-bottom:0;border-right:var(--line) solid var(--ink);align-items:flex-start}
+  .demo.compact .stage img{width:96px;border:2px solid var(--ink);border-radius:10px;box-shadow:none}
+  .demo.compact .tag{left:10px;top:auto;bottom:10px}
+  .demo.compact .demo-body{padding:16px 14px 20px}
+  .demo.compact h3{font-size:1.24rem}
+  .demo.compact .go{font-size:.92rem;padding:8px 11px;white-space:nowrap}
+  .honest{margin-top:26px;font-size:.95rem;color:var(--soft);max-width:62ch}
 
   /* ---------- services ---------- */
-  .svc{display:grid;gap:28px}
+  .svc{display:grid;gap:26px}
   .from{font-size:1.02rem;margin-bottom:8px}
-  .from b{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.01em}
+  .from b{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.01em}
 
   /* ---------- pricing ---------- */
   .price-grid{display:grid;gap:22px}
-  .compare{margin-top:28px;max-width:640px}
-  .terms{display:grid;gap:0;align-content:start}
-  .terms li{padding:14px 0;border-top:1px solid var(--rule)}
-  .terms li:first-child{border-top:2px solid var(--ink)}
-  .terms b{display:block;font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.01em;line-height:1.2}
-  .terms span{color:var(--soft);font-size:.98rem}
-  .pointer{margin-top:20px;color:var(--soft);font-size:.97rem}
+  .terms li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:14px 18px;border-top:var(--hair) solid var(--rule)}
+  .terms li:first-child{border-top:0}
+  .terms b{display:block;font-family:var(--display);font-weight:800;font-size:1.14rem;letter-spacing:-.01em;line-height:1.2;margin-bottom:2px}
+  .terms span{color:var(--soft);font-size:.97rem}
+  .compare{margin-top:26px}
+  .vs{display:grid}
+  .vs>div{position:relative;padding:18px 18px 20px}
+  .vs>div+div{border-top:var(--line) solid var(--ink);background:var(--blue-tint)}
+  .vs b{display:block;font-weight:700}
+  .vs strong{display:block;font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,7vw,2.5rem);letter-spacing:-.02em;line-height:1.1;margin:2px 0 6px;font-variant-numeric:tabular-nums}
+  .vs>div+div strong{color:var(--blue)}
+  .vs small{display:block;font-size:.96rem;color:var(--soft);line-height:1.45;max-width:40ch}
+  .vs>div+div::before{content:"vs";position:absolute;left:18px;top:-17px;display:grid;place-items:center;width:38px;height:32px;border:var(--line) solid var(--ink);border-radius:8px;background:var(--sheet);font:800 .95rem/1 var(--display)}
+  .pointer{margin-top:22px;color:var(--soft);font-size:.97rem}
   .pointer a{color:var(--ink);font-weight:700;text-underline-offset:3px}
 
   /* ---------- steps ---------- */
   .steps{display:grid;counter-reset:step}
-  .steps li{counter-increment:step;display:grid;grid-template-columns:54px 1fr;column-gap:8px;padding:18px 0;border-top:1px solid var(--rule)}
-  .steps li:first-child{border-top:2px solid var(--ink)}
-  .steps li::before{content:"0" counter(step);font-family:var(--display);font-weight:800;font-size:1.9rem;line-height:1;color:var(--blue);font-variant-numeric:tabular-nums;grid-row:1/3}
-  .steps h3{font-size:1.25rem;margin-bottom:4px}
+  .steps li{counter-increment:step;position:relative;display:grid;grid-template-columns:44px 1fr;column-gap:16px;padding-bottom:26px}
+  .steps li:last-child{padding-bottom:0}
+  .steps li:not(:last-child)::after{content:"";position:absolute;left:21px;top:50px;bottom:6px;border-left:2px dashed #A9A292}
+  .steps .tile{grid-row:1/3}
+  .steps h3{font-size:1.28rem;margin-bottom:4px}
+  .steps h3::before{content:"Step " counter(step);display:block;font:700 .82rem/1.5 var(--text);letter-spacing:.11em;text-transform:uppercase;color:var(--blue)}
   .steps p{color:var(--soft);grid-column:2}
 
   /* ---------- roblox band ---------- */
   .band{background:var(--ink);color:var(--on-ink)}
-  .band .label{color:var(--on-ink-soft)}
-  .band .label::before,.band .ticks li::before{background:var(--green)}
+  .band .label{color:var(--on-ink);background:#23221E;border-color:var(--ink-edge)}
+  .band .label::before{background:var(--green)}
   .band .lede,.band .from{color:var(--on-ink-soft)}
   .band .from b{color:var(--on-ink)}
-  .band .ticks li{border-color:var(--ink-rule)}
-  .band .sheet{background:#23221E;border-color:#6B675C}
-  .band .sheet-head,.band .sheet-foot{border-color:#6B675C}
-  .band .sheet-head span,.band .sheet-foot,.band .rows small{color:var(--on-ink-soft)}
+  .band .feature li{border-color:var(--ink-rule)}
+  .band .tile{background:#23221E;border-color:var(--ink-edge);color:var(--green)}
+  .band .sheet{background:#23221E;border-color:var(--ink-edge);box-shadow:none}
+  .band .sheet-head{background-color:#141310;border-bottom:var(--hair) solid var(--ink-edge)}
+  .band .sheet-foot{border-color:var(--ink-edge);background:#1D1C19}
+  .band .sheet-foot,.band .rows small{color:var(--on-ink-soft)}
   .band .rows li{border-color:var(--ink-rule)}
   .band .rows .dots{border-color:#77736A}
   .rbx-grid{display:grid;gap:28px}
-  .code-grid{display:grid;gap:18px;margin-top:36px}
-  .code{display:block;text-decoration:none;border:1.5px solid #6B675C;border-radius:6px;overflow:hidden;background:#23221E;transition:border-color .18s ease}
-  .code:hover{border-color:var(--green)}
-  .code pre{margin:0;padding:16px 18px;font:400 .82rem/1.65 var(--mono);color:#DAD6CA;background:#141310;border-bottom:1.5px solid #6B675C;white-space:pre-wrap;overflow-wrap:anywhere;}
+  .code-grid{display:grid;gap:22px;margin-top:38px}
+  .code{display:block;text-decoration:none;border:var(--line) solid var(--ink-edge);border-radius:14px;overflow:hidden;background:#23221E;box-shadow:0 5px 0 #000;-webkit-tap-highlight-color:transparent;transition:transform .12s ease,box-shadow .12s ease,border-color .15s ease}
+  .code:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 7px 0 #000}
+  .code:active{transform:translateY(3px);box-shadow:0 2px 0 #000}
+  .code pre{margin:0;padding:16px 18px;font:400 .84rem/1.65 var(--mono);color:#DAD6CA;background:#141310;border-bottom:var(--hair) solid var(--ink-edge);white-space:pre-wrap;overflow-wrap:anywhere}
   .code pre .c{color:var(--green)}
-  .code div{padding:16px 18px 18px}
-  .code b{display:block;font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
-  .code span.d{color:var(--on-ink-soft);font-size:.98rem}
-  .code .go{color:var(--green)}
+  .code div{padding:16px 18px 22px}
+  .code b{display:block;font-family:var(--display);font-weight:800;font-size:1.22rem;letter-spacing:-.01em;margin-bottom:2px}
+  .code span.d{display:block;color:var(--on-ink-soft);font-size:.98rem}
+  .code .go{background:var(--green);color:var(--ink);border-color:#000;box-shadow:0 3px 0 #000}
 
   /* ---------- faq ---------- */
-  .faq{max-width:780px}
-  details{border-top:1px solid var(--rule)}
-  details:first-of-type{border-top:2px solid var(--ink)}
-  details:last-of-type{border-bottom:1px solid var(--rule)}
-  summary{display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;list-style:none;padding:18px 2px;font-weight:700;font-size:1.09rem;min-height:56px}
+  .faq{max-width:780px;display:grid;gap:14px}
+  details{background:var(--sheet);border:var(--line) solid var(--ink);border-radius:var(--r);box-shadow:0 3px 0 var(--ink)}
+  summary{display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;list-style:none;padding:15px 16px 15px 18px;font-weight:700;font-size:1.08rem;min-height:60px;border-radius:10px;-webkit-tap-highlight-color:transparent}
   summary::-webkit-details-marker{display:none}
-  summary::after{content:"";flex:none;width:16px;height:16px;background:linear-gradient(var(--blue),var(--blue)) center/100% 3px no-repeat,linear-gradient(var(--blue),var(--blue)) center/3px 100% no-repeat}
-  details[open] summary::after{background:linear-gradient(var(--blue),var(--blue)) center/100% 3px no-repeat}
-  details p{color:var(--soft);padding:0 2px 20px;max-width:66ch}
+  summary::after{content:"";flex:none;width:32px;height:32px;border:var(--line) solid var(--ink);border-radius:8px;background:linear-gradient(var(--blue),var(--blue)) center/14px 3px no-repeat,linear-gradient(var(--blue),var(--blue)) center/3px 14px no-repeat,var(--paper);transition:transform .15s ease}
+  details[open] summary::after{background:linear-gradient(#fff,#fff) center/14px 3px no-repeat,var(--blue);transform:rotate(180deg)}
+  details p{color:var(--soft);padding:0 18px 20px;max-width:66ch}
 
   /* ---------- contact ---------- */
   .contact{background:var(--blue);color:#fff}
-  .contact .label{color:#DCE2FB}
+  .contact .label{color:#fff;background:var(--blue-d);border-color:#fff}
   .contact .label::before{background:#fff}
   .contact h2{max-width:14ch}
   .contact .lede{color:#E9ECFC;margin-bottom:0}
-  .contact-grid{display:grid;gap:28px}
-  .reach{display:grid;gap:10px}
-  .reach .btn{justify-content:flex-start;text-align:left;border-color:#fff;color:#fff;min-height:58px;width:100%;padding:10px 16px;gap:14px}
-  .reach .btn:hover{background:#fff;color:var(--blue)}
-  .reach .btn.primary{background:#fff;color:var(--ink);border-color:#fff}
-  .reach .btn.primary:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .contact-grid{display:grid;gap:30px}
+  .reach{display:grid;gap:16px}
+  .reach .btn{justify-content:flex-start;text-align:left;min-height:62px;width:100%;padding:10px 14px;gap:12px;background:var(--blue-d);color:#fff}
+  .reach .btn:hover{background:#142680}
+  .reach .btn.primary{background:var(--sheet);color:var(--ink)}
+  .reach .btn.primary:hover{background:#fff}
   .reach .btn svg{width:22px;height:22px}
   .reach .btn span.t{display:grid;min-width:0}
-  .reach .btn small{font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.86}
-  .reach .btn span.v{font-size:1.06rem;overflow-wrap:anywhere}
-  .toast{min-height:1.5em;font-size:.95rem;font-weight:600}
+  .reach .btn small{font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.9}
+  .reach .btn span.v{font-size:1rem;overflow-wrap:anywhere}
+  .toast{min-height:2.2em;font-size:.95rem;font-weight:700}
+  .toast:not(:empty){justify-self:start;display:inline-flex;align-items:center;padding:6px 12px;border-radius:8px;background:var(--sheet);color:var(--ink);border:var(--line) solid var(--ink)}
 
   /* ---------- footer ---------- */
   footer{background:var(--ink);color:var(--on-ink-soft);padding:36px 0 44px;font-size:.93rem}
   footer .wrap{display:grid;gap:14px}
   footer img{width:140px;height:26px}
-  footer a{text-underline-offset:3px}
+  footer a{text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px;min-width:44px}
 
   /* ---------- wider screens ---------- */
   @media (min-width:600px){
     :root{--gutter:28px}
     .demos{grid-template-columns:1fr 1fr}
     .code-grid{grid-template-columns:1fr 1fr}
-    .steps{grid-template-columns:1fr 1fr;column-gap:32px}
-    .steps li:nth-child(2){border-top:2px solid var(--ink)}
+    .vs{grid-template-columns:1fr 1fr}
+    .vs>div+div{border-top:0;border-left:var(--line) solid var(--ink)}
+    .vs>div+div::before{left:-20px;top:22px}
+    .vs>div+div{padding-left:32px}
     .reach{max-width:460px}
   }
   @media (min-width:920px){
-    :root{--head:68px}
+    :root{--head:70px}
     section{padding:92px 0}
     .top nav,.top nav.open{display:flex;flex-direction:row;align-items:center;gap:28px;margin-left:auto;position:static;padding:0;border:0;box-shadow:none;background:none}
     .top nav.open a{padding:12px 2px;font-size:.97rem;border-top:0}
+    .top nav.open a::after{content:none}
     .menu-btn{display:none}
     .brand img{width:172px;height:32px}
     .wide-only{display:inline}
-    .hero{padding:64px 0 84px}
-    .hero-grid{grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);gap:56px;align-items:center}
-    h1{font-size:clamp(3.4rem,5.4vw,4.6rem)}
+    .hero{padding:60px 0 84px}
+    .hero-grid{grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);grid-template-areas:"main sheet" "more sheet";column-gap:56px;row-gap:26px;align-items:start}
+    .hero-main{grid-area:main}
+    .hero-sheet{grid-area:sheet;align-self:center}
+    .hero-more{grid-area:more}
+    h1{font-size:clamp(3.5rem,5.5vw,4.7rem)}
     .hero .intro{font-size:1.18rem}
-    .shot{height:330px;padding-top:34px}
-    .shot img{width:270px}
-    .demo-body{padding:22px 24px 24px}
-    .demo.compact{grid-template-columns:170px 1fr}
-    .demo.compact .shot{padding-top:22px;min-height:200px}
-    .demo.compact .shot img{width:122px}
-    .demo.compact .demo-body{padding:22px 24px}
+    .stage{height:350px;padding-top:54px}
+    .stage img{width:280px}
+    .demo-body{padding:22px 24px 26px}
+    .demo.compact{grid-template-columns:176px 1fr}
+    .demo.compact .stage{padding:22px 20px 48px}
+    .demo.compact .stage img{width:132px}
+    .demo.compact .demo-body{padding:22px 24px 26px}
     .svc{grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
-    .price-grid{grid-template-columns:1.25fr .75fr;gap:56px;align-items:start}
+    .price-grid{grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+    .compare{margin-top:40px}
+    .vs>div{padding:26px 28px 28px}
+    .vs>div+div{padding-left:40px}
     .steps{grid-template-columns:repeat(4,1fr);column-gap:28px}
-    .steps li{grid-template-columns:1fr;border-top:2px solid var(--ink)!important;padding:20px 0 0}
-    .steps li::before{grid-row:auto;margin-bottom:14px;font-size:2.3rem}
+    .steps li{grid-template-columns:1fr;padding-bottom:0}
+    .steps li:not(:last-child)::after{left:56px;right:-16px;top:21px;bottom:auto;border-left:0;border-top:2px dashed #A9A292}
+    .steps .tile{grid-row:auto;margin-bottom:16px}
     .steps p{grid-column:1}
     .rbx-grid{grid-template-columns:1.1fr .9fr;gap:64px;align-items:start}
     .contact-grid{grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
     .reach{max-width:none}
     footer .wrap{grid-template-columns:auto 1fr auto;align-items:center;gap:32px}
   }
-  @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+  @media (prefers-reduced-motion:no-preference){
+    html{scroll-behavior:smooth}
+    .status i::after{animation:ping 2.4s ease-out infinite}
+    @keyframes ping{0%{transform:scale(.4);opacity:.7}70%,100%{transform:scale(1.25);opacity:0}}
+  }
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{transition:none!important;animation:none!important}
-    .demo:hover{transform:none}
+    .btn:hover,.btn:active,.menu-btn:hover,.menu-btn:active,.demo:hover,.demo:active,.code:hover,.code:active{transform:none}
   }
+  [hidden]{display:none!important}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol><symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.2"/><path d="M11 17.5h2"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.5-5.6 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.3"/></symbol><symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5a4.5 4.5 0 0 1-.6-8.96 6 6 0 0 1 11.5 1.5 3.75 3.75 0 0 1-.4 7.46Z"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M4.5 5.5h15V16h-8L7 19.5V16H4.5Z"/></symbol><symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.5v-8h8l9 9-8 8Z"/><circle cx="8" cy="9" r="1.4"/></symbol><symbol id="i-build" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M3.5 9h17M9.5 12.5l-2 2 2 2M14.5 12.5l2 2-2 2"/></symbol><symbol id="i-done" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.2 12.3l2.6 2.6 5-5.4"/></symbol><symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9-1.9 5.1-1.9-5.1-5.1-1.9 5.1-1.9Z"/><path d="M18.5 16.5v4M16.5 18.5h4"/></symbol><symbol id="i-split" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17M12 8h5.5M12 12h8.5M12 16h5.5"/></symbol><symbol id="i-loop" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 0 1-13.2 4.9M4.5 12a7.5 7.5 0 0 1 13.2-4.9"/><path d="M17.9 3.4v3.9H14M6.1 20.6v-3.9H10"/></symbol><symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3.5h8L18 7v13.5H6.5Z"/><path d="M9.3 13.6l1.9 1.9 3.6-3.9"/></symbol><symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v11c0 1.7 3.1 3 7 3s7-1.3 7-3v-11M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></symbol><symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4.5h2.5L7.7 15h10l2-7.5H6.4"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></symbol><symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 21V4M6 5h11.5l-2.3 3.5 2.3 3.5H6"/></symbol><symbol id="i-paw" viewBox="0 0 24 24"><circle cx="6.8" cy="10.2" r="1.6"/><circle cx="10.3" cy="6.6" r="1.6"/><circle cx="14.7" cy="6.6" r="1.6"/><circle cx="18.2" cy="10.2" r="1.6"/><path d="M12.5 11.8c-2.6 0-5 2.6-5 4.9 0 1.5 1.1 2.3 2.4 2.3 1 0 1.7-.5 2.6-.5s1.6.5 2.6.5c1.3 0 2.4-.8 2.4-2.3 0-2.3-2.4-4.9-5-4.9Z"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5l7 2.5v5.5c0 4.3-3 7.6-7 9-4-1.4-7-4.7-7-9V6Z"/><path d="M9 12l2.2 2.2 3.8-4"/></symbol></svg>
 
 <header class="top">
   <div class="wrap">
@@ -295,10 +337,10 @@
 <main id="main">
   <div class="hero" id="top">
     <div class="wrap hero-grid">
-      <div>
+      <div class="hero-main">
         <p class="status"><i></i> Taking new projects · replies within 24h</p>
         <h1>Websites that make it <em>easy to hire you.</em></h1>
-        <p class="intro">I'm Jacob, a web developer in <span data-c="area">Scottsdale, AZ</span>. I build fast, clean websites for local businesses, made for phones first. Fixed quotes, clear deadlines, and you pay the second half only when you're happy with it.</p>
+        <p class="intro">I'm Jacob, a web developer in <span data-c="area">Scottsdale, AZ</span>. I build fast, clean websites for local businesses, made for phones first.</p>
         <div class="hero-cta">
           <a class="btn primary" data-href="tel" href="tel:+16029359847">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5h3.1l1.6 4.6-2.2 1.7a12.4 12.4 0 0 0 6.1 6.1l1.7-2.2 4.6 1.6v3.1a2.6 2.6 0 0 1-2.8 2.6C10.2 19.3 4.7 13.8 4 5.3a2.6 2.6 0 0 1 2.6-2.8Z"/></svg>
@@ -307,12 +349,11 @@
           <a class="btn" data-href="sms" href="sms:+16029359847">Text me</a>
           <a class="btn" href="#work">See demos</a>
         </div>
-        <p class="also">Prefer email? <a href="#contact">Get a free quote</a>. Building a Roblox game? <a href="#roblox">Scripting commissions from $25</a>.</p>
       </div>
 
-      <aside class="sheet" aria-label="Website prices at a glance">
+      <aside class="sheet hero-sheet" aria-label="Website prices at a glance">
         <div class="sheet-head">
-          <img src="logo-mark.svg" alt="" width="26" height="28">
+          <img src="logo-mark-reverse.svg" alt="" width="26" height="28">
           <div><b>Website prices</b><span>Launch prices for my first 3 clients</span></div>
         </div>
         <ul class="rows">
@@ -324,19 +365,27 @@
         </ul>
         <p class="sheet-foot">50% up front, 50% on delivery. <a href="#pricing">What each one includes</a></p>
       </aside>
+
+      <div class="hero-more">
+        <ul class="promises">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Fixed quotes</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Clear deadlines</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>You pay the second half only when you're happy with it</li>
+        </ul>
+        <p class="also">Prefer email? <a href="#contact">Get a free quote</a>. Building a Roblox game? <a href="#roblox">Scripting commissions from $25</a>.</p>
+      </div>
     </div>
   </div>
 
-  <section id="work" class="ruled">
+  <section id="work" class="ruled tinted">
     <div class="wrap">
       <p class="label">Demo sites</p>
       <h2>Tap through a site like yours.</h2>
       <p class="lede">I built these four as demos, with made-up businesses and sample content, so you can try the real thing on your phone before we talk.</p>
       <div class="demos">
         <a class="demo" href="demos/lights/">
-          <div class="shot" style="--bg:#1D3327"><img src="assets/demo-lights.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
+          <div class="stage" style="--bg:#1D3327"><img src="assets/demo-lights.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"><span class="tag">Demo · sample content</span></div>
           <div class="demo-body">
-            <span class="tag">Demo · sample content</span>
             <h3>Desert Twinkle Lights</h3>
             <p class="kind">Holiday lighting website</p>
             <p class="desc">Customers text a photo of their house for a quote. Built for installers in the December rush.</p>
@@ -345,9 +394,8 @@
           </div>
         </a>
         <a class="demo" href="demos/handyman/">
-          <div class="shot" style="--bg:#D9C9B4"><img src="assets/demo-handyman.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
+          <div class="stage" style="--bg:#D9C9B4"><img src="assets/demo-handyman.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"><span class="tag">Demo · sample content</span></div>
           <div class="demo-body">
-            <span class="tag">Demo · sample content</span>
             <h3>Saguaro Ridge Handyman</h3>
             <p class="kind">Home-service website</p>
             <p class="desc">Tap-to-call everywhere, a quote form that texts the owner, service list, and service area. Built for trades.</p>
@@ -355,9 +403,8 @@
           </div>
         </a>
         <a class="demo compact" href="demos/barber/">
-          <div class="shot" style="--bg:#0E1830"><img src="assets/demo-barber.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
+          <div class="stage" style="--bg:#0E1830"><img src="assets/demo-barber.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"><span class="tag">Demo</span></div>
           <div class="demo-body">
-            <span class="tag">Demo</span>
             <h3>Northside Fade Co.</h3>
             <p class="kind">Barbershop website</p>
             <p class="desc">Services and prices, hours, a mobile call bar, and a spot for your booking link</p>
@@ -365,9 +412,8 @@
           </div>
         </a>
         <a class="demo compact" href="demos/taqueria/">
-          <div class="shot" style="--bg:#CFE0C9"><img src="assets/demo-taqueria.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
+          <div class="stage" style="--bg:#CFE0C9"><img src="assets/demo-taqueria.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"><span class="tag">Demo</span></div>
           <div class="demo-body">
-            <span class="tag">Demo</span>
             <h3>Casa Verde Taqueria</h3>
             <p class="kind">Restaurant website</p>
             <p class="desc">Full menu, a spot for your ordering link, and hours that update open/closed live</p>
@@ -386,17 +432,17 @@
         <h2>Websites for local businesses.</h2>
         <p class="from">From <b>$250</b> · live in about a week</p>
       </div>
-      <ul class="ticks">
-        <li>Your hours, services or menu, location, and a tap-to-call button</li>
-        <li>Built for phones first, which is where most of your customers are</li>
-        <li>Booking or ordering links (Square, Calendly, Toast, and others)</li>
-        <li>Google Business Profile setup so people find you on Maps</li>
-        <li>Hosting and small updates for a flat monthly fee</li>
+      <ul class="feature">
+        <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg></span><span>Your hours, services or menu, location, and a tap-to-call button</span></li>
+        <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></span><span>Built for phones first, which is where most of your customers are</span></li>
+        <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></span><span>Booking or ordering links (Square, Calendly, Toast, and others)</span></li>
+        <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg></span><span>Google Business Profile setup so people find you on Maps</span></li>
+        <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-cloud"/></svg></span><span>Hosting and small updates for a flat monthly fee</span></li>
       </ul>
     </div>
   </section>
 
-  <section id="pricing" class="ruled">
+  <section id="pricing" class="ruled tinted">
     <div class="wrap">
       <p class="label">Pricing</p>
       <h2>Straight prices. No surprises.</h2>
@@ -404,7 +450,7 @@
       <div class="price-grid">
         <div class="sheet">
           <div class="sheet-head">
-            <img src="logo-mark.svg" alt="" width="26" height="28">
+            <img src="logo-mark-reverse.svg" alt="" width="26" height="28">
             <div><b>Website price sheet</b><span>Prices in USD</span></div>
           </div>
           <ul class="rows">
@@ -415,22 +461,28 @@
             <li class="season"><span class="flag">For holiday-light installers</span><b>Holiday quote page</b><span class="dots" aria-hidden="true"></span><strong>$149</strong><small>One page where customers text a photo of their house for a quote, with tap-to-call on every button. Live within 24 hours of getting your details.</small></li>
           </ul>
         </div>
-        <ul class="terms">
-          <li><b>Launch prices for my first 3 website clients</b><span>Starter, Business and Care go up after that. Quick Fix and holiday pages stay the same.</span></li>
-          <li><b>50% up front, 50% on delivery</b><span>Invoiced through PayPal.</span></li>
-          <li><b>Two rounds of revisions included</b><span>On every project.</span></li>
-          <li><b>Fixed quote first</b><span>Price, deadline, and exactly what's included, before any work starts.</span></li>
-        </ul>
+        <div class="sheet">
+          <div class="sheet-head">
+            <img src="logo-mark-reverse.svg" alt="" width="26" height="28">
+            <div><b>The terms</b><span>Same on every website job</span></div>
+          </div>
+          <ul class="terms">
+            <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-spark"/></svg></span><div><b>Launch prices for my first 3 website clients</b><span>Starter, Business and Care go up after that. Quick Fix and holiday pages stay the same.</span></div></li>
+            <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-split"/></svg></span><div><b>50% up front, 50% on delivery</b><span>Invoiced through PayPal.</span></div></li>
+            <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-loop"/></svg></span><div><b>Two rounds of revisions included</b><span>On every project.</span></div></li>
+            <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg></span><div><b>Fixed quote first</b><span>Price, deadline, and exactly what's included, before any work starts.</span></div></li>
+          </ul>
+        </div>
       </div>
       <div class="sheet compare" aria-labelledby="compare-title">
         <div class="sheet-head">
-          <img src="logo-mark.svg" alt="" width="26" height="28">
+          <img src="logo-mark-reverse.svg" alt="" width="26" height="28">
           <div><b id="compare-title">Website builder vs. me</b><span>What a one-page site costs over two years</span></div>
         </div>
-        <ul class="rows">
-          <li><b>Website builder</b><span class="dots" aria-hidden="true"></span><strong>~$200–300/yr</strong><small>Every year, and you build it yourself. You can edit it anytime.</small></li>
-          <li class="season"><b>Me (Starter)</b><span class="dots" aria-hidden="true"></span><strong>$250 once</strong><small>Built for you in about a week. Then just your domain, about $12 a year. Edits through me.</small></li>
-        </ul>
+        <div class="vs">
+          <div><b>Website builder</b><strong>~$200–300/yr</strong><small>Every year, and you build it yourself. You can edit it anytime.</small></div>
+          <div><b>Me (Starter)</b><strong>$250 once</strong><small>Built for you in about a week. Then just your domain, about $12 a year. Edits through me.</small></div>
+        </div>
         <p class="sheet-foot">Builder prices checked Nov 2026 on their own pricing pages: Wix Light $17/mo and Squarespace Basic $19/mo, billed yearly. $250 is my launch price for my first 3 clients.</p>
       </div>
       <p class="pointer">Here for Roblox work? <a href="#roblox">Commission prices are below</a>.</p>
@@ -442,10 +494,10 @@
       <p class="label">How it works</p>
       <h2>From message to done.</h2>
       <ol class="steps">
-        <li><h3>Tell me what you need</h3><p>A few sentences is enough. Screenshots help.</p></li>
-        <li><h3>Get a fixed quote</h3><p>Price, deadline, and exactly what's included.</p></li>
-        <li><h3>I build it</h3><p>After the deposit. You'll see progress along the way.</p></li>
-        <li><h3>Review &amp; launch</h3><p>Pay the rest when it works the way you wanted.</p></li>
+        <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg></span><h3>Tell me what you need</h3><p>A few sentences is enough. Screenshots help.</p></li>
+        <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg></span><h3>Get a fixed quote</h3><p>Price, deadline, and exactly what's included.</p></li>
+        <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-build"/></svg></span><h3>I build it</h3><p>After the deposit. You'll see progress along the way.</p></li>
+        <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg></span><h3>Review &amp; launch</h3><p>Pay the rest when it works the way you wanted.</p></li>
       </ol>
     </div>
   </section>
@@ -457,12 +509,12 @@
           <p class="label">Roblox scripting</p>
           <h2>Game systems, scripted to order.</h2>
           <p class="from">From <b>$25</b> · paid in USD, not Robux</p>
-          <ul class="ticks">
-            <li>Player data &amp; saving (DataStores, session locking, built to guard against data loss)</li>
-            <li>Shops, game passes &amp; developer products, handled server-side</li>
-            <li>Round systems, lobbies, intermissions &amp; map voting</li>
-            <li>Pets, inventories, upgrades, and hooking them up to your UI</li>
-            <li>Bug fixes, exploit hardening &amp; performance cleanup</li>
+          <ul class="feature">
+            <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-data"/></svg></span><span>Player data &amp; saving (DataStores, session locking, built to guard against data loss)</span></li>
+            <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg></span><span>Shops, game passes &amp; developer products, handled server-side</span></li>
+            <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg></span><span>Round systems, lobbies, intermissions &amp; map voting</span></li>
+            <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-paw"/></svg></span><span>Pets, inventories, upgrades, and hooking them up to your UI</span></li>
+            <li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span><span>Bug fixes, exploit hardening &amp; performance cleanup</span></li>
           </ul>
         </div>
         <div class="sheet">
@@ -485,14 +537,14 @@
 Data.Increment(player, "Coins", 50)
 Data.SaveNow(player)
 <span class="c">-- session lock · retry · autosave</span></pre>
-          <div><b>DataService (Luau)</b><span class="d">Player saving with retries, session locking and shutdown handling, written to keep data safe through crashes</span><br><span class="go">Read the source on GitHub <span aria-hidden="true">↗</span></span></div>
+          <div><b>DataService (Luau)</b><span class="d">Player saving with retries, session locking and shutdown handling, written to keep data safe through crashes</span><span class="go">Read the source on GitHub <span aria-hidden="true">↗</span></span></div>
         </a>
         <a class="code" data-href="github" href="https://github.com/jacobkozin/roblox-systems" target="_blank" rel="noopener">
 <pre aria-hidden="true">ProcessReceipt(receipt)
 <span class="c">-- idempotent · saved before grant</span>
 RoundService.Start()
 <span class="c">-- Intermission → InRound → Ending</span></pre>
-          <div><b>ShopService + RoundService (Luau)</b><span class="d">Server-validated shop, safe dev-product receipts, and a full round loop</span><br><span class="go">Read the source on GitHub <span aria-hidden="true">↗</span></span></div>
+          <div><b>ShopService + RoundService (Luau)</b><span class="d">Server-validated shop, safe dev-product receipts, and a full round loop</span><span class="go">Read the source on GitHub <span aria-hidden="true">↗</span></span></div>
         </a>
       </div>
     </div>
