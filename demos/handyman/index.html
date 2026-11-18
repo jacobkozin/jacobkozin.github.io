@@ -77,8 +77,8 @@
 <div class="hero"><div class="wrap grid">
   <div>
     <div class="eyebrow">Serving <span data-k="area">Scottsdale &amp; North Phoenix</span></div>
-    <h1>The small jobs, done right the first time.</h1>
-    <p>Drywall patches, fixtures, doors, TV mounts, and the honey-do list you keep putting off. Call, or send a photo of the job for a quote.</p>
+    <h1 data-k="headline">The small jobs, done right the first time.</h1>
+    <p data-k="intro">Drywall patches, fixtures, doors, TV mounts, and the honey-do list you keep putting off. Call, or send a photo of the job for a quote.</p>
     <div class="row">
       <a class="call" data-tel href="#">Call now</a>
       <a class="call ghost" href="#quote">Get a free quote</a>
@@ -149,6 +149,8 @@
     email: "hello@example.com",
     area: "Scottsdale & North Phoenix",
     rating: "5.0★",
+    headline: "The small jobs, done right the first time.",
+    intro: "Drywall patches, fixtures, doors, TV mounts, and the honey-do list you keep putting off. Call, or send a photo of the job for a quote.",
     areas: ["Scottsdale","Paradise Valley","North Phoenix","Fountain Hills","Cave Creek","Tempe"],
     services: [
       ["Drywall & paint touch-ups","Holes, cracks, water spots, patched and blended."],
@@ -160,7 +162,7 @@
     ]
   };
   const q = new URLSearchParams(location.search);
-  for (const k of ["name","tagline","phone","area","rating","email"]) if (q.get(k)) CONFIG[k] = q.get(k);
+  for (const k of ["name","tagline","phone","area","rating","email","headline","intro"]) if (q.get(k)) CONFIG[k] = q.get(k);
   if (q.get("services")) CONFIG.services = q.get("services").split(";").map(s => [s.trim(), ""]);
   if (q.get("concept")) {
     document.getElementById("demoBar").textContent = "Concept preview made for " + CONFIG.name + " by Jacob Kozin. Not live, not affiliated.";
