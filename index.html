@@ -123,7 +123,7 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#"><span data-c="name">Your Name</span>.dev</a>
+    <a class="brand" href="#"><span data-c="name">Jacob Kozin</span></a>
     <nav>
       <a href="#services">Services</a>
       <a href="#work">Work</a>
@@ -282,13 +282,14 @@ RoundService → InRound</div>
 <script>
   // ===== EDIT THESE AND YOU'RE DONE =====
   const CONFIG = {
-    name:    "Your Name",
-    email:   "you@example.com",
-    discord: "yourdiscord",
+    name:    "Jacob Kozin",
+    email:   "jacob.kozin1@gmail.com",
+    discord: "",            // leave empty to hide the Discord button
     github:  "https://github.com/jacobkozin/roblox-systems",
-    area:    "your city"
+    area:    "Scottsdale, AZ"
   };
   // ======================================
+  if (!CONFIG.discord) document.getElementById("discordBtn").remove();
 
   document.querySelectorAll("[data-c]").forEach(el => { el.textContent = CONFIG[el.dataset.c]; });
   document.querySelectorAll('[data-href="github"]').forEach(a => { a.href = CONFIG.github; a.target = "_blank"; a.rel = "noopener"; });
@@ -299,7 +300,7 @@ RoundService → InRound</div>
   document.getElementById("yr").textContent = new Date().getFullYear();
 
   const toast = document.getElementById("toast");
-  document.getElementById("discordBtn").addEventListener("click", async () => {
+  document.getElementById("discordBtn")?.addEventListener("click", async () => {
     try { await navigator.clipboard.writeText(CONFIG.discord); toast.textContent = "Copied Discord username"; }
     catch { toast.textContent = "Add me on Discord: " + CONFIG.discord; }
   });
