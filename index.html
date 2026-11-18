@@ -270,7 +270,8 @@ RoundService → InRound</div>
           <p>Send a quick message with what you need and when you need it. You'll get a fixed quote back within a day.</p>
         </div>
         <div class="actions">
-          <a class="btn primary" data-href="mailto" href="#">Email me</a>
+          <a class="btn primary" data-href="tel" href="#">Call or text <span data-c="phone"></span></a>
+          <a class="btn" data-href="mailto" href="#">Email <span data-c="email"></span></a>
           <button class="btn" id="discordBtn" type="button">Discord: <span data-c="discord">yourdiscord</span></button>
           <div class="toast" id="toast" aria-live="polite"></div>
         </div>
@@ -291,6 +292,7 @@ RoundService → InRound</div>
   const CONFIG = {
     name:    "Jacob Kozin",
     email:   "jacobkozin.support@gmail.com",
+    phone:   "(602) 935-9847",
     discord: "jacity",      // leave empty to hide the Discord button
     github:  "https://github.com/jacobkozin/roblox-systems",
     area:    "Scottsdale, AZ"
@@ -300,6 +302,7 @@ RoundService → InRound</div>
 
   document.querySelectorAll("[data-c]").forEach(el => { el.textContent = CONFIG[el.dataset.c]; });
   document.querySelectorAll('[data-href="github"]').forEach(a => { a.href = CONFIG.github; a.target = "_blank"; a.rel = "noopener"; });
+  document.querySelectorAll('[data-href="tel"]').forEach(a => { a.href = "tel:+1" + CONFIG.phone.replace(/\D/g, ""); });
   document.querySelectorAll('[data-href="mailto"]').forEach(a => {
     a.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Project quote");
   });
