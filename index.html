@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Roblox Systems &amp; Websites</title>
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0d0e11">
 <meta name="description" content="Roblox scripting commissions and fast, clean websites for local businesses. Fixed quotes, clear deadlines.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +25,8 @@
   /* nav */
   .nav{position:sticky;top:0;z-index:10;background:rgba(13,14,17,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
-  .brand{font-family:"Space Grotesk";font-weight:700;text-decoration:none;font-size:18px}
+  .brand{font-family:"Space Grotesk";font-weight:700;text-decoration:none;font-size:18px;display:inline-flex;align-items:center;gap:10px}
+  .brand img{display:block}
   .brand span{color:var(--rbx)}
   .nav nav{display:flex;align-items:center;gap:22px}
   .nav nav a{color:var(--muted);text-decoration:none;font-size:14px}
@@ -67,6 +70,7 @@
   .work a:hover{border-color:#3a404c;transform:translateY(-2px)}
   .thumb{height:180px;display:flex;align-items:flex-end;padding:18px;font-family:"Space Grotesk";font-weight:700;font-size:26px}
   .work a.wide{grid-column:1/-1}
+  .tphoto{height:220px;color:#fff;background:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.15)),var(--img) var(--pos)/cover no-repeat;text-shadow:0 2px 12px rgba(0,0,0,.5)}
   .t0{background:linear-gradient(120deg,#2a211b,#7a3514);color:#ffd9c2;height:200px}
   .t1{background:linear-gradient(135deg,#1a1a1a,#3b2f22);color:#e9c58a}
   .t2{background:linear-gradient(135deg,#0f3b2a,#2f6b3e);color:#ffe7b0}
@@ -125,7 +129,7 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#"><span data-c="name">Jacob Kozin</span></a>
+    <a class="brand" href="#"><img src="logo.svg" alt="" width="32" height="32"><span data-c="name">Jacob Kozin</span></a>
     <nav>
       <a href="#services">Services</a>
       <a href="#work">Work</a>
@@ -184,8 +188,12 @@
       <div class="eyebrow">Work</div>
       <h2>Recent builds.</h2>
       <div class="work">
+        <a href="demos/lights/" class="wide">
+          <div class="thumb tphoto" style="--img:url('demos/assets/lights-hero.jpg');--pos:center 82%">Desert Twinkle Lights</div>
+          <div class="meta"><b>Holiday lighting website</b><span>Customers text a photo of their house for a quote. Built for installers in the December rush.</span></div>
+        </a>
         <a href="demos/handyman/" class="wide">
-          <div class="thumb t0">Saguaro Ridge Handyman</div>
+          <div class="thumb tphoto" style="--img:url('demos/assets/handyman-hero.jpg');--pos:center 45%">Saguaro Ridge Handyman</div>
           <div class="meta"><b>Home-service website</b><span>Tap-to-call everywhere, a quote form that texts the owner, service list, and service area. Built for trades.</span></div>
         </a>
         <a href="demos/barber/">

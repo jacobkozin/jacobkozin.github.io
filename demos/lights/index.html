@@ -64,6 +64,28 @@
   @media (min-width:900px){.bar{display:none}body{padding-bottom:0}}
   @media (max-width:860px){.hero .grid,.area{grid-template-columns:1fr}.services{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
   @media (max-width:560px){.services{grid-template-columns:1fr}header .call span{display:none}.cta{padding:28px}}
+
+  /* photo hero */
+  .hero{position:relative;color:#fff;background:#111 center 78%/cover no-repeat;background-image:var(--hero-img)}
+  .hero::before{content:"";position:absolute;inset:0;background:var(--hero-shade)}
+  .hero .grid{position:relative;padding-top:24px;padding-bottom:24px}
+  .hero p{color:rgba(255,255,255,.86)}
+  .hero .call.ghost{color:#fff;border-color:rgba(255,255,255,.8)}
+  .proof{color:rgba(255,255,255,.8)} .proof b{color:#fff}
+  .quote{color:var(--ink)}
+  .photo-credit{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.55);z-index:1}
+  .photo-credit a{color:inherit}
+  :root{--hero-img:url('../assets/lights-hero.jpg');--hero-shade:linear-gradient(90deg,rgba(6,5,4,.95) 0%,rgba(6,5,4,.75) 40%,rgba(6,5,4,0) 70%)}
+
+  .hero{min-height:560px;display:flex;align-items:center;background:#060504 no-repeat;background-image:var(--hero-img);background-size:auto 118%;background-position:100% 90%}
+  .hero .grid{grid-template-columns:1fr}
+  .hero .grid>div{max-width:560px}
+  .qgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .lede{color:var(--muted);font-size:18px;margin:0 0 18px}
+  .ticks{margin:0;padding:0;list-style:none}
+  .ticks li{padding:8px 0 8px 28px;position:relative}
+  .ticks li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
+  @media (max-width:860px){.qgrid{grid-template-columns:1fr}.hero{min-height:520px;background-size:cover;background-position:60% 88%}}
 </style>
 </head>
 <body>
@@ -74,31 +96,39 @@
   <a class="call" data-tel href="#">📞 <span data-k="phone">(555) 555-0123</span></a>
 </div></header>
 
-<div class="hero"><div class="wrap grid">
+<div class="hero"><span class="photo-credit">Sample photo: <a href="https://unsplash.com/photos/a-house-covered-in-christmas-lights-at-night--FG6wI-hDO8" target="_blank" rel="noopener">Nellie Adamyan / Unsplash</a></span><div class="wrap grid">
   <div>
-    <div class="eyebrow">Serving <span data-k="area">Scottsdale &amp; North Phoenix</span></div>
     <h1 data-k="headline">Your house, lit up for the holidays. Without the ladder.</h1>
-    <p data-k="intro">We design, install, take down and store your lights. Text a photo of the front of your house and get a quote today. Install dates fill up fast in December.</p>
+    <p data-k="intro">Roofline, trees, palms and walkways, installed for you. Text a photo of the front of your house for a quote. Install dates fill up fast in December.</p>
     <div class="row">
       <a class="call" data-tel href="#">Call now</a>
-      <a class="call ghost" href="#quote">Get a free quote</a>
+      <a class="call ghost" href="#quote-wrap">Get a free quote</a>
     </div>
     <div class="proof">
-      <span><b data-k="rating">5.0★</b> on Google</span>
+      <span>📍 Serving <b data-k="area"></b></span>
+      <span class="rating"><b data-k="rating">5.0★</b> on Google</span>
       <span class="claim"><b>Licensed &amp; insured</b></span>
       <span class="claim"><b>Takedown</b> included</span>
     </div>
   </div>
-  <form class="quote" id="quote" onsubmit="return sendQuote(event)">
-    <h3>Get a lighting quote</h3>
-    <p>Tell us about your home. A photo of the front gets the fastest price.</p>
-    <label for="qn">Name</label><input id="qn" autocomplete="name" required>
-    <label for="qp">Phone</label><input id="qp" type="tel" autocomplete="tel" required>
-    <label for="qj">Address area + what you want lit (roofline, trees, palms…)</label><textarea id="qj" required></textarea>
-    <button type="submit">Send request</button>
-    <div class="fine">Opens a text or email to us with your request. No spam, ever.</div>
-  </form>
 </div></div>
+
+<section id="quote-wrap"><div class="wrap qgrid">
+  <div>
+    <h2>One photo. One price.</h2>
+    <p class="lede">Snap the front of your house from the street and send it with what you want lit. You'll get a price before anything is booked.</p>
+    <ul class="ticks"><li>Roofline, trees, palms, walkways</li><li class="claim">Install now through Dec 23</li><li class="claim">Takedown in January</li></ul>
+  </div>
+  <form class="quote" id="quote" onsubmit="return sendQuote(event)">
+  <h3>Get a lighting quote</h3>
+  <p>Tell us about your home. A photo of the front gets the fastest price.</p>
+  <label for="qn">Name</label><input id="qn" autocomplete="name" required>
+  <label for="qp">Phone</label><input id="qp" type="tel" autocomplete="tel" required>
+  <label for="qj">Address area + what you want lit (roofline, trees, palms…)</label><textarea id="qj" required></textarea>
+  <button type="submit">Send request</button>
+  <div class="fine">Opens a text or email to us with your request. No spam, ever.</div>
+  </form>
+</div></section>
 
 <section id="services"><div class="wrap">
   <h2>What we light</h2>
@@ -150,7 +180,7 @@
     area: "Scottsdale & North Phoenix",
     rating: "5.0★",
     headline: "Your house, lit up for the holidays. Without the ladder.",
-    intro: "We design, install, take down and store your lights. Text a photo of the front of your house and get a quote today. Install dates fill up fast in December.",
+    intro: "Roofline, trees, palms and walkways, installed for you. Text a photo of the front of your house for a quote. Install dates fill up fast in December.",
     areas: ["Scottsdale","Paradise Valley","North Phoenix","Fountain Hills","Cave Creek","Tempe"],
     services: [
       ["Roofline lights","Clean, straight lines along the roof and gutters."],
@@ -169,6 +199,7 @@
     const m = document.createElement("meta"); m.name = "robots"; m.content = "noindex"; document.head.appendChild(m);
     // Don't put claims we haven't verified in someone else's name.
     document.querySelectorAll(".claim").forEach(el => el.remove());
+    if (!q.get("rating")) document.querySelectorAll(".rating").forEach(el => el.remove());
   }
 
   document.querySelectorAll("[data-k]").forEach(el => el.textContent = CONFIG[el.dataset.k]);

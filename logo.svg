@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Jacob Kozin">
+  <rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="#15171c" stroke="#2c313b" stroke-width="1.5"/>
+  <path d="M20 11.5 V28.5 a7.25 7.25 0 0 1 -14.5 0" fill="none" stroke="#7cf29a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M27 11.5 V36.5 M27.5 25 L40 11.5 M31 21.5 L40.5 36.5" fill="none" stroke="#7cc4ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

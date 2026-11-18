@@ -64,6 +64,18 @@
   @media (min-width:900px){.bar{display:none}body{padding-bottom:0}}
   @media (max-width:860px){.hero .grid,.area{grid-template-columns:1fr}.services{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
   @media (max-width:560px){.services{grid-template-columns:1fr}header .call span{display:none}.cta{padding:28px}}
+
+  /* photo hero */
+  .hero{position:relative;color:#fff;background:#111 center 40%/cover no-repeat;background-image:var(--hero-img)}
+  .hero::before{content:"";position:absolute;inset:0;background:var(--hero-shade)}
+  .hero .grid{position:relative;padding-top:24px;padding-bottom:24px}
+  .hero p{color:rgba(255,255,255,.86)}
+  .hero .call.ghost{color:#fff;border-color:rgba(255,255,255,.8)}
+  .proof{color:rgba(255,255,255,.8)} .proof b{color:#fff}
+  .quote{color:var(--ink)}
+  .photo-credit{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.55);z-index:1}
+  .photo-credit a{color:inherit}
+  :root{--hero-img:url('../assets/handyman-hero.jpg');--hero-shade:linear-gradient(90deg,rgba(20,14,8,.9) 0%,rgba(20,14,8,.7) 50%,rgba(20,14,8,.35) 100%)}
 </style>
 </head>
 <body>
@@ -74,9 +86,8 @@
   <a class="call" data-tel href="#">📞 <span data-k="phone">(555) 555-0123</span></a>
 </div></header>
 
-<div class="hero"><div class="wrap grid">
+<div class="hero"><span class="photo-credit">Sample photo: <a href="https://unsplash.com/photos/selective-focus-photography-blue-and-black-makita-power-drill-Klby0nxseY8" target="_blank" rel="noopener">Theme Photos / Unsplash</a></span><div class="wrap grid">
   <div>
-    <div class="eyebrow">Serving <span data-k="area">Scottsdale &amp; North Phoenix</span></div>
     <h1 data-k="headline">The small jobs, done right the first time.</h1>
     <p data-k="intro">Drywall patches, fixtures, doors, TV mounts, and the honey-do list you keep putting off. Call, or send a photo of the job for a quote.</p>
     <div class="row">
@@ -84,7 +95,8 @@
       <a class="call ghost" href="#quote">Get a free quote</a>
     </div>
     <div class="proof">
-      <span><b data-k="rating">5.0★</b> on Google</span>
+      <span>📍 Serving <b data-k="area"></b></span>
+      <span class="rating"><b data-k="rating">5.0★</b> on Google</span>
       <span class="claim"><b>Licensed &amp; insured</b></span>
       <span class="claim"><b>Same-week</b> scheduling</span>
     </div>
@@ -169,6 +181,7 @@
     const m = document.createElement("meta"); m.name = "robots"; m.content = "noindex"; document.head.appendChild(m);
     // Don't put claims we haven't verified in someone else's name.
     document.querySelectorAll(".claim").forEach(el => el.remove());
+    if (!q.get("rating")) document.querySelectorAll(".rating").forEach(el => el.remove());
   }
 
   document.querySelectorAll("[data-k]").forEach(el => el.textContent = CONFIG[el.dataset.k]);
