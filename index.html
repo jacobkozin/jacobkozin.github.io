@@ -583,11 +583,10 @@ RoundService.Start()
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 5.5h19v13h-19Zm2.6 2 6.9 5.3 6.9-5.3Zm14.4 1.9-7.5 5.8-7.5-5.8v7.1h15Z" fill-rule="evenodd"/></svg>
           <span class="t"><small>Email</small><span class="v" data-c="email">jacobkozin.support@gmail.com</span></span>
         </a>
-        <button class="btn" id="discordBtn" type="button">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3.5h11v11h-11Zm2 2v7h7v-7ZM5 8v12.5h12.5v-2H7V8Z" fill-rule="evenodd"/></svg>
-          <span class="t"><small>Discord · tap to copy</small><span class="v" data-c="discord">jacity</span></span>
-        </button>
-        <p class="toast" id="toast" role="status" aria-live="polite"></p>
+        <a class="btn" id="discordBtn" href="https://discord.gg/BJbwDAYGmD" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h-1A.5.5 0 0 1 4 15.5Zm4 4a1.25 1.25 0 1 0 0 .01Zm4 0a1.25 1.25 0 1 0 0 .01Zm4 0a1.25 1.25 0 1 0 0 .01Z"/></svg>
+          <span class="t"><small>Discord server</small><span class="v">Join for quotes &amp; updates</span></span>
+        </a>
       </div>
     </div>
   </section>
@@ -607,12 +606,13 @@ RoundService.Start()
     name:    "Jacob Kozin",
     email:   "jacobkozin.support@gmail.com",
     phone:   "(602) 935-9847",
-    discord: "jacity",      // leave empty to hide the Discord button
+    discord: "https://discord.gg/BJbwDAYGmD",   // permanent server invite; leave empty to hide the Discord button
     github:  "https://github.com/jacobkozin/roblox-systems",
     area:    "Scottsdale, AZ"
   };
   // ======================================
   if (!CONFIG.discord) document.getElementById("discordBtn").remove();
+  else document.getElementById("discordBtn").href = CONFIG.discord;
 
   const dial = "+1" + CONFIG.phone.replace(/\D/g, "");
   document.querySelectorAll("[data-c]").forEach(el => { el.textContent = CONFIG[el.dataset.c]; });
@@ -635,11 +635,6 @@ RoundService.Start()
   document.addEventListener("keydown", e => { if (e.key === "Escape" && siteNav.classList.contains("open")) { setMenu(false); menuBtn.focus(); } });
   document.addEventListener("click", e => { if (siteNav.classList.contains("open") && !e.target.closest(".top")) setMenu(false); });
 
-  const toast = document.getElementById("toast");
-  document.getElementById("discordBtn")?.addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText(CONFIG.discord); toast.textContent = "Copied Discord username"; }
-    catch { toast.textContent = "Add me on Discord: " + CONFIG.discord; }
-  });
 </script>
 </body>
 </html>
