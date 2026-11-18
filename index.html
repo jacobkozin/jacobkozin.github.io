@@ -309,47 +309,82 @@
   }
   [hidden]{display:none!important}
 
-  /* ---------- seasonal string lights ----------
-     Everything here applies only when <html> has class "holiday" (set by the small script in <head>).
-     Without that class, or without JavaScript, none of it shows. */
-  .strand{display:none}
-  .holiday .hero{--ink:#0A0B1C;position:relative;isolation:isolate;padding-top:54px;color:var(--on-ink);
+  /* ---------- seasonal themes ----------
+     Everything here applies only when <html> has class "season" plus the theme's own class
+     ("thanksgiving" or "holiday"), both set by the small script in <head>.
+     Without them, or without JavaScript, none of it shows. */
+  .strand,.leaves{display:none}
+  .season .hero{position:relative;isolation:isolate;color:var(--on-ink)}
+  .season .hero .wrap{position:relative;z-index:1}
+  .season .hero h1 em,.season .hero .promises .ic{color:var(--glow)}
+  .season .hero .status,.season .hero .also{color:var(--dim)}
+  .season .hero .intro{color:var(--lite)}
+  .season .hero .also a{color:#fff}
+  .season .hero .sheet{color:#1B1A17}
+  .season .hero :focus-visible{outline-color:var(--glow)}
+
+  /* Thanksgiving: plum-to-rust dusk with a few drifting leaves */
+  .thanksgiving .hero{--ink:#1A0A14;--glow:#FFC66B;--dim:#EAD9CE;--lite:#F6ECE4;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 70' preserveAspectRatio='none'%3E%3Cpath fill='%231F0C17' d='M0 70V46l90-20 70 14 110-30 90 22 120-26 100 30 130-22 110 18 120-28 100 24 160-16v54Z'/%3E%3C/svg%3E") bottom/100% 64px no-repeat,radial-gradient(120% 60% at 50% 100%,rgba(255,154,60,.22),transparent 70%),linear-gradient(180deg,#24101F,#3A1626 50%,#5C2418) #2A1220}
+  .thanksgiving .leaves{display:block;position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+  .thanksgiving .leaves i{position:absolute;left:8%;top:9%;width:22px;height:22px;opacity:.85;transform:rotate(-20deg);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23F2A541' d='M12 2C6.5 5 3.5 10 5 16.5c5.5 1.5 11-1 13.5-6.5C20 6.5 17 3.5 12 2Z'/%3E%3Cpath d='M5.5 16L15 6.5' fill='none' stroke='%23000' stroke-opacity='.22' stroke-width='1.2'/%3E%3Cpath d='M5 16.5L2.5 21' fill='none' stroke='%23F2A541' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
+  .thanksgiving .leaves i:nth-child(2){left:31%;top:3%;transform:rotate(35deg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23D9662B' d='M12 2C6.5 5 3.5 10 5 16.5c5.5 1.5 11-1 13.5-6.5C20 6.5 17 3.5 12 2Z'/%3E%3Cpath d='M5.5 16L15 6.5' fill='none' stroke='%23000' stroke-opacity='.22' stroke-width='1.2'/%3E%3Cpath d='M5 16.5L2.5 21' fill='none' stroke='%23D9662B' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")}
+  .thanksgiving .leaves i:nth-child(3){left:57%;top:14%;transform:rotate(80deg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFC66B' d='M12 2C6.5 5 3.5 10 5 16.5c5.5 1.5 11-1 13.5-6.5C20 6.5 17 3.5 12 2Z'/%3E%3Cpath d='M5.5 16L15 6.5' fill='none' stroke='%23000' stroke-opacity='.22' stroke-width='1.2'/%3E%3Cpath d='M5 16.5L2.5 21' fill='none' stroke='%23FFC66B' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")}
+  .thanksgiving .leaves i:nth-child(4){left:77%;top:5%;transform:rotate(-55deg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23C9502F' d='M12 2C6.5 5 3.5 10 5 16.5c5.5 1.5 11-1 13.5-6.5C20 6.5 17 3.5 12 2Z'/%3E%3Cpath d='M5.5 16L15 6.5' fill='none' stroke='%23000' stroke-opacity='.22' stroke-width='1.2'/%3E%3Cpath d='M5 16.5L2.5 21' fill='none' stroke='%23C9502F' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")}
+  .thanksgiving .leaves i:nth-child(5){left:90%;top:21%;transform:rotate(15deg)}
+
+  /* Holiday: night sky with a strand of string lights under the header */
+  .holiday .hero{--ink:#0A0B1C;--glow:#FFD98A;--dim:#D5D2E6;--lite:#ECE9F5;padding-top:54px;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 70' preserveAspectRatio='none'%3E%3Cpath fill='%230E1026' d='M0 70V46l90-20 70 14 110-30 90 22 120-26 100 30 130-22 110 18 120-28 100 24 160-16v54Z'/%3E%3C/svg%3E") bottom/100% 64px no-repeat,radial-gradient(120% 60% at 50% 100%,rgba(255,160,90,.2),transparent 70%),radial-gradient(1.6px 1.6px at 7% 22%,rgba(255,255,255,0.8),transparent 100%),radial-gradient(1.6px 1.6px at 16% 48%,rgba(255,255,255,0.55),transparent 100%),radial-gradient(1.6px 1.6px at 27% 14%,rgba(255,255,255,0.7),transparent 100%),radial-gradient(1.6px 1.6px at 38% 36%,rgba(255,255,255,0.5),transparent 100%),radial-gradient(1.6px 1.6px at 49% 20%,rgba(255,255,255,0.75),transparent 100%),radial-gradient(1.6px 1.6px at 58% 52%,rgba(255,255,255,0.45),transparent 100%),radial-gradient(1.6px 1.6px at 67% 12%,rgba(255,255,255,0.7),transparent 100%),radial-gradient(1.6px 1.6px at 76% 40%,rgba(255,255,255,0.55),transparent 100%),radial-gradient(1.6px 1.6px at 88% 24%,rgba(255,255,255,0.8),transparent 100%),radial-gradient(1.6px 1.6px at 95% 54%,rgba(255,255,255,0.5),transparent 100%),radial-gradient(1.6px 1.6px at 33% 62%,rgba(255,255,255,0.4),transparent 100%),radial-gradient(1.6px 1.6px at 82% 66%,rgba(255,255,255,0.4),transparent 100%),linear-gradient(180deg,#10122A,#1B1E44 62%,#2B2247) #151733}
-  .holiday .hero .wrap{position:relative;z-index:1}
   .holiday .strand{display:block;position:absolute;left:0;right:0;top:0;height:34px;z-index:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34'%3E%3Cpath d='M0 6Q60 22 120 6' fill='none' stroke='%236B6F92' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x}
   .holiday .strand i{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34'%3E%3Ccircle cx='20' cy='17.9' r='11' fill='%23FFE2A6' opacity='.22'/%3E%3Crect x='18' y='9.9' width='4' height='3.5' rx='1' fill='%238C8FA8'/%3E%3Cellipse cx='20' cy='17.9' rx='3.6' ry='4.8' fill='%23FFE2A6'/%3E%3C/svg%3E") repeat-x}
   .holiday .strand i:nth-child(2){background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34'%3E%3Ccircle cx='60' cy='21.5' r='11' fill='%23FFB54D' opacity='.22'/%3E%3Crect x='58' y='13.5' width='4' height='3.5' rx='1' fill='%238C8FA8'/%3E%3Cellipse cx='60' cy='21.5' rx='3.6' ry='4.8' fill='%23FFB54D'/%3E%3C/svg%3E")}
   .holiday .strand i:nth-child(3){background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34'%3E%3Ccircle cx='100' cy='17.9' r='11' fill='%23FF8A5C' opacity='.22'/%3E%3Crect x='98' y='9.9' width='4' height='3.5' rx='1' fill='%238C8FA8'/%3E%3Cellipse cx='100' cy='17.9' rx='3.6' ry='4.8' fill='%23FF8A5C'/%3E%3C/svg%3E")}
-  .holiday .hero h1 em,.holiday .hero .promises .ic{color:#FFD98A}
-  .holiday .hero .status,.holiday .hero .also{color:#D5D2E6}
-  .holiday .hero .intro{color:#ECE9F5}
-  .holiday .hero .also a{color:#fff}
-  .holiday .hero .sheet{color:#1B1A17}
-  .holiday .hero :focus-visible{outline-color:#FFD98A}
   @media (min-width:920px){.holiday .hero{padding-top:84px}}
+
   @media (prefers-reduced-motion:no-preference){
-    /* three groups of bulbs fade on different, slow cycles (3.4s to 5.8s), so nothing flashes */
+    /* leaves drift down slowly (18s to 30s each); bulbs fade in three groups (3.4s to 5.8s). Nothing flashes. */
+    .thanksgiving .leaves i{animation:drift 22s linear -4s infinite}
+    .thanksgiving .leaves i:nth-child(2){animation-duration:28s;animation-delay:-15s}
+    .thanksgiving .leaves i:nth-child(3){animation-duration:18s;animation-delay:-9s}
+    .thanksgiving .leaves i:nth-child(4){animation-duration:30s;animation-delay:-22s}
+    .thanksgiving .leaves i:nth-child(5){animation-duration:25s;animation-delay:-1s}
     .holiday .strand i{animation:twinkle 3.4s ease-in-out infinite alternate}
     .holiday .strand i:nth-child(2){animation-duration:4.6s;animation-delay:-1.3s}
     .holiday .strand i:nth-child(3){animation-duration:5.8s;animation-delay:-2.7s}
-    .holiday.lights-paused .strand i{animation-play-state:paused}
+    .season-paused .strand i,.season-paused .leaves i{animation-play-state:paused}
+    @keyframes drift{0%{transform:translate(0,-34px) rotate(0);opacity:0}12%{opacity:.85}85%{opacity:.85}100%{transform:translate(70px,380px) rotate(230deg);opacity:0}}
     @keyframes twinkle{from{opacity:1}to{opacity:.42}}
   }
 </style>
 <script>
-  // ===== SEASONAL STRING LIGHTS (homepage only) =====
-  // Shows every year from HOLIDAY.from to HOLIDAY.to, both days included, by the visitor's own calendar date.
-  // Each is [month, day]. Change the two dates here and nothing else.
-  // To check it on any day, add ?holiday=on or ?holiday=off to the address. Nothing is saved.
-  const HOLIDAY = { from: [11, 20], to: [1, 6] };
-  function inHolidayWindow(date) {
-    const day = (date.getMonth() + 1) * 100 + date.getDate();
-    const from = HOLIDAY.from[0] * 100 + HOLIDAY.from[1], to = HOLIDAY.to[0] * 100 + HOLIDAY.to[1];
-    return from <= to ? day >= from && day <= to : day >= from || day <= to;   // second case: the window runs past New Year
+  // ===== SEASONAL THEMES (homepage only) =====
+  // One theme at a time, chosen by the visitor's own calendar date. Each row is [theme, first day, last day],
+  // both days included. A day is [month, day]. "thanksgiving" means US Thanksgiving (the 4th Thursday of
+  // November, worked out each year) and "thanksgiving+1" is the day after. Rows are checked top to bottom,
+  // and a row may run past New Year. Outside every row the page is the normal site.
+  // To preview on any day, add ?theme=thanksgiving, ?theme=holiday or ?theme=off to the address
+  // (?holiday=on and ?holiday=off still work). Nothing is saved.
+  const SEASONS = [
+    ["thanksgiving", [11, 1], "thanksgiving"],
+    ["holiday", "thanksgiving+1", [1, 6]]
+  ];
+  function thanksgivingDay(year) {            // day of the month, e.g. 26 for 2026
+    return 22 + (11 - new Date(year, 10, 1).getDay()) % 7;
+  }
+  function seasonFor(date) {                  // "thanksgiving", "holiday" or "" for none
+    const turkey = 1100 + thanksgivingDay(date.getFullYear()), day = (date.getMonth() + 1) * 100 + date.getDate();
+    const at = p => p === "thanksgiving" ? turkey : p === "thanksgiving+1" ? turkey + 1 : p[0] * 100 + p[1];
+    for (const [theme, first, last] of SEASONS) {
+      const from = at(first), to = at(last);
+      if (from <= to ? day >= from && day <= to : day >= from || day <= to) return theme;
+    }
+    return "";
   }
   (function () {
-    const forced = new URLSearchParams(location.search).get("holiday");
-    if (forced === "on" || (forced !== "off" && inHolidayWindow(new Date()))) document.documentElement.classList.add("holiday");
+    const q = new URLSearchParams(location.search), t = q.get("theme"), h = q.get("holiday");
+    const theme = t === "off" ? "" : SEASONS.some(row => row[0] === t) ? t : h === "on" ? "holiday" : h === "off" ? "" : seasonFor(new Date());
+    if (theme) document.documentElement.classList.add("season", theme);
   })();
 </script>
 </head>
@@ -382,6 +417,7 @@
 <main id="main">
   <div class="hero" id="top">
     <div class="strand" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="leaves" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
     <div class="wrap hero-grid">
       <div class="hero-main">
         <p class="status"><i></i> Taking new projects · replies within 24h</p>
@@ -709,11 +745,12 @@ RoundService.Start()
   document.title = CONFIG.name + " · Websites for Local Businesses & Roblox Systems";
   document.getElementById("yr").textContent = new Date().getFullYear();
 
-  // Seasonal lights: stop the twinkle while the tab is hidden or the lights are scrolled out of view.
-  if (document.documentElement.classList.contains("holiday")) {
+  // Seasonal themes: stop the motion while the tab is hidden or the decoration is scrolled out of view.
+  const decoration = document.querySelector(".holiday .strand, .thanksgiving .leaves");
+  if (decoration) {
     let inView = true;
-    const sync = () => document.documentElement.classList.toggle("lights-paused", document.hidden || !inView);
-    new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; sync(); }).observe(document.querySelector(".strand"));
+    const sync = () => document.documentElement.classList.toggle("season-paused", document.hidden || !inView);
+    new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; sync(); }).observe(decoration);
     document.addEventListener("visibilitychange", sync);
   }
 
