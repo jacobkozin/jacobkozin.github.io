@@ -52,6 +52,19 @@
   .top nav{display:none}
   .top nav a{text-decoration:none;font-weight:600;font-size:.97rem;padding:12px 2px}
   .top nav a:hover{color:var(--blue)}
+  /* phone menu: the section links drop down under the header */
+  .menu-btn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:2px solid var(--ink);border-radius:8px;background:transparent;color:var(--ink);font:700 .95rem/1 var(--text);cursor:pointer}
+  .menu-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round}
+  .menu-btn[aria-expanded="true"] .bars{display:none}
+  .menu-btn:not([aria-expanded="true"]) .close{display:none}
+  .top nav.open{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:var(--paper);border-bottom:1.5px solid var(--ink);padding:4px var(--gutter) 12px;box-shadow:0 14px 24px rgba(0,0,0,.12)}
+  .top nav.open a{padding:15px 2px;font-size:1.08rem;border-top:1px solid var(--rule)}
+  .top nav.open a:first-child{border-top:0}
+  @media (max-width:430px){
+    .top .wrap{gap:10px}
+    .menu-label{display:none}
+    .menu-btn{padding:8px 11px}
+  }
 
   /* ---------- buttons ---------- */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:11px 20px;border:2px solid var(--ink);border-radius:8px;background:transparent;color:var(--ink);font:700 1rem/1.2 var(--text);text-decoration:none;text-align:center;cursor:pointer;transition:background-color .15s ease,color .15s ease,border-color .15s ease}
@@ -220,7 +233,9 @@
   @media (min-width:920px){
     :root{--head:68px}
     section{padding:92px 0}
-    .top nav{display:flex;align-items:center;gap:28px;margin-left:auto}
+    .top nav,.top nav.open{display:flex;flex-direction:row;align-items:center;gap:28px;margin-left:auto;position:static;padding:0;border:0;box-shadow:none;background:none}
+    .top nav.open a{padding:12px 2px;font-size:.97rem;border-top:0}
+    .menu-btn{display:none}
     .brand img{width:172px;height:32px}
     .wide-only{display:inline}
     .hero{padding:64px 0 84px}
@@ -258,7 +273,12 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top"><img src="logo.svg" alt="Jacob Kozin" width="151" height="28" data-alt="name"></a>
-    <nav aria-label="Sections">
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" hidden>
+      <svg class="bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      <span class="menu-label">Menu</span>
+    </button>
+    <nav id="site-nav" aria-label="Sections">
       <a href="#work">Demos</a>
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
@@ -525,7 +545,7 @@ RoundService.Start()
   <div class="wrap">
     <img src="logo-reverse.svg" alt="" width="140" height="26">
     <span>© <span id="yr">2026</span> <span data-c="name">Jacob Kozin</span> · Based in <span data-c="area">Scottsdale, AZ</span> · working remotely worldwide</span>
-    <span>Demo photos from Unsplash · <a href="demos/assets/CREDITS.md">credits</a></span>
+    <nav aria-label="Legal"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="terms.html#credits">Photo credits</a> · <a href="#top">Back to top</a></nav>
   </div>
 </footer>
 
@@ -553,6 +573,15 @@ RoundService.Start()
   });
   document.title = CONFIG.name + " · Websites for Local Businesses & Roblox Systems";
   document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Phone menu: shown only when JavaScript runs (otherwise the button stays hidden).
+  const menuBtn = document.querySelector(".menu-btn"), siteNav = document.getElementById("site-nav");
+  const setMenu = open => { menuBtn.setAttribute("aria-expanded", open); siteNav.classList.toggle("open", open); };
+  menuBtn.hidden = false;
+  menuBtn.addEventListener("click", () => setMenu(menuBtn.getAttribute("aria-expanded") !== "true"));
+  siteNav.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && siteNav.classList.contains("open")) { setMenu(false); menuBtn.focus(); } });
+  document.addEventListener("click", e => { if (siteNav.classList.contains("open") && !e.target.closest(".top")) setMenu(false); });
 
   const toast = document.getElementById("toast");
   document.getElementById("discordBtn")?.addEventListener("click", async () => {
