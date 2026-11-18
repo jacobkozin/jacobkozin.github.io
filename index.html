@@ -3,286 +3,505 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Roblox Systems &amp; Websites</title>
-<link rel="icon" href="logo.svg" type="image/svg+xml">
-<meta name="theme-color" content="#0d0e11">
-<meta name="description" content="Roblox scripting commissions and fast, clean websites for local businesses. Fixed quotes, clear deadlines.">
+<title>Jacob Kozin · Websites for Local Businesses &amp; Roblox Systems</title>
+<meta name="description" content="Jacob Kozin builds fast, phone-first websites for local businesses in Scottsdale, AZ, plus Roblox scripting commissions. Fixed quotes, clear deadlines.">
+<meta name="theme-color" content="#F5F2EA">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jacobkozin.github.io/">
+<meta property="og:title" content="Jacob Kozin · Websites for local businesses">
+<meta property="og:description" content="Fast, phone-first websites for local businesses in Scottsdale, AZ. Fixed quotes, clear deadlines. Roblox scripting commissions too.">
+<meta property="og:image" content="https://jacobkozin.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0d0e11; --panel:#15171c; --panel2:#1b1e25; --line:#262a33;
-    --text:#eceef2; --muted:#9aa1ad; --rbx:#7cf29a; --web:#7cc4ff; --r:14px;
+    --paper:#F5F2EA; --sheet:#FFFDF7; --tint:#E9E4D6; --rule:#D6CFBE;
+    --ink:#1B1A17; --soft:#55524A;
+    --blue:#2440C4; --blue-d:#1A2F99;
+    --on-ink:#F5F2EA; --on-ink-soft:#C2BDB0; --ink-rule:#3A3832; --green:#8FE3A5;
+    --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+    --text:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"Cascadia Mono",Consolas,Menlo,monospace;
+    --gutter:20px; --head:60px;
   }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased}
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-padding-top:calc(var(--head) + 16px);-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.55 var(--text);-webkit-font-smoothing:antialiased}
+  img{max-width:100%;height:auto;display:block}
   a{color:inherit}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-  h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;line-height:1.1;margin:0}
+  p{margin:0}
+  ul,ol{margin:0;padding:0;list-style:none}
+  h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.04;margin:0;text-wrap:balance}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 var(--gutter)}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+  .band :focus-visible,.contact :focus-visible,footer :focus-visible{outline-color:var(--on-ink)}
+  .skip{position:absolute;left:12px;top:-60px;z-index:30;background:var(--ink);color:var(--on-ink);padding:10px 14px;border-radius:6px;font-weight:700}
+  .skip:focus{top:8px}
 
-  /* nav */
-  .nav{position:sticky;top:0;z-index:10;background:rgba(13,14,17,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
-  .brand{font-family:"Space Grotesk";font-weight:700;text-decoration:none;font-size:18px;display:inline-flex;align-items:center;gap:10px}
-  .brand img{display:block}
-  .brand span{color:var(--rbx)}
-  .nav nav{display:flex;align-items:center;gap:22px}
-  .nav nav a{color:var(--muted);text-decoration:none;font-size:14px}
-  .nav nav a:hover{color:var(--text)}
-  .nav nav a.cta{color:var(--bg);background:var(--text);padding:8px 14px;border-radius:9px;font-weight:600}
+  /* ---------- header ---------- */
+  .top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:var(--head)}
+  .brand{display:inline-flex;align-items:center;min-height:44px;flex:none}
+  .brand img{width:151px;height:28px}
+  .top nav{display:none}
+  .top nav a{text-decoration:none;font-weight:600;font-size:.97rem;padding:12px 2px}
+  .top nav a:hover{color:var(--blue)}
 
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--line);transition:transform .15s ease,background .15s ease;cursor:pointer;font:600 15px Inter,sans-serif;color:var(--text);background:transparent}
-  .btn:hover{transform:translateY(-1px);background:var(--panel2)}
-  .btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
-  .btn.primary:hover{background:#fff}
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:11px 20px;border:2px solid var(--ink);border-radius:8px;background:transparent;color:var(--ink);font:700 1rem/1.2 var(--text);text-decoration:none;text-align:center;cursor:pointer;transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn.primary:hover{background:var(--blue-d);border-color:var(--blue-d);color:#fff}
+  .btn.small{min-height:44px;padding:8px 16px;font-size:.95rem}
+  .btn svg{width:1.05em;height:1.05em;flex:none;fill:currentColor}
+  .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .wide-only{display:none}
 
-  /* hero */
-  .hero{padding-top:96px;padding-bottom:80px}
-  .status{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);border:1px solid var(--line);padding:6px 12px;border-radius:99px;margin-bottom:26px}
-  .status i{width:8px;height:8px;border-radius:50%;background:var(--rbx);box-shadow:0 0 0 4px rgba(124,242,154,.15)}
-  h1{font-size:clamp(40px,6.4vw,72px);max-width:15ch}
-  h1 .r{color:var(--rbx)} h1 .w{color:var(--web)}
-  .hero p{color:var(--muted);font-size:19px;max-width:56ch;margin:22px 0 34px}
-  .actions{display:flex;flex-wrap:wrap;gap:12px}
+  /* ---------- shared pieces ---------- */
+  .label{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:14px}
+  .label::before{content:"";width:9px;height:15px;background:var(--blue);transform:skewX(-30deg);flex:none;margin-left:4px}
+  section{padding:64px 0}
+  section h2{font-size:clamp(1.9rem,5.2vw,2.9rem);max-width:20ch;margin-bottom:14px}
+  .lede{color:var(--soft);max-width:58ch;margin-bottom:32px}
+  .ruled{border-top:2px solid var(--ink)}
+  .ticks li{position:relative;padding:11px 0 11px 30px;border-top:1px solid var(--rule)}
+  .ticks li:first-child{border-top:0}
+  .ticks li::before{content:"";position:absolute;left:5px;top:1.02em;width:8px;height:14px;background:var(--blue);transform:skewX(-30deg)}
 
-  section{padding:80px 0;border-top:1px solid var(--line)}
-  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:12px;font-weight:600}
-  h2{font-size:clamp(28px,4vw,42px);margin-bottom:32px;max-width:22ch}
+  /* ---------- price sheet ---------- */
+  .sheet{background:var(--sheet);border:1.5px solid var(--ink);border-radius:6px}
+  .sheet-head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1.5px solid var(--ink)}
+  .sheet-head img{width:26px;height:28px;flex:none}
+  .sheet-head b{display:block;font-family:var(--display);font-weight:800;font-size:1.12rem;line-height:1.15;letter-spacing:-.01em}
+  .sheet-head span{display:block;font-size:.88rem;color:var(--soft);line-height:1.3}
+  .rows li{display:grid;grid-template-columns:auto minmax(12px,1fr) auto;align-items:baseline;column-gap:8px;padding:13px 18px;border-top:1px solid var(--rule)}
+  .rows li:first-child{border-top:0}
+  .rows b{font-weight:700}
+  .rows .dots{border-bottom:2px dotted #A9A292;transform:translateY(-4px)}
+  .rows strong{font-weight:700;font-size:1.12rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .rows small{grid-column:1/-1;font-size:.93rem;color:var(--soft);line-height:1.4;margin-top:2px;max-width:46ch}
+  .rows li.season{background:var(--tint)}
+  .rows .flag{grid-column:1/-1;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:2px}
+  .sheet-foot{padding:13px 18px;border-top:1.5px solid var(--ink);font-size:.93rem;color:var(--soft)}
+  .sheet-foot a{color:var(--blue);font-weight:700;white-space:nowrap}
 
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px}
-  .card h3{font-size:24px;margin-bottom:6px}
-  .card .from{color:var(--muted);font-size:14px;margin-bottom:18px}
-  .card .from b{color:var(--text);font-size:18px}
-  .card ul{margin:0;padding:0;list-style:none}
-  .card li{padding:9px 0 9px 26px;border-top:1px solid var(--line);position:relative;color:#d5d8de}
-  .card li:first-child{border-top:0}
-  .card li::before{content:"";position:absolute;left:2px;top:17px;width:10px;height:10px;border-radius:3px;background:var(--accent)}
-  .rbx{--accent:var(--rbx)} .web{--accent:var(--web)}
-  .pill{display:inline-block;font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;margin-bottom:16px;color:var(--bg);background:var(--accent)}
+  /* ---------- hero ---------- */
+  .hero{padding:28px 0 56px}
+  .hero-grid{display:grid;gap:32px}
+  .status{display:flex;align-items:center;gap:9px;font-size:.9rem;font-weight:600;color:var(--soft);margin-bottom:14px}
+  .status i{width:9px;height:9px;border-radius:50%;background:#1E8E4E;flex:none}
+  h1{font-size:clamp(2.4rem,10.4vw,4.4rem);line-height:.98;max-width:13ch}
+  h1 em{font-style:normal;color:var(--blue)}
+  .hero .intro{font-size:1.09rem;max-width:50ch;margin:18px 0 24px}
+  .hero-cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:440px}
+  .hero-cta .primary{grid-column:1/-1}
+  .also{margin-top:18px;font-size:.97rem;color:var(--soft)}
+  .also a{color:var(--ink);font-weight:700;text-underline-offset:3px}
+  .hero .rows li{padding-top:11px;padding-bottom:11px}
 
-  /* work */
-  .work{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  .work a{text-decoration:none;display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s ease,transform .2s ease}
-  .work a:hover{border-color:#3a404c;transform:translateY(-2px)}
-  .thumb{height:180px;display:flex;align-items:flex-end;padding:18px;font-family:"Space Grotesk";font-weight:700;font-size:26px}
-  .work a.wide{grid-column:1/-1}
-  .tphoto{height:220px;color:#fff;background:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.15)),var(--img) var(--pos)/cover no-repeat;text-shadow:0 2px 12px rgba(0,0,0,.5)}
-  .t0{background:linear-gradient(120deg,#2a211b,#7a3514);color:#ffd9c2;height:200px}
-  .t1{background:linear-gradient(135deg,#1a1a1a,#3b2f22);color:#e9c58a}
-  .t2{background:linear-gradient(135deg,#0f3b2a,#2f6b3e);color:#ffe7b0}
-  .t3{background:radial-gradient(circle at 20% 20%,#1d3b28,#0f1512);color:var(--rbx);font-family:ui-monospace,Consolas,monospace;font-size:15px;align-items:center;white-space:pre;line-height:1.5;font-weight:500}
-  .t4{background:radial-gradient(circle at 80% 30%,#1b2b3f,#0f1218);color:var(--web);font-family:ui-monospace,Consolas,monospace;font-size:15px;align-items:center;white-space:pre;line-height:1.5;font-weight:500}
-  .work .meta{padding:18px 20px}
-  .work .meta b{display:block;font-size:17px}
-  .work .meta span{color:var(--muted);font-size:14px}
+  /* ---------- demos ---------- */
+  .demos{display:grid;gap:18px}
+  .demo{display:grid;background:var(--sheet);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+  .demo:hover{transform:translateY(-3px);box-shadow:0 10px 0 -6px var(--ink)}
+  .shot{background:var(--bg,var(--tint));height:270px;overflow:hidden;display:flex;justify-content:center;padding-top:26px;border-bottom:1.5px solid var(--ink)}
+  .shot img{width:228px;height:auto;align-self:flex-start;border:3px solid var(--ink);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:0 14px 30px rgba(27,26,23,.28)}
+  .demo-body{padding:18px 18px 20px;display:flex;flex-direction:column;align-items:flex-start}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--ink);border-radius:4px;padding:2px 7px;margin-bottom:10px}
+  .demo h3{font-size:1.5rem;margin-bottom:2px}
+  .demo .kind{font-weight:700;margin-bottom:6px}
+  .demo .desc{color:var(--soft);font-size:1rem;margin-bottom:auto}
+  .demo .offer{align-self:stretch;margin-top:12px;padding:10px 12px;background:var(--tint);border-radius:4px;font-size:.95rem}
+  .go{display:inline-block;margin-top:12px;font-weight:700;color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+  .demo.compact{grid-template-columns:118px 1fr}
+  .demo.compact .shot{height:100%;min-height:176px;padding-top:16px;border-bottom:0;border-right:1.5px solid var(--ink)}
+  .demo.compact .shot img{width:88px;border-width:2px;border-radius:9px 9px 0 0;box-shadow:none}
+  .demo.compact .demo-body{padding:14px 14px 16px}
+  .demo.compact h3{font-size:1.22rem}
+  .honest{margin-top:22px;font-size:.95rem;color:var(--soft);max-width:62ch}
 
-  /* pricing */
-  .price{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
-  .price:first-of-type{border-top:0}
-  .price div span{display:block;color:var(--muted);font-size:14px}
-  .price strong{font-family:"Space Grotesk";font-size:20px;white-space:nowrap}
-  .note{color:var(--muted);font-size:14px;margin-top:20px}
+  /* ---------- services ---------- */
+  .svc{display:grid;gap:28px}
+  .from{font-size:1.02rem;margin-bottom:8px}
+  .from b{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.01em}
 
-  /* steps */
-  .step{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px}
-  .step b{font-family:"Space Grotesk";font-size:14px;color:var(--muted)}
-  .step h3{font-size:19px;margin:8px 0 6px}
-  .step p{margin:0;color:var(--muted);font-size:15px}
+  /* ---------- pricing ---------- */
+  .price-grid{display:grid;gap:22px}
+  .terms{display:grid;gap:0;align-content:start}
+  .terms li{padding:14px 0;border-top:1px solid var(--rule)}
+  .terms li:first-child{border-top:2px solid var(--ink)}
+  .terms b{display:block;font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.01em;line-height:1.2}
+  .terms span{color:var(--soft);font-size:.98rem}
+  .pointer{margin-top:20px;color:var(--soft);font-size:.97rem}
+  .pointer a{color:var(--ink);font-weight:700;text-underline-offset:3px}
 
-  /* faq */
-  details{border-top:1px solid var(--line);padding:18px 0}
-  details:last-child{border-bottom:1px solid var(--line)}
-  summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between}
-  summary::after{content:"+";color:var(--muted);font-size:22px;line-height:1}
-  details[open] summary::after{content:"–"}
-  details p{color:var(--muted);margin:10px 0 0;max-width:70ch}
+  /* ---------- steps ---------- */
+  .steps{display:grid;counter-reset:step}
+  .steps li{counter-increment:step;display:grid;grid-template-columns:54px 1fr;column-gap:8px;padding:18px 0;border-top:1px solid var(--rule)}
+  .steps li:first-child{border-top:2px solid var(--ink)}
+  .steps li::before{content:"0" counter(step);font-family:var(--display);font-weight:800;font-size:1.9rem;line-height:1;color:var(--blue);font-variant-numeric:tabular-nums;grid-row:1/3}
+  .steps h3{font-size:1.25rem;margin-bottom:4px}
+  .steps p{color:var(--soft);grid-column:2}
 
-  /* contact */
-  .contact{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
-  .contact h2{margin-bottom:12px}
-  .contact p{color:var(--muted);margin:0}
-  .contact .actions{flex-direction:column;align-items:stretch}
-  .toast{font-size:13px;color:var(--rbx);min-height:18px}
+  /* ---------- roblox band ---------- */
+  .band{background:var(--ink);color:var(--on-ink)}
+  .band .label{color:var(--on-ink-soft)}
+  .band .label::before,.band .ticks li::before{background:var(--green)}
+  .band .lede,.band .from{color:var(--on-ink-soft)}
+  .band .from b{color:var(--on-ink)}
+  .band .ticks li{border-color:var(--ink-rule)}
+  .band .sheet{background:#23221E;border-color:#6B675C}
+  .band .sheet-head,.band .sheet-foot{border-color:#6B675C}
+  .band .sheet-head span,.band .sheet-foot,.band .rows small{color:var(--on-ink-soft)}
+  .band .rows li{border-color:var(--ink-rule)}
+  .band .rows .dots{border-color:#77736A}
+  .rbx-grid{display:grid;gap:28px}
+  .code-grid{display:grid;gap:18px;margin-top:36px}
+  .code{display:block;text-decoration:none;border:1.5px solid #6B675C;border-radius:6px;overflow:hidden;background:#23221E;transition:border-color .18s ease}
+  .code:hover{border-color:var(--green)}
+  .code pre{margin:0;padding:16px 18px;font:400 .82rem/1.65 var(--mono);color:#DAD6CA;background:#141310;border-bottom:1.5px solid #6B675C;white-space:pre-wrap;overflow-wrap:anywhere;}
+  .code pre .c{color:var(--green)}
+  .code div{padding:16px 18px 18px}
+  .code b{display:block;font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
+  .code span.d{color:var(--on-ink-soft);font-size:.98rem}
+  .code .go{color:var(--green)}
 
-  footer{padding:36px 0 48px;color:var(--muted);font-size:14px}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  /* ---------- faq ---------- */
+  .faq{max-width:780px}
+  details{border-top:1px solid var(--rule)}
+  details:first-of-type{border-top:2px solid var(--ink)}
+  details:last-of-type{border-bottom:1px solid var(--rule)}
+  summary{display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;list-style:none;padding:18px 2px;font-weight:700;font-size:1.09rem;min-height:56px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";flex:none;width:16px;height:16px;background:linear-gradient(var(--blue),var(--blue)) center/100% 3px no-repeat,linear-gradient(var(--blue),var(--blue)) center/3px 100% no-repeat}
+  details[open] summary::after{background:linear-gradient(var(--blue),var(--blue)) center/100% 3px no-repeat}
+  details p{color:var(--soft);padding:0 2px 20px;max-width:66ch}
 
-  @media (max-width:860px){
-    .grid4{grid-template-columns:1fr 1fr}
+  /* ---------- contact ---------- */
+  .contact{background:var(--blue);color:#fff}
+  .contact .label{color:#DCE2FB}
+  .contact .label::before{background:#fff}
+  .contact h2{max-width:14ch}
+  .contact .lede{color:#E9ECFC;margin-bottom:0}
+  .contact-grid{display:grid;gap:28px}
+  .reach{display:grid;gap:10px}
+  .reach .btn{justify-content:flex-start;text-align:left;border-color:#fff;color:#fff;min-height:58px;width:100%;padding:10px 16px;gap:14px}
+  .reach .btn:hover{background:#fff;color:var(--blue)}
+  .reach .btn.primary{background:#fff;color:var(--ink);border-color:#fff}
+  .reach .btn.primary:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .reach .btn svg{width:22px;height:22px}
+  .reach .btn span.t{display:grid;min-width:0}
+  .reach .btn small{font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.86}
+  .reach .btn span.v{font-size:1.06rem;overflow-wrap:anywhere}
+  .toast{min-height:1.5em;font-size:.95rem;font-weight:600}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:var(--on-ink-soft);padding:36px 0 44px;font-size:.93rem}
+  footer .wrap{display:grid;gap:14px}
+  footer img{width:140px;height:26px}
+  footer a{text-underline-offset:3px}
+
+  /* ---------- wider screens ---------- */
+  @media (min-width:600px){
+    :root{--gutter:28px}
+    .demos{grid-template-columns:1fr 1fr}
+    .code-grid{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr 1fr;column-gap:32px}
+    .steps li:nth-child(2){border-top:2px solid var(--ink)}
+    .reach{max-width:460px}
   }
-  @media (max-width:720px){
-    .grid2,.work,.contact{grid-template-columns:1fr}
-    .nav nav a:not(.cta){display:none}
-    .hero{padding-top:64px;padding-bottom:56px}
-    section{padding:60px 0}
-    .contact{padding:28px}
+  @media (min-width:920px){
+    :root{--head:68px}
+    section{padding:92px 0}
+    .top nav{display:flex;align-items:center;gap:28px;margin-left:auto}
+    .brand img{width:172px;height:32px}
+    .wide-only{display:inline}
+    .hero{padding:64px 0 84px}
+    .hero-grid{grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);gap:56px;align-items:center}
+    h1{font-size:clamp(3.4rem,5.4vw,4.6rem)}
+    .hero .intro{font-size:1.18rem}
+    .shot{height:330px;padding-top:34px}
+    .shot img{width:270px}
+    .demo-body{padding:22px 24px 24px}
+    .demo.compact{grid-template-columns:170px 1fr}
+    .demo.compact .shot{padding-top:22px;min-height:200px}
+    .demo.compact .shot img{width:122px}
+    .demo.compact .demo-body{padding:22px 24px}
+    .svc{grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+    .price-grid{grid-template-columns:1.25fr .75fr;gap:56px;align-items:start}
+    .steps{grid-template-columns:repeat(4,1fr);column-gap:28px}
+    .steps li{grid-template-columns:1fr;border-top:2px solid var(--ink)!important;padding:20px 0 0}
+    .steps li::before{grid-row:auto;margin-bottom:14px;font-size:2.3rem}
+    .steps p{grid-column:1}
+    .rbx-grid{grid-template-columns:1.1fr .9fr;gap:64px;align-items:start}
+    .contact-grid{grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+    .reach{max-width:none}
+    footer .wrap{grid-template-columns:auto 1fr auto;align-items:center;gap:32px}
   }
-  @media (max-width:460px){ .grid4{grid-template-columns:1fr} }
-  @media (prefers-reduced-motion:reduce){ *{transition:none!important;scroll-behavior:auto!important} }
+  @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition:none!important;animation:none!important}
+    .demo:hover{transform:none}
+  }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="nav">
+<header class="top">
   <div class="wrap">
-    <a class="brand" href="#"><img src="logo.svg" alt="" width="32" height="32"><span data-c="name">Jacob Kozin</span></a>
-    <nav>
+    <a class="brand" href="#top"><img src="logo.svg" alt="Jacob Kozin" width="151" height="28" data-alt="name"></a>
+    <nav aria-label="Sections">
+      <a href="#work">Demos</a>
       <a href="#services">Services</a>
-      <a href="#work">Work</a>
       <a href="#pricing">Pricing</a>
-      <a class="cta" href="#contact">Get a quote</a>
+      <a href="#roblox">Roblox</a>
+      <a href="#contact">Get a quote</a>
     </nav>
+    <a class="btn primary small" data-href="tel" href="tel:+16029359847">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5h3.1l1.6 4.6-2.2 1.7a12.4 12.4 0 0 0 6.1 6.1l1.7-2.2 4.6 1.6v3.1a2.6 2.6 0 0 1-2.8 2.6C10.2 19.3 4.7 13.8 4 5.3a2.6 2.6 0 0 1 2.6-2.8Z"/></svg>
+      Call<span class="wide-only num">&nbsp;<span data-c="phone">(602) 935-9847</span></span>
+    </a>
   </div>
 </header>
 
-<main>
-  <div class="wrap hero">
-    <div class="status"><i></i> Taking new projects · replies within 24h</div>
-    <h1>I build <span class="r">Roblox systems</span> and <span class="w">websites</span> that just work.</h1>
-    <p>I script game systems for Roblox developers and build fast, clean websites for local businesses. Fixed quotes, clear deadlines, and you pay the second half only when you're happy with it.</p>
-    <div class="actions">
-      <a class="btn primary" href="#contact">Get a free quote</a>
-      <a class="btn" href="#work">See my work</a>
+<main id="main">
+  <div class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="status"><i></i> Taking new projects · replies within 24h</p>
+        <h1>Websites that make it <em>easy to hire you.</em></h1>
+        <p class="intro">I'm Jacob, a web developer in <span data-c="area">Scottsdale, AZ</span>. I build fast, clean websites for local businesses, made for phones first. Fixed quotes, clear deadlines, and you pay the second half only when you're happy with it.</p>
+        <div class="hero-cta">
+          <a class="btn primary" data-href="tel" href="tel:+16029359847">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5h3.1l1.6 4.6-2.2 1.7a12.4 12.4 0 0 0 6.1 6.1l1.7-2.2 4.6 1.6v3.1a2.6 2.6 0 0 1-2.8 2.6C10.2 19.3 4.7 13.8 4 5.3a2.6 2.6 0 0 1 2.6-2.8Z"/></svg>
+            Call <span class="num" data-c="phone">(602) 935-9847</span>
+          </a>
+          <a class="btn" data-href="sms" href="sms:+16029359847">Text me</a>
+          <a class="btn" href="#work">See demos</a>
+        </div>
+        <p class="also">Prefer email? <a href="#contact">Get a free quote</a>. Building a Roblox game? <a href="#roblox">Scripting commissions from $25</a>.</p>
+      </div>
+
+      <aside class="sheet" aria-label="Website prices at a glance">
+        <div class="sheet-head">
+          <img src="logo-mark.svg" alt="" width="26" height="28">
+          <div><b>Website prices</b><span>Fixed quote before any work starts</span></div>
+        </div>
+        <ul class="rows">
+          <li><b>Quick Fix</b><span class="dots" aria-hidden="true"></span><strong>$99</strong></li>
+          <li><b>Starter, one page</b><span class="dots" aria-hidden="true"></span><strong>$250</strong></li>
+          <li><b>Business, up to 5 pages</b><span class="dots" aria-hidden="true"></span><strong>$450</strong></li>
+          <li><b>Holiday quote page</b><span class="dots" aria-hidden="true"></span><strong>$149</strong></li>
+          <li><b>Care plan</b><span class="dots" aria-hidden="true"></span><strong>$25/mo</strong></li>
+        </ul>
+        <p class="sheet-foot">50% up front, 50% on delivery. <a href="#pricing">What each one includes</a></p>
+      </aside>
     </div>
   </div>
 
-  <section id="services">
+  <section id="work" class="ruled">
     <div class="wrap">
-      <div class="eyebrow">Services</div>
-      <h2>Two things, done properly.</h2>
-      <div class="grid2">
-        <div class="card rbx">
-          <span class="pill">Roblox</span>
-          <h3>Roblox scripting</h3>
-          <div class="from">From <b>$25</b> · paid in USD, not Robux</div>
-          <ul>
-            <li>Player data &amp; saving (DataStores, session locking, no data loss)</li>
+      <p class="label">Demo sites</p>
+      <h2>Tap through a site like yours.</h2>
+      <p class="lede">I built these four as demos, with made-up businesses and sample content, so you can try the real thing on your phone before we talk.</p>
+      <div class="demos">
+        <a class="demo" href="demos/lights/">
+          <div class="shot" style="--bg:#1D3327"><img src="assets/demo-lights.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
+          <div class="demo-body">
+            <span class="tag">Demo · sample content</span>
+            <h3>Desert Twinkle Lights</h3>
+            <p class="kind">Holiday lighting website</p>
+            <p class="desc">Customers text a photo of their house for a quote. Built for installers in the December rush.</p>
+            <p class="offer"><b>Holiday quote page, $149.</b> This page with your name, number and service area.</p>
+            <span class="go">Open the demo <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+        <a class="demo" href="demos/handyman/">
+          <div class="shot" style="--bg:#D9C9B4"><img src="assets/demo-handyman.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
+          <div class="demo-body">
+            <span class="tag">Demo · sample content</span>
+            <h3>Saguaro Ridge Handyman</h3>
+            <p class="kind">Home-service website</p>
+            <p class="desc">Tap-to-call everywhere, a quote form that texts the owner, service list, and service area. Built for trades.</p>
+            <span class="go">Open the demo <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+        <a class="demo compact" href="demos/barber/">
+          <div class="shot" style="--bg:#2A2622"><img src="assets/demo-barber.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
+          <div class="demo-body">
+            <span class="tag">Demo</span>
+            <h3>Northside Fade Co.</h3>
+            <p class="kind">Barbershop website</p>
+            <p class="desc">Services and prices, booking, hours, and a mobile call bar</p>
+            <span class="go">Open the demo <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+        <a class="demo compact" href="demos/taqueria/">
+          <div class="shot" style="--bg:#CFE0C9"><img src="assets/demo-taqueria.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
+          <div class="demo-body">
+            <span class="tag">Demo</span>
+            <h3>Casa Verde Taqueria</h3>
+            <p class="kind">Restaurant website</p>
+            <p class="desc">Full menu, online ordering, and hours that update open/closed live</p>
+            <span class="go">Open the demo <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </div>
+      <p class="honest">The business names, reviews and phone numbers inside the demos are placeholders. Your site gets your own name, photos and details.</p>
+    </div>
+  </section>
+
+  <section id="services" class="ruled">
+    <div class="wrap svc">
+      <div>
+        <p class="label">Services</p>
+        <h2>Websites for local businesses.</h2>
+        <p class="from">From <b>$250</b> · live in about a week</p>
+      </div>
+      <ul class="ticks">
+        <li>Your hours, services or menu, location, and a tap-to-call button</li>
+        <li>Built for phones first, which is where most of your customers are</li>
+        <li>Booking or ordering links (Square, Calendly, Toast, and others)</li>
+        <li>Google Business Profile setup so people find you on Maps</li>
+        <li>Hosting and small updates for a flat monthly fee</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="pricing" class="ruled">
+    <div class="wrap">
+      <p class="label">Pricing</p>
+      <h2>Straight prices. No surprises.</h2>
+      <p class="lede">You get a fixed quote before any work starts.</p>
+      <div class="price-grid">
+        <div class="sheet">
+          <div class="sheet-head">
+            <img src="logo-mark.svg" alt="" width="26" height="28">
+            <div><b>Website price sheet</b><span>Prices in USD</span></div>
+          </div>
+          <ul class="rows">
+            <li><b>Quick Fix</b><span class="dots" aria-hidden="true"></span><strong>$99</strong><small>Broken link, dead domain, missing tap-to-call, Google listing cleanup</small></li>
+            <li><b>Starter</b><span class="dots" aria-hidden="true"></span><strong>$250</strong><small>One page with everything a customer needs</small></li>
+            <li><b>Business</b><span class="dots" aria-hidden="true"></span><strong>$450</strong><small>Up to 5 pages, menu or booking, Google setup</small></li>
+            <li><b>Care plan</b><span class="dots" aria-hidden="true"></span><strong>$25/mo</strong><small>Hosting, domain renewals, small edits</small></li>
+            <li class="season"><span class="flag">For holiday-light installers</span><b>Holiday quote page</b><span class="dots" aria-hidden="true"></span><strong>$149</strong><small>One page where customers text a photo of their house for a quote, with tap-to-call on every button. Live within 24 hours of getting your details.</small></li>
+          </ul>
+        </div>
+        <ul class="terms">
+          <li><b>50% up front, 50% on delivery</b><span>Invoiced through PayPal.</span></li>
+          <li><b>Two rounds of revisions included</b><span>On every project.</span></li>
+          <li><b>Fixed quote first</b><span>Price, deadline, and exactly what's included, before any work starts.</span></li>
+        </ul>
+      </div>
+      <p class="pointer">Here for Roblox work? <a href="#roblox">Commission prices are below</a>.</p>
+    </div>
+  </section>
+
+  <section id="process" class="ruled">
+    <div class="wrap">
+      <p class="label">How it works</p>
+      <h2>From message to done.</h2>
+      <ol class="steps">
+        <li><h3>Tell me what you need</h3><p>A few sentences is enough. Screenshots help.</p></li>
+        <li><h3>Get a fixed quote</h3><p>Price, deadline, and exactly what's included.</p></li>
+        <li><h3>I build it</h3><p>After the deposit. You'll see progress along the way.</p></li>
+        <li><h3>Review &amp; launch</h3><p>Pay the rest when it works the way you wanted.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="roblox" class="band">
+    <div class="wrap">
+      <div class="rbx-grid">
+        <div>
+          <p class="label">Roblox scripting</p>
+          <h2>Game systems, scripted to order.</h2>
+          <p class="from">From <b>$25</b> · paid in USD, not Robux</p>
+          <ul class="ticks">
+            <li>Player data &amp; saving (DataStores, session locking, built to guard against data loss)</li>
             <li>Shops, game passes &amp; developer products, handled server-side</li>
             <li>Round systems, lobbies, intermissions &amp; map voting</li>
             <li>Pets, inventories, upgrades, and hooking them up to your UI</li>
             <li>Bug fixes, exploit hardening &amp; performance cleanup</li>
           </ul>
         </div>
-        <div class="card web">
-          <span class="pill">Web</span>
-          <h3>Websites for local businesses</h3>
-          <div class="from">From <b>$250</b> · live in about a week</div>
-          <ul>
-            <li>Your hours, services or menu, location, and a tap-to-call button</li>
-            <li>Built for phones first, which is where most of your customers are</li>
-            <li>Booking or ordering links (Square, Calendly, Toast, and others)</li>
-            <li>Google Business Profile setup so people find you on Maps</li>
-            <li>Hosting and small updates for a flat monthly fee</li>
+        <div class="sheet">
+          <div class="sheet-head">
+            <img src="logo-mark-reverse.svg" alt="" width="26" height="28">
+            <div><b>Roblox price sheet</b><span>USD through PayPal invoices</span></div>
+          </div>
+          <ul class="rows">
+            <li><b>Quick fix or small script</b><span class="dots" aria-hidden="true"></span><strong>$25–60</strong><small>A bug, a tool, a single mechanic</small></li>
+            <li><b>Full system</b><span class="dots" aria-hidden="true"></span><strong>$80–200</strong><small>Saving, shop, rounds, pets, inventory</small></li>
+            <li><b>Game framework</b><span class="dots" aria-hidden="true"></span><strong>from $300</strong><small>Several systems wired together and documented</small></li>
           </ul>
+          <p class="sheet-foot">Same terms: fixed quote first, 50% up front, two rounds of revisions.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="work">
-    <div class="wrap">
-      <div class="eyebrow">Work</div>
-      <h2>Recent builds.</h2>
-      <div class="work">
-        <a href="demos/lights/" class="wide">
-          <div class="thumb tphoto" style="--img:url('demos/assets/lights-hero.jpg');--pos:center 82%">Desert Twinkle Lights</div>
-          <div class="meta"><b>Holiday lighting website</b><span>Customers text a photo of their house for a quote. Built for installers in the December rush.</span></div>
+      <div class="code-grid">
+        <a class="code" data-href="github" href="https://github.com/jacobkozin/roblox-systems" target="_blank" rel="noopener">
+<pre aria-hidden="true">Data.WaitFor(player)
+Data.Increment(player, "Coins", 50)
+Data.SaveNow(player)
+<span class="c">-- session lock · retry · autosave</span></pre>
+          <div><b>DataService (Luau)</b><span class="d">Player saving with retries, session locking and shutdown handling, written to keep data safe through crashes</span><br><span class="go">Read the source on GitHub <span aria-hidden="true">↗</span></span></div>
         </a>
-        <a href="demos/handyman/" class="wide">
-          <div class="thumb tphoto" style="--img:url('demos/assets/handyman-hero.jpg');--pos:center 45%">Saguaro Ridge Handyman</div>
-          <div class="meta"><b>Home-service website</b><span>Tap-to-call everywhere, a quote form that texts the owner, service list, and service area. Built for trades.</span></div>
-        </a>
-        <a href="demos/barber/">
-          <div class="thumb t1">Northside Fade Co.</div>
-          <div class="meta"><b>Barbershop website</b><span>Services and prices, booking, hours, and a mobile call bar</span></div>
-        </a>
-        <a href="demos/taqueria/">
-          <div class="thumb t2">Casa Verde Taqueria</div>
-          <div class="meta"><b>Restaurant website</b><span>Full menu, online ordering, and hours that update open/closed live</span></div>
-        </a>
-        <a data-href="github" href="#">
-          <div class="thumb t3">DataService:Load(player)
-  ✓ session locked
-  ✓ reconciled
-  ✓ autosave 120s</div>
-          <div class="meta"><b>DataService (Luau)</b><span>Crash-safe player saving with retries, session locking and shutdown handling</span></div>
-        </a>
-        <a data-href="github" href="#">
-          <div class="thumb t4">ProcessReceipt(receipt)
-  ✓ idempotent
-  ✓ saved before grant
-RoundService → InRound</div>
-          <div class="meta"><b>ShopService + RoundService (Luau)</b><span>Server-validated shop, safe dev-product receipts, and a full round loop</span></div>
+        <a class="code" data-href="github" href="https://github.com/jacobkozin/roblox-systems" target="_blank" rel="noopener">
+<pre aria-hidden="true">ProcessReceipt(receipt)
+<span class="c">-- idempotent · saved before grant</span>
+RoundService.Start()
+<span class="c">-- Intermission → InRound → Ending</span></pre>
+          <div><b>ShopService + RoundService (Luau)</b><span class="d">Server-validated shop, safe dev-product receipts, and a full round loop</span><br><span class="go">Read the source on GitHub <span aria-hidden="true">↗</span></span></div>
         </a>
       </div>
     </div>
   </section>
 
-  <section id="pricing">
+  <section id="faq">
     <div class="wrap">
-      <div class="eyebrow">Pricing</div>
-      <h2>Straight prices. No surprises.</h2>
-      <div class="grid2">
-        <div class="card rbx">
-          <span class="pill">Roblox</span>
-          <div class="price"><div>Quick fix or small script<span>A bug, a tool, a single mechanic</span></div><strong>$25–60</strong></div>
-          <div class="price"><div>Full system<span>Saving, shop, rounds, pets, inventory</span></div><strong>$80–200</strong></div>
-          <div class="price"><div>Game framework<span>Several systems wired together and documented</span></div><strong>from $300</strong></div>
-        </div>
-        <div class="card web">
-          <span class="pill">Web</span>
-          <div class="price"><div>Quick fix<span>Broken link, dead domain, missing tap-to-call, Google listing cleanup</span></div><strong>$99</strong></div>
-          <div class="price"><div>Starter<span>One page with everything a customer needs</span></div><strong>$250</strong></div>
-          <div class="price"><div>Business<span>Up to 5 pages, menu or booking, Google setup</span></div><strong>$450</strong></div>
-          <div class="price"><div>Care plan<span>Hosting, domain renewals, small edits</span></div><strong>$25/mo</strong></div>
-        </div>
-      </div>
-      <p class="note">50% up front, 50% on delivery. Two rounds of revisions included. You get a fixed quote before any work starts.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="eyebrow">How it works</div>
-      <h2>From message to done.</h2>
-      <div class="grid4">
-        <div class="step"><b>01</b><h3>Tell me what you need</h3><p>A few sentences is enough. Screenshots help.</p></div>
-        <div class="step"><b>02</b><h3>Get a fixed quote</h3><p>Price, deadline, and exactly what's included.</p></div>
-        <div class="step"><b>03</b><h3>I build it</h3><p>After the deposit. You'll see progress along the way.</p></div>
-        <div class="step"><b>04</b><h3>Review &amp; launch</h3><p>Pay the rest when it works the way you wanted.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="eyebrow">FAQ</div>
+      <p class="label">FAQ</p>
       <h2>Questions people ask.</h2>
-      <details><summary>Do you take Robux?</summary><p>I work in USD through PayPal invoices. That keeps pricing clear and protects both of us.</p></details>
-      <details><summary>Will my Roblox code be readable?</summary><p>Yes. Everything is organized into modules with comments and a short setup guide, so you or another scripter can keep building on it.</p></details>
-      <details><summary>I already have a Facebook page. Why do I need a website?</summary><p>People search Google and Maps before they visit. A site with your hours, prices and a call button shows up there and answers their questions in five seconds. Facebook pages often don't.</p></details>
-      <details><summary>What if I need changes later?</summary><p>The care plan covers small edits every month. Bigger changes get their own quote, same as the first project.</p></details>
+      <div class="faq">
+        <details><summary>I already have a Facebook page. Why do I need a website?</summary><p>People search Google and Maps before they visit. A site with your hours, prices and a call button shows up there and answers their questions in five seconds. Facebook pages often don't.</p></details>
+        <details><summary>What if I need changes later?</summary><p>The care plan covers small edits every month. Bigger changes get their own quote, same as the first project.</p></details>
+        <details><summary>Do you take Robux?</summary><p>I work in USD through PayPal invoices. That keeps pricing clear and protects both of us.</p></details>
+        <details><summary>Will my Roblox code be readable?</summary><p>Yes. Everything is organized into modules with comments and a short setup guide, so you or another scripter can keep building on it.</p></details>
+      </div>
     </div>
   </section>
 
-  <section id="contact">
-    <div class="wrap">
-      <div class="contact">
-        <div>
-          <div class="eyebrow">Contact</div>
-          <h2>Tell me what you're building.</h2>
-          <p>Send a quick message with what you need and when you need it. You'll get a fixed quote back within a day.</p>
-        </div>
-        <div class="actions">
-          <a class="btn primary" data-href="tel" href="#">Call or text <span data-c="phone"></span></a>
-          <a class="btn" data-href="mailto" href="#">Email <span data-c="email"></span></a>
-          <button class="btn" id="discordBtn" type="button">Discord: <span data-c="discord">yourdiscord</span></button>
-          <div class="toast" id="toast" aria-live="polite"></div>
-        </div>
+  <section id="contact" class="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="label">Contact</p>
+        <h2>Tell me what you're building.</h2>
+        <p class="lede">Send a quick message with what you need and when you need it. You'll get a fixed quote back within a day.</p>
+      </div>
+      <div class="reach">
+        <a class="btn primary" data-href="tel" href="tel:+16029359847">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5h3.1l1.6 4.6-2.2 1.7a12.4 12.4 0 0 0 6.1 6.1l1.7-2.2 4.6 1.6v3.1a2.6 2.6 0 0 1-2.8 2.6C10.2 19.3 4.7 13.8 4 5.3a2.6 2.6 0 0 1 2.6-2.8Z"/></svg>
+          <span class="t"><small>Call</small><span class="v num" data-c="phone">(602) 935-9847</span></span>
+        </a>
+        <a class="btn" data-href="sms" href="sms:+16029359847">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.5h16a1.5 1.5 0 0 1 1.5 1.5v11a1.5 1.5 0 0 1-1.5 1.5h-8.3l-4.9 3.8v-3.8H4a1.5 1.5 0 0 1-1.5-1.5V5A1.5 1.5 0 0 1 4 3.5Z"/></svg>
+          <span class="t"><small>Text</small><span class="v num" data-c="phone">(602) 935-9847</span></span>
+        </a>
+        <a class="btn" data-href="mailto" href="mailto:jacobkozin.support@gmail.com?subject=Project%20quote">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 5.5h19v13h-19Zm2.6 2 6.9 5.3 6.9-5.3Zm14.4 1.9-7.5 5.8-7.5-5.8v7.1h15Z" fill-rule="evenodd"/></svg>
+          <span class="t"><small>Email</small><span class="v" data-c="email">jacobkozin.support@gmail.com</span></span>
+        </a>
+        <button class="btn" id="discordBtn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3.5h11v11h-11Zm2 2v7h7v-7ZM5 8v12.5h12.5v-2H7V8Z" fill-rule="evenodd"/></svg>
+          <span class="t"><small>Discord · tap to copy</small><span class="v" data-c="discord">jacity</span></span>
+        </button>
+        <p class="toast" id="toast" role="status" aria-live="polite"></p>
       </div>
     </div>
   </section>
@@ -290,8 +509,9 @@ RoundService → InRound</div>
 
 <footer>
   <div class="wrap">
-    <span>© <span id="yr"></span> <span data-c="name">Your Name</span></span>
-    <span>Based in <span data-c="area">your city</span> · working remotely worldwide</span>
+    <img src="logo-reverse.svg" alt="" width="140" height="26">
+    <span>© <span id="yr">2026</span> <span data-c="name">Jacob Kozin</span> · Based in <span data-c="area">Scottsdale, AZ</span> · working remotely worldwide</span>
+    <span>Demo photos from Unsplash · <a href="demos/assets/CREDITS.md">credits</a></span>
   </div>
 </footer>
 
@@ -308,13 +528,16 @@ RoundService → InRound</div>
   // ======================================
   if (!CONFIG.discord) document.getElementById("discordBtn").remove();
 
+  const dial = "+1" + CONFIG.phone.replace(/\D/g, "");
   document.querySelectorAll("[data-c]").forEach(el => { el.textContent = CONFIG[el.dataset.c]; });
+  document.querySelectorAll("[data-alt]").forEach(el => { el.alt = CONFIG[el.dataset.alt]; });
   document.querySelectorAll('[data-href="github"]').forEach(a => { a.href = CONFIG.github; a.target = "_blank"; a.rel = "noopener"; });
-  document.querySelectorAll('[data-href="tel"]').forEach(a => { a.href = "tel:+1" + CONFIG.phone.replace(/\D/g, ""); });
+  document.querySelectorAll('[data-href="tel"]').forEach(a => { a.href = "tel:" + dial; });
+  document.querySelectorAll('[data-href="sms"]').forEach(a => { a.href = "sms:" + dial; });
   document.querySelectorAll('[data-href="mailto"]').forEach(a => {
     a.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Project quote");
   });
-  document.title = CONFIG.name + " · Roblox Systems & Websites";
+  document.title = CONFIG.name + " · Websites for Local Businesses & Roblox Systems";
   document.getElementById("yr").textContent = new Date().getFullYear();
 
   const toast = document.getElementById("toast");
