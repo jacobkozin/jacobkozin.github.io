@@ -66,6 +66,8 @@
   .work a{text-decoration:none;display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s ease,transform .2s ease}
   .work a:hover{border-color:#3a404c;transform:translateY(-2px)}
   .thumb{height:180px;display:flex;align-items:flex-end;padding:18px;font-family:"Space Grotesk";font-weight:700;font-size:26px}
+  .work a.wide{grid-column:1/-1}
+  .t0{background:linear-gradient(120deg,#2a211b,#7a3514);color:#ffd9c2;height:200px}
   .t1{background:linear-gradient(135deg,#1a1a1a,#3b2f22);color:#e9c58a}
   .t2{background:linear-gradient(135deg,#0f3b2a,#2f6b3e);color:#ffe7b0}
   .t3{background:radial-gradient(circle at 20% 20%,#1d3b28,#0f1512);color:var(--rbx);font-family:ui-monospace,Consolas,monospace;font-size:15px;align-items:center;white-space:pre;line-height:1.5;font-weight:500}
@@ -182,6 +184,10 @@
       <div class="eyebrow">Work</div>
       <h2>Recent builds.</h2>
       <div class="work">
+        <a href="demos/handyman/" class="wide">
+          <div class="thumb t0">Saguaro Ridge Handyman</div>
+          <div class="meta"><b>Home-service website</b><span>Tap-to-call everywhere, a quote form that texts the owner, service list, and service area. Built for trades.</span></div>
+        </a>
         <a href="demos/barber/">
           <div class="thumb t1">Northside Fade Co.</div>
           <div class="meta"><b>Barbershop website</b><span>Services and prices, booking, hours, and a mobile call bar</span></div>
@@ -221,6 +227,7 @@ RoundService → InRound</div>
         </div>
         <div class="card web">
           <span class="pill">Web</span>
+          <div class="price"><div>Quick fix<span>Broken link, dead domain, missing tap-to-call, Google listing cleanup</span></div><strong>$99</strong></div>
           <div class="price"><div>Starter<span>One page with everything a customer needs</span></div><strong>$250</strong></div>
           <div class="price"><div>Business<span>Up to 5 pages, menu or booking, Google setup</span></div><strong>$450</strong></div>
           <div class="price"><div>Care plan<span>Hosting, domain renewals, small edits</span></div><strong>$25/mo</strong></div>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saguaro Ridge Handyman · Demo</title>
+<meta name="description" content="Demo home-service website: handyman repairs, installs and punch lists. Tap to call or request a quote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1c1a17;--muted:#5f5a52;--paper:#faf7f2;--card:#fff;--line:#e6dfd3;--accent:#c2551f;--accent-ink:#fff;--dark:#23201c}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;padding-bottom:64px}
+  a{color:inherit}
+  .demo{background:var(--dark);color:#efe9df;text-align:center;font-size:13px;font-weight:600;padding:7px 12px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:Archivo,Inter,sans-serif;line-height:1.08;margin:0;letter-spacing:-.01em}
+  header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;height:66px;gap:12px}
+  .logo{font-family:Archivo;font-weight:800;font-size:19px}
+  .logo small{display:block;font:500 12px Inter;color:var(--muted)}
+  .call{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;padding:11px 18px;border-radius:8px;white-space:nowrap}
+  .call.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+  .hero{padding:64px 0 56px}
+  .hero .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
+  .eyebrow{font-weight:600;color:var(--accent);font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+  .hero h1{font-size:clamp(38px,5.6vw,62px);font-weight:800}
+  .hero p{font-size:19px;color:var(--muted);margin:18px 0 28px;max-width:46ch}
+  .row{display:flex;flex-wrap:wrap;gap:12px}
+  .proof{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;color:var(--muted);font-size:15px}
+  .proof b{color:var(--ink)}
+  .quote{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 10px 30px rgba(40,30,10,.06)}
+  .quote h3{font-size:22px;margin-bottom:6px}
+  .quote p{margin:0 0 16px;color:var(--muted);font-size:15px}
+  label{display:block;font-weight:600;font-size:14px;margin:12px 0 6px}
+  input,textarea,select{width:100%;font:16px Inter,sans-serif;padding:12px;border:1px solid #cfc6b6;border-radius:8px;background:#fff;color:var(--ink)}
+  textarea{min-height:90px;resize:vertical}
+  .quote button{margin-top:16px;width:100%;border:0;cursor:pointer;font:700 16px Inter,sans-serif;background:var(--ink);color:#fff;padding:14px;border-radius:8px}
+  .fine{font-size:13px;color:var(--muted);margin-top:10px}
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  h2{font-size:clamp(30px,4vw,42px);margin-bottom:28px}
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .svc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+  .svc h3{font-size:19px;margin-bottom:6px}
+  .svc p{margin:0;color:var(--muted);font-size:15px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
+  .steps div{counter-increment:s;padding-top:8px}
+  .steps div::before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font:800 16px Archivo;margin-bottom:12px}
+  .steps h3{font-size:19px;margin-bottom:4px}
+  .steps p{margin:0;color:var(--muted)}
+  .area{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips span{background:var(--card);border:1px solid var(--line);padding:7px 13px;border-radius:99px;font-size:14px;font-weight:500}
+  table{width:100%;border-collapse:collapse}
+  td{padding:9px 0;border-bottom:1px solid var(--line)} td:last-child{text-align:right;color:var(--muted)}
+  .cta{background:var(--dark);color:#f6f1e8;border-radius:18px;padding:44px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .cta h2{margin:0;color:#fff}
+  .cta p{margin:8px 0 0;color:#c9c1b4}
+  footer{padding:32px 0;color:var(--muted);font-size:14px}
+  .bar{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;z-index:6;box-shadow:0 -4px 16px rgba(0,0,0,.08)}
+  .bar a{text-align:center;padding:16px;font-weight:700;text-decoration:none;background:var(--card);color:var(--ink)}
+  .bar a.c{background:var(--accent);color:#fff}
+  @media (min-width:900px){.bar{display:none}body{padding-bottom:0}}
+  @media (max-width:860px){.hero .grid,.area{grid-template-columns:1fr}.services{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
+  @media (max-width:560px){.services{grid-template-columns:1fr}header .call span{display:none}.cta{padding:28px}}
+</style>
+</head>
+<body>
+<div class="demo" id="demoBar">Demo site with sample content, built by <a href="../../">Jacob Kozin</a></div>
+
+<header><div class="wrap">
+  <div class="logo"><span data-k="name">Saguaro Ridge Handyman</span><small><span data-k="tagline">Repairs · Installs · Punch lists</span></small></div>
+  <a class="call" data-tel href="#">📞 <span data-k="phone">(555) 555-0123</span></a>
+</div></header>
+
+<div class="hero"><div class="wrap grid">
+  <div>
+    <div class="eyebrow">Serving <span data-k="area">Scottsdale &amp; North Phoenix</span></div>
+    <h1>The small jobs, done right the first time.</h1>
+    <p>Drywall patches, fixtures, doors, TV mounts, and the honey-do list you keep putting off. Call, or send a photo of the job for a quote.</p>
+    <div class="row">
+      <a class="call" data-tel href="#">Call now</a>
+      <a class="call ghost" href="#quote">Get a free quote</a>
+    </div>
+    <div class="proof">
+      <span><b data-k="rating">5.0★</b> on Google</span>
+      <span class="claim"><b>Licensed &amp; insured</b></span>
+      <span class="claim"><b>Same-week</b> scheduling</span>
+    </div>
+  </div>
+  <form class="quote" id="quote" onsubmit="return sendQuote(event)">
+    <h3>Request a quote</h3>
+    <p>Tell us what needs fixing. We reply the same day.</p>
+    <label for="qn">Name</label><input id="qn" autocomplete="name" required>
+    <label for="qp">Phone</label><input id="qp" type="tel" autocomplete="tel" required>
+    <label for="qj">What do you need done?</label><textarea id="qj" required></textarea>
+    <button type="submit">Send request</button>
+    <div class="fine">Opens a text or email to us with your request. No spam, ever.</div>
+  </form>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <h2>What we fix</h2>
+  <div class="services" id="svcs"></div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>How it works</h2>
+  <div class="steps">
+    <div><h3>Call or send a photo</h3><p>Describe the job. A picture gets you a faster, more accurate price.</p></div>
+    <div><h3>Get a price</h3><p>You know the cost before any work starts.</p></div>
+    <div><h3>We do the job</h3><p>Schedule a time that works for you.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap area">
+  <div>
+    <h2>Where we work</h2>
+    <div class="chips" id="areas"></div>
+  </div>
+  <div>
+    <h2>Hours</h2>
+    <table>
+      <tr><td>Monday – Friday</td><td>7am – 6pm</td></tr>
+      <tr><td>Saturday</td><td>8am – 2pm</td></tr>
+      <tr><td>Sunday</td><td>Emergencies only</td></tr>
+    </table>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="cta">
+    <div><h2>Got a list? Send it over.</h2><p>Most quotes go out within a few hours.</p></div>
+    <a class="call" data-tel href="#">Call <span data-k="phone">(555) 555-0123</span></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© <span data-k="name">Saguaro Ridge Handyman</span> · <span data-k="area">Scottsdale &amp; North Phoenix</span></div></footer>
+
+<div class="bar"><a class="c" data-tel href="#">Call</a><a href="#quote">Free quote</a></div>
+
+<script>
+  // ===== Reusable config. URL params override it (for quick mockups): ?name=&phone=&area=&rating=&tagline=&services=a;b;c&concept=1
+  const CONFIG = {
+    name: "Saguaro Ridge Handyman",
+    tagline: "Repairs · Installs · Punch lists",
+    phone: "(555) 555-0123",
+    email: "hello@example.com",
+    area: "Scottsdale & North Phoenix",
+    rating: "5.0★",
+    areas: ["Scottsdale","Paradise Valley","North Phoenix","Fountain Hills","Cave Creek","Tempe"],
+    services: [
+      ["Drywall & paint touch-ups","Holes, cracks, water spots, patched and blended."],
+      ["Doors & hardware","Sticking doors, new locks, hinges, closers, weatherstripping."],
+      ["Fixtures & fans","Light fixtures, ceiling fans, faucets, garbage disposals."],
+      ["Mounting & assembly","TVs, shelves, mirrors, furniture, closet systems."],
+      ["Tile & caulk","Cracked grout, re-caulking tubs and showers, small tile repairs."],
+      ["Punch lists","Move-in, move-out, and pre-listing repair lists."]
+    ]
+  };
+  const q = new URLSearchParams(location.search);
+  for (const k of ["name","tagline","phone","area","rating","email"]) if (q.get(k)) CONFIG[k] = q.get(k);
+  if (q.get("services")) CONFIG.services = q.get("services").split(";").map(s => [s.trim(), ""]);
+  if (q.get("concept")) {
+    document.getElementById("demoBar").textContent = "Concept preview made for " + CONFIG.name + " by Jacob Kozin. Not live, not affiliated.";
+    const m = document.createElement("meta"); m.name = "robots"; m.content = "noindex"; document.head.appendChild(m);
+    // Don't put claims we haven't verified in someone else's name.
+    document.querySelectorAll(".claim").forEach(el => el.remove());
+  }
+
+  document.querySelectorAll("[data-k]").forEach(el => el.textContent = CONFIG[el.dataset.k]);
+  const tel = "tel:" + CONFIG.phone.replace(/[^\d+]/g, "");
+  document.querySelectorAll("[data-tel]").forEach(a => a.href = tel);
+  document.title = CONFIG.name + (q.get("concept") ? " · Concept" : " · Demo");
+  document.getElementById("svcs").innerHTML = CONFIG.services.map(([t, d]) =>
+    `<div class="svc"><h3>${t.replace(/</g,"&lt;")}</h3>${d ? `<p>${d}</p>` : ""}</div>`).join("");
+  document.getElementById("areas").innerHTML = CONFIG.areas.map(a => `<span>${a}</span>`).join("");
+
+  function sendQuote(e) {
+    e.preventDefault();
+    const body = `Quote request from ${qn.value} (${qp.value}): ${qj.value}`;
+    // Phones open a prefilled text; desktops open email.
+    const mobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    location.href = mobile
+      ? "sms:" + CONFIG.phone.replace(/[^\d+]/g, "") + "?&body=" + encodeURIComponent(body)
+      : "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Quote request") + "&body=" + encodeURIComponent(body);
+    return false;
+  }
+</script>
+</body>
+</html>
