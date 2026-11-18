@@ -29,7 +29,7 @@
   :focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:3px}
   .on-dark :focus-visible{outline-color:var(--on-dark)}
 
-  .demo{background:var(--dark);color:var(--on-dark);text-align:center;font-size:.84rem;font-weight:600;padding:7px 12px;line-height:1.35}
+  .demo{background:var(--dark);color:var(--on-dark);text-align:center;font-size:.84rem;font-weight:600;padding:9px 16px;line-height:1.35}
 
   header{background:var(--card);border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:5}
   header .wrap{display:flex;justify-content:space-between;align-items:center;min-height:var(--head);gap:14px;padding-top:8px;padding-bottom:8px}
@@ -48,9 +48,7 @@
   main{background:var(--paper)}
   .hero{padding:28px 0 40px}
   .hero-grid{display:grid;gap:28px}
-  .serving{font-weight:700;font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--rust-d);margin-bottom:12px}
-  .serving::before{content:"";display:inline-block;vertical-align:middle;width:22px;height:3px;background:var(--rust);margin-right:8px}
-  .hero h1{font-size:clamp(2.1rem,9vw,3.9rem);max-width:14ch}
+  .hero h1{font-size:clamp(2.1rem,9vw,3.9rem);max-width:14ch;padding-top:14px;border-top:4px solid var(--rust);display:inline-block}
   .hero .intro{font-size:1.1rem;color:var(--muted);margin:16px 0 22px;max-width:46ch}
   .row{display:flex;flex-wrap:wrap;gap:10px}
   .proof{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:20px;font-size:.95rem;color:var(--muted)}
@@ -58,7 +56,7 @@
 
   .photo{position:relative;margin-top:28px;border:2px solid var(--ink);border-radius:8px;overflow:hidden;height:190px}
   .photo img{width:100%;height:100%;object-fit:cover;object-position:30% 52%}
-  .photo span{position:absolute;right:8px;bottom:8px;font-size:.8rem;color:#fff;background:rgba(29,28,25,.72);padding:2px 8px;border-radius:4px}
+  .photo span{position:absolute;right:8px;bottom:8px;font-size:.82rem;color:#fff;background:rgba(29,28,25,.78);padding:6px 12px;border-radius:4px}
   .no-photo .photo{display:none}
 
   .quote{background:var(--card);border:2px solid var(--ink);border-radius:8px;padding:0 20px 20px;align-self:start}
@@ -92,7 +90,7 @@
 
   .area{display:grid;gap:40px}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chips span{border:1.5px solid var(--ink);background:var(--card);padding:6px 13px;border-radius:4px;font-size:.96rem;font-weight:600}
+  .chips span{border:1.5px solid var(--ink);background:var(--card);padding:8px 16px;border-radius:4px;font-size:.96rem;font-weight:600}
   table{width:100%;border-collapse:collapse}
   th,td{padding:12px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:400}
   th{font-weight:700}
@@ -157,7 +155,6 @@
 <main>
 <div class="hero"><div class="wrap hero-grid">
   <div>
-    <p class="serving" id="serving">Serving <span data-k="area">Scottsdale &amp; North Phoenix</span></p>
     <h1 data-k="headline">The small jobs, done right the first time.</h1>
     <p class="intro" data-k="intro">Drywall patches, fixtures, doors, TV mounts, and the honey-do list you keep putting off. Call, or send a photo of the job for a quote.</p>
     <div class="row">
@@ -165,6 +162,7 @@
       <a class="btn" href="#quote">Get a free quote</a>
     </div>
     <div class="proof">
+      <span id="serving">Serving <b data-k="area">Scottsdale &amp; North Phoenix</b></span>
       <span class="rating" hidden><b data-k="rating"></b> on Google</span>
       <span class="claim"><b>Same-week</b> scheduling</span>
       <span class="claim"><b>Price first</b>, before any work</span>
