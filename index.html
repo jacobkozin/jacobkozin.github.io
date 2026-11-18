@@ -308,7 +308,50 @@
     .btn:hover,.btn:active,.menu-btn:hover,.menu-btn:active,.demo:hover,.demo:active,.code:hover,.code:active{transform:none}
   }
   [hidden]{display:none!important}
+
+  /* ---------- seasonal string lights ----------
+     Everything here applies only when <html> has class "holiday" (set by the small script in <head>).
+     Without that class, or without JavaScript, none of it shows. */
+  .strand{display:none}
+  .holiday .hero{--ink:#0A0B1C;position:relative;isolation:isolate;padding-top:54px;color:var(--on-ink);
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 70' preserveAspectRatio='none'%3E%3Cpath fill='%230E1026' d='M0 70V46l90-20 70 14 110-30 90 22 120-26 100 30 130-22 110 18 120-28 100 24 160-16v54Z'/%3E%3C/svg%3E") bottom/100% 64px no-repeat,radial-gradient(120% 60% at 50% 100%,rgba(255,160,90,.2),transparent 70%),radial-gradient(1.6px 1.6px at 7% 22%,rgba(255,255,255,0.8),transparent 100%),radial-gradient(1.6px 1.6px at 16% 48%,rgba(255,255,255,0.55),transparent 100%),radial-gradient(1.6px 1.6px at 27% 14%,rgba(255,255,255,0.7),transparent 100%),radial-gradient(1.6px 1.6px at 38% 36%,rgba(255,255,255,0.5),transparent 100%),radial-gradient(1.6px 1.6px at 49% 20%,rgba(255,255,255,0.75),transparent 100%),radial-gradient(1.6px 1.6px at 58% 52%,rgba(255,255,255,0.45),transparent 100%),radial-gradient(1.6px 1.6px at 67% 12%,rgba(255,255,255,0.7),transparent 100%),radial-gradient(1.6px 1.6px at 76% 40%,rgba(255,255,255,0.55),transparent 100%),radial-gradient(1.6px 1.6px at 88% 24%,rgba(255,255,255,0.8),transparent 100%),radial-gradient(1.6px 1.6px at 95% 54%,rgba(255,255,255,0.5),transparent 100%),radial-gradient(1.6px 1.6px at 33% 62%,rgba(255,255,255,0.4),transparent 100%),radial-gradient(1.6px 1.6px at 82% 66%,rgba(255,255,255,0.4),transparent 100%),linear-gradient(180deg,#10122A,#1B1E44 62%,#2B2247) #151733}
+  .holiday .hero .wrap{position:relative;z-index:1}
+  .holiday .strand{display:block;position:absolute;left:0;right:0;top:0;height:34px;z-index:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34'%3E%3Cpath d='M0 6Q60 22 120 6' fill='none' stroke='%236B6F92' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x}
+  .holiday .strand i{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34'%3E%3Ccircle cx='20' cy='17.9' r='11' fill='%23FFE2A6' opacity='.22'/%3E%3Crect x='18' y='9.9' width='4' height='3.5' rx='1' fill='%238C8FA8'/%3E%3Cellipse cx='20' cy='17.9' rx='3.6' ry='4.8' fill='%23FFE2A6'/%3E%3C/svg%3E") repeat-x}
+  .holiday .strand i:nth-child(2){background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34'%3E%3Ccircle cx='60' cy='21.5' r='11' fill='%23FFB54D' opacity='.22'/%3E%3Crect x='58' y='13.5' width='4' height='3.5' rx='1' fill='%238C8FA8'/%3E%3Cellipse cx='60' cy='21.5' rx='3.6' ry='4.8' fill='%23FFB54D'/%3E%3C/svg%3E")}
+  .holiday .strand i:nth-child(3){background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34'%3E%3Ccircle cx='100' cy='17.9' r='11' fill='%23FF8A5C' opacity='.22'/%3E%3Crect x='98' y='9.9' width='4' height='3.5' rx='1' fill='%238C8FA8'/%3E%3Cellipse cx='100' cy='17.9' rx='3.6' ry='4.8' fill='%23FF8A5C'/%3E%3C/svg%3E")}
+  .holiday .hero h1 em,.holiday .hero .promises .ic{color:#FFD98A}
+  .holiday .hero .status,.holiday .hero .also{color:#D5D2E6}
+  .holiday .hero .intro{color:#ECE9F5}
+  .holiday .hero .also a{color:#fff}
+  .holiday .hero .sheet{color:#1B1A17}
+  .holiday .hero :focus-visible{outline-color:#FFD98A}
+  @media (min-width:920px){.holiday .hero{padding-top:84px}}
+  @media (prefers-reduced-motion:no-preference){
+    /* three groups of bulbs fade on different, slow cycles (3.4s to 5.8s), so nothing flashes */
+    .holiday .strand i{animation:twinkle 3.4s ease-in-out infinite alternate}
+    .holiday .strand i:nth-child(2){animation-duration:4.6s;animation-delay:-1.3s}
+    .holiday .strand i:nth-child(3){animation-duration:5.8s;animation-delay:-2.7s}
+    .holiday.lights-paused .strand i{animation-play-state:paused}
+    @keyframes twinkle{from{opacity:1}to{opacity:.42}}
+  }
 </style>
+<script>
+  // ===== SEASONAL STRING LIGHTS (homepage only) =====
+  // Shows every year from HOLIDAY.from to HOLIDAY.to, both days included, by the visitor's own calendar date.
+  // Each is [month, day]. Change the two dates here and nothing else.
+  // To check it on any day, add ?holiday=on or ?holiday=off to the address. Nothing is saved.
+  const HOLIDAY = { from: [11, 20], to: [1, 6] };
+  function inHolidayWindow(date) {
+    const day = (date.getMonth() + 1) * 100 + date.getDate();
+    const from = HOLIDAY.from[0] * 100 + HOLIDAY.from[1], to = HOLIDAY.to[0] * 100 + HOLIDAY.to[1];
+    return from <= to ? day >= from && day <= to : day >= from || day <= to;   // second case: the window runs past New Year
+  }
+  (function () {
+    const forced = new URLSearchParams(location.search).get("holiday");
+    if (forced === "on" || (forced !== "off" && inHolidayWindow(new Date()))) document.documentElement.classList.add("holiday");
+  })();
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -338,6 +381,7 @@
 
 <main id="main">
   <div class="hero" id="top">
+    <div class="strand" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="wrap hero-grid">
       <div class="hero-main">
         <p class="status"><i></i> Taking new projects · replies within 24h</p>
@@ -664,6 +708,14 @@ RoundService.Start()
   });
   document.title = CONFIG.name + " · Websites for Local Businesses & Roblox Systems";
   document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Seasonal lights: stop the twinkle while the tab is hidden or the lights are scrolled out of view.
+  if (document.documentElement.classList.contains("holiday")) {
+    let inView = true;
+    const sync = () => document.documentElement.classList.toggle("lights-paused", document.hidden || !inView);
+    new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; sync(); }).observe(document.querySelector(".strand"));
+    document.addEventListener("visibilitychange", sync);
+  }
 
   // Phone menu: shown only when JavaScript runs (otherwise the button stays hidden).
   const menuBtn = document.querySelector(".menu-btn"), siteNav = document.getElementById("site-nav");
