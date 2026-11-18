@@ -3,3 +3,5 @@
 - lights-tree.jpg: https://unsplash.com/photos/a-tree-wrapped-in-lights-at-night-S-bQLiX7vyk
 - handyman-hero.jpg: Theme Photos, https://unsplash.com/photos/selective-focus-photography-blue-and-black-makita-power-drill-Klby0nxseY8
 These are demo/sample images. Client sites use the client's own photos.
+
+No photos are used in the pool, lawn, painting and detailing demos: their artwork is drawn in CSS and inline SVG.

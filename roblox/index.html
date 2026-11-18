@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafeSave Kit · Roblox scripting · Jacob Kozin</title>
+<meta name="description" content="SafeSave Kit: open-source Luau modules for player data with session locking and developer-product receipts saved before they are confirmed. Fixed-price installs in USD.">
+<meta name="theme-color" content="#1B1A17">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F2EA; --sheet:#FFFDF7; --rule:#D6CFBE; --ink:#1B1A17; --soft:#55524A; --blue:#2440C4; --blue-d:#1A2F99;
+    --on-ink:#F5F2EA; --on-ink-soft:#C2BDB0; --ink-rule:#3A3832; --ink-edge:#6B675C; --panel:#23221E; --green:#8FE3A5;
+    --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+    --text:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"Cascadia Mono",Consolas,Menlo,monospace;
+    --line:2px; --gutter:20px; --head:62px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-padding-top:calc(var(--head) + 16px);-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--ink);color:var(--on-ink);font:400 1.0625rem/1.55 var(--text);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  p{margin:0}
+  ul,ol{margin:0;padding:0;list-style:none}
+  h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.05;margin:0;text-wrap:balance}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 var(--gutter)}
+  :focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:4px}
+  .light :focus-visible,.top :focus-visible{outline-color:var(--blue)}
+
+  .top{position:sticky;top:0;z-index:20;background:var(--paper);color:var(--ink);border-bottom:var(--line) solid var(--ink)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:var(--head)}
+  .brand{display:inline-flex;align-items:center;min-height:44px}
+  .brand img{display:block;width:151px;height:28px}
+
+  /* same pressable button as the homepage: one outline and a lip */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:11px 20px;border:var(--line) solid var(--ink);border-radius:9px;background:var(--sheet);color:var(--ink);font:700 1rem/1.2 var(--text);text-decoration:none;text-align:center;box-shadow:0 4px 0 #000;-webkit-tap-highlight-color:transparent;transition:transform .09s ease,box-shadow .09s ease,background-color .15s ease}
+  .btn:hover{background:#fff;transform:translateY(-1px);box-shadow:0 5px 0 #000}
+  .btn:active{transform:translateY(3px);box-shadow:0 1px 0 #000}
+  .btn.go{background:var(--green);border-color:#000}
+  .btn.go:hover{background:#A6EDB8}
+  .btn.small{min-height:44px;padding:8px 15px;font-size:.95rem;box-shadow:0 3px 0 var(--ink);white-space:nowrap}
+
+  .label{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.82rem;letter-spacing:.11em;text-transform:uppercase;background:var(--panel);border:var(--line) solid var(--ink-edge);border-radius:7px;padding:5px 11px 5px 9px;margin-bottom:16px}
+  .label::before{content:"";width:8px;height:14px;background:var(--green);transform:skewX(-30deg);flex:none;margin-left:3px}
+  .light .label{background:var(--sheet);border-color:var(--ink)}
+  .light .label::before{background:var(--blue)}
+
+  .hero{padding:36px 0 52px}
+  .hero-grid{display:grid;gap:30px}
+  h1{font-size:clamp(2.3rem,9.6vw,4.2rem);max-width:14ch}
+  h1 em{font-style:normal;color:var(--green)}
+  .intro{font-size:1.12rem;color:#E3DFD4;max-width:52ch;margin:16px 0 24px}
+  .row{display:flex;flex-wrap:wrap;gap:14px 12px}
+  .status{background:var(--panel);border:var(--line) solid var(--ink-edge);border-radius:12px;overflow:hidden}
+  .status h2{font-size:1.1rem;padding:12px 18px;background:#141310;border-bottom:1px solid var(--ink-edge);letter-spacing:-.01em}
+  .status li{display:grid;grid-template-columns:26px 1fr;gap:10px;padding:13px 18px;border-top:1px solid var(--ink-rule)}
+  .status li:first-child{border-top:0}
+  .status b{display:block}
+  .status span{color:var(--on-ink-soft);font-size:.97rem}
+  .dot{width:14px;height:14px;border-radius:50%;margin-top:.35em;border:2px solid var(--on-ink)}
+  .dot.yes{background:var(--green);border-color:var(--green)}
+
+  section{padding:60px 0}
+  section h2{font-size:clamp(1.9rem,5.4vw,2.9rem);max-width:22ch;margin-bottom:14px}
+  .lede{color:var(--on-ink-soft);max-width:60ch;margin-bottom:30px}
+  .light{background:var(--paper);color:var(--ink)}
+  .light .lede{color:var(--soft)}
+
+  .features{display:grid;gap:22px}
+  .feature{background:var(--panel);border:var(--line) solid var(--ink-edge);border-radius:14px;overflow:hidden;display:grid}
+  .feature-copy{padding:20px 18px}
+  .feature h3{font-size:1.45rem;margin-bottom:8px}
+  .feature p{color:var(--on-ink-soft)}
+  .feature .file{display:inline-block;margin-top:12px;font:400 .86rem/1.4 var(--mono);color:var(--green)}
+  pre{margin:0;padding:16px 18px;font:400 .84rem/1.6 var(--mono);color:#DAD6CA;background:#141310;border-top:1px solid var(--ink-edge);overflow-x:auto;tab-size:2}
+  pre .c{color:var(--green)}
+
+  .flows{display:grid;gap:26px}
+  .flowcard{background:var(--sheet);border:var(--line) solid var(--ink);border-radius:14px;overflow:hidden}
+  .flowcard h3{font-size:1.2rem;padding:13px 18px;color:var(--on-ink);background:var(--ink)}
+  .flowcard div{padding:18px 12px 20px}
+  .flow{display:block;width:100%;max-width:392px;height:auto;margin:0 auto;font-family:var(--text)}
+  .flow .n{fill:#FFFDF7;stroke:#1B1A17;stroke-width:2}
+  .flow .ask{fill:#E4E8FA}
+  .flow .end{fill:#1B1A17}
+  .flow .s{fill:#F5F2EA;stroke:#55524A;stroke-width:1.5;stroke-dasharray:4 3}
+  .flow .a{fill:none;stroke:#1B1A17;stroke-width:2}
+  .flow .h{fill:#1B1A17}
+  .flow text{text-anchor:middle;fill:#1B1A17}
+  .flow .t{font-size:13.5px}
+  .flow .tb{font-weight:700}
+  .flow .ts{font-size:12.5px}
+  .flow .end + text,.flow .end + text + text{fill:#F5F2EA}
+
+  .offers{display:grid;gap:22px}
+  .offer{background:var(--sheet);border:var(--line) solid var(--ink);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .offer-head{padding:14px 18px;color:var(--on-ink);background:var(--ink);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .offer-head h3{font-size:1.25rem}
+  .offer-head strong{font-family:var(--display);font-size:1.5rem;white-space:nowrap}
+  .offer ul{padding:6px 18px 4px}
+  .offer li{position:relative;padding:10px 0 10px 24px;border-top:1px solid var(--rule)}
+  .offer li:first-child{border-top:0}
+  .offer li::before{content:"";position:absolute;left:3px;top:1em;width:8px;height:14px;background:var(--blue);transform:skewX(-30deg)}
+  .offer p{margin-top:auto;padding:12px 18px;border-top:var(--line) solid var(--ink);background:var(--paper);color:var(--soft);font-size:.95rem}
+  .ranges{margin-top:26px;display:grid;gap:8px 26px;color:var(--soft)}
+  .ranges b{color:var(--ink)}
+  .terms{margin-top:22px;max-width:70ch;color:var(--soft)}
+
+  .cta{text-align:left;border-top:1px solid var(--ink-rule)}
+  .cta .row{margin-top:22px}
+  .cta a.plain{color:var(--on-ink);font-weight:700;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}
+
+  footer{border-top:1px solid var(--ink-rule);color:var(--on-ink-soft);padding:26px 0 34px;font-size:.93rem}
+  footer a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;text-underline-offset:3px}
+
+  @media (min-width:700px){
+    :root{--gutter:28px}
+    .flows,.offers{grid-template-columns:1fr 1fr}
+    .ranges{grid-template-columns:repeat(3,auto);justify-content:start}
+  }
+  @media (min-width:960px){
+    :root{--head:70px}
+    .brand img{width:172px;height:32px}
+    .hero{padding:68px 0 84px}
+    .hero-grid{grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+    h1{font-size:clamp(3.2rem,5vw,4.3rem)}
+    section{padding:88px 0}
+    .feature{grid-template-columns:.8fr 1.2fr}
+    .feature-copy{padding:28px}
+    pre{border-top:0;border-left:1px solid var(--ink-edge);padding:22px 24px;font-size:.88rem}
+    .offers{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+  @media (prefers-reduced-motion:reduce){.btn{transition:none}.btn:hover,.btn:active{transform:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../"><img src="../logo.svg" alt="Jacob Kozin" width="151" height="28"></a>
+  <a class="btn small" href="../#roblox">&larr; Back to the site</a>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap hero-grid">
+  <div>
+    <p class="label">Roblox scripting</p>
+    <h1>SafeSave Kit: saving and purchases, <em>handled on the server.</em></h1>
+    <p class="intro">Open-source Luau modules for the two places Roblox games lose players' trust: saved data and Robux purchases. Read the code, then hire me to install it in your game for a fixed price in USD.</p>
+    <div class="row">
+      <a class="btn go" href="https://github.com/jacobkozin/roblox-systems" target="_blank" rel="noopener">Read the source on GitHub <span aria-hidden="true">↗</span></a>
+      <a class="btn" href="https://discord.gg/BJbwDAYGmD" target="_blank" rel="noopener">Join the Discord</a>
+    </div>
+  </div>
+  <div class="status">
+    <h2>Where it stands, honestly</h2>
+    <ul>
+      <li><span class="dot yes" aria-hidden="true"></span><div><b>Code-reviewed and formatted</b><span>Every file parses as Luau and is formatted with StyLua.</span></div></li>
+      <li><span class="dot" aria-hidden="true"></span><div><b>Not yet run through a full Studio test pass</b><span>The checklist is in the repo (docs/TESTING.md). I run it in your place, on video, as part of any install.</span></div></li>
+      <li><span class="dot yes" aria-hidden="true"></span><div><b>Written with AI assistance</b><span>I can walk you through every line, and the source is public so you can check it yourself.</span></div></li>
+      <li><span class="dot yes" aria-hidden="true"></span><div><b>MIT licensed</b><span>Free to use in commercial games, with or without hiring me.</span></div></li>
+    </ul>
+  </div>
+</div></div>
+
+<section id="what"><div class="wrap">
+  <p class="label">What it does</p>
+  <h2>Three problems, three short pieces of code.</h2>
+  <p class="lede">Excerpts from the repo, shortened for space. The full files have the comments explaining each decision.</p>
+  <div class="features">
+    <article class="feature">
+      <div class="feature-copy"><h3>One server owns a player's data at a time</h3><p>A quick rejoin can load stale data on a new server while the old one is still saving, which is how items get duplicated. A session lock makes the new server wait, and a server that loses its lock stops writing.</p><span class="file">src/DataService.luau</span></div>
+<pre tabindex="0" aria-label="Session lock excerpt from DataService">store:UpdateAsync(key, function(saved)
+  saved = saved or deepCopy(CONFIG.Template)
+  local lock = saved._lock
+  local lockedElsewhere = lock ~= nil
+    and lock.job ~= game.JobId
+    and os.time() - lock.time &lt; CONFIG.LockStaleAfter
+  if lockedElsewhere and not force then
+    blocked = true
+    return nil <span class="c">-- cancel the write; another server still owns this data</span>
+  end
+  saved._lock = { job = game.JobId, time = os.time() }
+  result = saved
+  return saved
+end)</pre>
+    </article>
+    <article class="feature">
+      <div class="feature-copy"><h3>A purchase is confirmed only after it is saved</h3><p>If a server confirms a developer product and then fails before saving, the player paid and lost the item. Here the receipt id is stored with the reward, and Roblox is told "granted" only once that save succeeds. Retries check the list first.</p><span class="file">src/ShopService.luau</span></div>
+<pre tabindex="0" aria-label="Receipt handling excerpt from ShopService">table.insert(data.ProcessedReceipts, receipt.PurchaseId)
+
+<span class="c">-- Only confirm once the grant and the receipt are safely saved. If this</span>
+<span class="c">-- save fails, the receipt is still recorded in memory, so the retry</span>
+<span class="c">-- saves again instead of granting twice.</span>
+if not DataService.SaveNow(player) then
+  return Enum.ProductPurchaseDecision.NotProcessedYet
+end
+return Enum.ProductPurchaseDecision.PurchaseGranted</pre>
+    </article>
+    <article class="feature">
+      <div class="feature-copy"><h3>The shop never trusts the client</h3><p>Purchase requests are rate limited per player, and the server checks the type, the item, ownership and the balance before anything changes.</p><span class="file">src/ShopService.luau</span></div>
+<pre tabindex="0" aria-label="Shop purchase excerpt from ShopService">local function purchase(player: Player, itemId: unknown)
+  local now = os.clock()
+  if now - (lastRequest[player] or 0) &lt; REQUEST_COOLDOWN then
+    return { ok = false, reason = "TooFast" }
+  end
+  lastRequest[player] = now
+
+  <span class="c">-- Never trust the client: validate the type and that the item exists.</span>
+  if type(itemId) ~= "string" then
+    return { ok = false, reason = "BadRequest" }
+  end
+  local item = CATALOG[itemId]
+  if not item then
+    return { ok = false, reason = "UnknownItem" }
+  end
+  <span class="c">-- ... then: data loaded, not already owned, enough coins</span>
+end</pre>
+    </article>
+  </div>
+</div></section>
+
+<section id="flows" class="light"><div class="wrap">
+  <p class="label">How it flows</p>
+  <h2>The two paths that matter.</h2>
+  <p class="lede">Each box is a step in the code; the dashed boxes are what happens when a check fails.</p>
+  <div class="flows">
+    <div class="flowcard"><h3>Session lock</h3><div><svg class="flow" viewBox="0 0 344 519" role="img" aria-labelledby="lock-t lock-d"><title id="lock-t">Session lock flow</title><desc id="lock-d">A player joins. The server reads the save inside UpdateAsync. If another server holds a fresh lock, the write is cancelled and the load retries; on the last retry it takes the lock. Otherwise it writes its own lock, fills in new fields and hands the data to the game. Autosaves refresh the lock, and a server that finds its lock taken stops writing. When the player leaves, the data is saved and the lock released.</desc><rect class="n" x="8" y="8" width="196" height="35" rx="10"/><text class="t" x="106.0" y="30">Player joins</text><path class="a" d="M106.0 43v19"/><path class="h" d="M102.0 61l4 7 4-7Z"/><rect class="n" x="8" y="69" width="196" height="52" rx="10"/><text class="t" x="106.0" y="91">UpdateAsync reads</text><text class="t" x="106.0" y="108">the saved data</text><path class="a" d="M106.0 121v19"/><path class="h" d="M102.0 139l4 7 4-7Z"/><rect class="n ask" x="8" y="147" width="196" height="52" rx="18"/><text class="t tb" x="106.0" y="169">Locked by another</text><text class="t tb" x="106.0" y="186">server, and fresh?</text><path class="a" d="M204 173.0H218"/><path class="h" d="M217 169.0l7 4-7 4Z"/><rect class="s" x="224" y="142.5" width="112" height="61" rx="8"/><text class="ts tb" x="280.0" y="161.5">Yes</text><text class="ts" x="280.0" y="176.5">cancel the write,</text><text class="ts" x="280.0" y="191.5">wait, retry</text><path class="a" d="M106.0 199v19"/><path class="h" d="M102.0 217l4 7 4-7Z"/><rect class="n" x="8" y="225" width="196" height="52" rx="10"/><text class="t" x="106.0" y="247">Write this server&#x27;s lock</text><text class="t" x="106.0" y="264">(JobId + time)</text><path class="a" d="M204 251.0H218"/><path class="h" d="M217 247.0l7 4-7 4Z"/><rect class="s" x="224" y="228.0" width="112" height="46" rx="8"/><text class="ts tb" x="280.0" y="247.0">Last retry</text><text class="ts" x="280.0" y="262.0">take the lock</text><path class="a" d="M106.0 277v19"/><path class="h" d="M102.0 295l4 7 4-7Z"/><rect class="n" x="8" y="303" width="196" height="52" rx="10"/><text class="t" x="106.0" y="325">Fill in new fields,</text><text class="t" x="106.0" y="342">hand data to the game</text><path class="a" d="M106.0 355v19"/><path class="h" d="M102.0 373l4 7 4-7Z"/><rect class="n" x="8" y="381" width="196" height="52" rx="10"/><text class="t" x="106.0" y="403">Autosave refreshes</text><text class="t" x="106.0" y="420">the lock</text><path class="a" d="M204 407.0H218"/><path class="h" d="M217 403.0l7 4-7 4Z"/><rect class="s" x="224" y="384.0" width="112" height="46" rx="8"/><text class="ts tb" x="280.0" y="403.0">Lock taken?</text><text class="ts" x="280.0" y="418.0">stop writing</text><path class="a" d="M106.0 433v19"/><path class="h" d="M102.0 451l4 7 4-7Z"/><rect class="n end" x="8" y="459" width="196" height="52" rx="10"/><text class="t tb" x="106.0" y="481">Player leaves: save,</text><text class="t tb" x="106.0" y="498">release the lock</text></svg></div></div>
+    <div class="flowcard"><h3>ProcessReceipt</h3><div><svg class="flow" viewBox="0 0 344 485" role="img" aria-labelledby="receipt-t receipt-d"><title id="receipt-t">ProcessReceipt flow</title><desc id="receipt-d">Roblox calls ProcessReceipt. If the player is gone or their data has not loaded, it returns NotProcessedYet so Roblox retries. If the purchase id is already recorded, it saves again and only then confirms. Otherwise it runs the grant, records the purchase id with the data, and saves. PurchaseGranted is returned only after that save succeeds.</desc><rect class="n" x="8" y="8" width="196" height="52" rx="10"/><text class="t" x="106.0" y="30">Roblox calls</text><text class="t" x="106.0" y="47">ProcessReceipt</text><path class="a" d="M106.0 60v19"/><path class="h" d="M102.0 78l4 7 4-7Z"/><rect class="n ask" x="8" y="86" width="196" height="52" rx="18"/><text class="t tb" x="106.0" y="108">Player here and</text><text class="t tb" x="106.0" y="125">data loaded?</text><path class="a" d="M204 112.0H218"/><path class="h" d="M217 108.0l7 4-7 4Z"/><rect class="s" x="224" y="81.5" width="112" height="61" rx="8"/><text class="ts tb" x="280.0" y="100.5">No</text><text class="ts" x="280.0" y="115.5">NotProcessedYet</text><text class="ts" x="280.0" y="130.5">(Roblox retries)</text><path class="a" d="M106.0 138v19"/><path class="h" d="M102.0 156l4 7 4-7Z"/><rect class="n ask" x="8" y="164" width="196" height="52" rx="18"/><text class="t tb" x="106.0" y="186">PurchaseId already</text><text class="t tb" x="106.0" y="203">recorded?</text><path class="a" d="M204 190.0H218"/><path class="h" d="M217 186.0l7 4-7 4Z"/><rect class="s" x="224" y="159.5" width="112" height="61" rx="8"/><text class="ts tb" x="280.0" y="178.5">Yes</text><text class="ts" x="280.0" y="193.5">save again,</text><text class="ts" x="280.0" y="208.5">then confirm</text><path class="a" d="M106.0 216v19"/><path class="h" d="M102.0 234l4 7 4-7Z"/><rect class="n" x="8" y="242" width="196" height="35" rx="10"/><text class="t" x="106.0" y="264">Run the product&#x27;s grant</text><path class="a" d="M106.0 277v19"/><path class="h" d="M102.0 295l4 7 4-7Z"/><rect class="n" x="8" y="303" width="196" height="52" rx="10"/><text class="t" x="106.0" y="325">Record the PurchaseId</text><text class="t" x="106.0" y="342">with the player&#x27;s data</text><path class="a" d="M106.0 355v19"/><path class="h" d="M102.0 373l4 7 4-7Z"/><rect class="n ask" x="8" y="381" width="196" height="35" rx="18"/><text class="t tb" x="106.0" y="403">SaveNow succeeded?</text><path class="a" d="M204 398.5H218"/><path class="h" d="M217 394.5l7 4-7 4Z"/><rect class="s" x="224" y="375.5" width="112" height="46" rx="8"/><text class="ts tb" x="280.0" y="394.5">No</text><text class="ts" x="280.0" y="409.5">NotProcessedYet</text><path class="a" d="M106.0 416v19"/><path class="h" d="M102.0 434l4 7 4-7Z"/><rect class="n end" x="8" y="442" width="196" height="35" rx="10"/><text class="t tb" x="106.0" y="464">PurchaseGranted</text></svg></div></div>
+  </div>
+</div></section>
+
+<section id="offers" class="light" style="padding-top:0"><div class="wrap">
+  <p class="label">Offers</p>
+  <h2>Fixed prices, in USD.</h2>
+  <p class="lede">Each offer installs and adapts code that already exists in the repo. You get a setup note and a video of the checks passing in your place.</p>
+  <div class="offers">
+    <article class="offer">
+      <div class="offer-head"><h3>SafeSave install</h3><strong>$120</strong></div>
+      <ul>
+        <li>DataService in your game: session locking, retries, autosave, save on leave and a shutdown save</li>
+        <li>Your data template, up to 15 top-level fields</li>
+        <li>Existing data carried over from one old key format</li>
+        <li>Up to 5 of your scripts connected to the new API</li>
+      </ul>
+      <p>About 2 days after the deposit and Team Create access.</p>
+    </article>
+    <article class="offer">
+      <div class="offer-head"><h3>Monetization setup</h3><strong>$90</strong></div>
+      <ul>
+        <li>One ProcessReceipt that saves before it confirms</li>
+        <li>Up to 4 developer products and 3 game passes</li>
+        <li>A server-validated coin shop for up to 10 items</li>
+        <li>Prompts wired to your existing buttons</li>
+      </ul>
+      <p>About 2 days. $150 for both when bundled with the SafeSave install.</p>
+    </article>
+    <article class="offer">
+      <div class="offer-head"><h3>Bug fix or exploit check</h3><strong>$35</strong></div>
+      <ul>
+        <li>One reproducible bug found and fixed, up to about 1.5 hours</li>
+        <li>Or a review of up to 5 remotes for missing server checks</li>
+        <li>A short note on what caused it</li>
+      </ul>
+      <p>Per item, paid up front. Same or next day after payment and access.</p>
+    </article>
+  </div>
+  <div class="ranges">
+    <span><b>Quick fix or small script</b> $25–60</span>
+    <span><b>Full system</b> $80–200</span>
+    <span><b>Game framework</b> from $300</span>
+  </div>
+  <p class="terms">Fixed quote first. USD through PayPal invoices, not Robux. Jobs under $60 are paid in full up front; larger jobs are 50% up front, 50% on delivery. Two rounds of revisions.</p>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <p class="label">Next step</p>
+  <h2>Read it first. Then ask me anything.</h2>
+  <p class="lede" style="margin-bottom:0">Send your game link, what is broken or needed, and your deadline. You get a fixed quote back within a day.</p>
+  <div class="row">
+    <a class="btn go" href="https://discord.gg/BJbwDAYGmD" target="_blank" rel="noopener">Join the Discord</a>
+    <a class="btn" href="https://github.com/jacobkozin/roblox-systems" target="_blank" rel="noopener">GitHub repo <span aria-hidden="true">↗</span></a>
+    <a class="plain" href="mailto:jacobkozin.support@gmail.com?subject=Roblox%20quote">jacobkozin.support@gmail.com</a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">© Jacob Kozin · <a href="../">Home</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div></footer>
+</body>
+</html>

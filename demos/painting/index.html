@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightwall Painting Co. · Demo</title>
+<meta name="description" content="Demo house painting website: interior, exterior and cabinet painting. Tap to call or request a quote.">
+<meta name="theme-color" content="#FBF8F3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF8F3; --card:#FFFFFF; --line:#E3DACB; --ink:#22201D; --muted:#5A554E;
+    --accent:#1F5F5B; --accent-d:#174946; --accent-ink:#FFFFFF; --focus:#1F5F5B;
+    --dark:#22201D; --dark-line:#45413B; --on-dark:#F6F1E8; --on-dark-muted:#C8C0B3; --accent-on-dark:#F2C14E; --accent-on-dark-ink:#22201D;
+    --bar:#22201D; --bar-ink:#F6F1E8; --head-bg:#FBF8F3; --head-ink:#22201D; --head-muted:#5A554E; --head-line:1px solid #22201D;
+    --cta-bg:#1F5F5B; --cta-ink:#FFFFFF; --field:#FFFFFF; --field-line:#7C766C; --card-line:1px solid #22201D;
+    --display:Gloock,Georgia,"Times New Roman",serif; --text:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --r:0px; --btn-r:2px; --field-r:0px; --chip-r:0px; --step-r:0px; --head:64px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-padding-top:calc(var(--head) + 14px);-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--dark);color:var(--ink);font:400 1.0625rem/1.55 var(--text);padding-bottom:calc(58px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+  main{background:var(--bg)}
+  a{color:inherit}
+  p{margin:0}
+  ul,ol{margin:0;padding:0;list-style:none}
+  h1,h2,h3{font-family:var(--display);margin:0;line-height:1.06;text-wrap:balance}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:3px}
+  .on-dark :focus-visible{outline-color:var(--on-dark)}
+
+  .demo{background:var(--bar);color:var(--bar-ink);text-align:center;font-size:.84rem;font-weight:600;padding:2px 16px;line-height:1.35}
+  .demo a{color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px;padding:0 2px;white-space:nowrap}
+
+  header{background:var(--head-bg);color:var(--head-ink);border-bottom:var(--head-line);position:sticky;top:0;z-index:5}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;min-height:var(--head);gap:14px;padding-top:8px;padding-bottom:8px}
+  .logo{font-family:var(--display);font-size:1.18rem;line-height:1.12;min-width:0;overflow-wrap:anywhere}
+  .logo small{display:block;font:500 .82rem/1.3 var(--text);color:var(--head-muted);margin-top:2px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:11px 20px;border:2px solid var(--ink);border-radius:var(--btn-r);background:transparent;color:var(--ink);font:700 1rem/1.2 var(--text);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+  .btn svg{width:1.1em;height:1.1em;fill:currentColor;flex:none}
+  .btn:hover{background:var(--ink);color:var(--bg)}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .btn.solid:hover{background:var(--accent-d);border-color:var(--accent-d);color:var(--accent-ink)}
+  .on-dark .btn{border-color:var(--on-dark);color:var(--on-dark)}
+  .on-dark .btn:hover{background:var(--on-dark);color:var(--dark)}
+  .on-dark .btn.solid{background:var(--accent-on-dark);border-color:var(--accent-on-dark);color:var(--accent-on-dark-ink)}
+  .on-dark .btn.solid:hover{filter:brightness(1.08);background:var(--accent-on-dark);color:var(--accent-on-dark-ink)}
+  header .btn{min-height:44px;padding:8px 14px;flex:none}
+
+  .hero{position:relative;overflow:hidden}
+  .hero-grid{display:grid;gap:28px;position:relative}
+  .hero h1{font-size:clamp(2.2rem,9.2vw,3.9rem);max-width:15ch}
+  .hero .intro{font-size:1.1rem;margin:16px 0 22px;max-width:46ch}
+  .row{display:flex;flex-wrap:wrap;gap:10px}
+  .proof{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:20px;font-size:.96rem}
+
+  .quote{background:var(--card);color:var(--ink);border:var(--card-line);border-radius:var(--r);padding:22px 20px 20px;align-self:start}
+  .quote h2{font-size:1.5rem;margin-bottom:4px}
+  .quote>p{color:var(--muted);font-size:.98rem}
+  label{display:block;font-weight:700;font-size:.92rem;margin:14px 0 6px}
+  input,textarea{width:100%;font:400 1rem/1.4 var(--text);padding:12px;border:1.5px solid var(--field-line);border-radius:var(--field-r);background:var(--field);color:var(--ink)}
+  textarea{min-height:96px;resize:vertical}
+  .quote .btn{width:100%;margin-top:16px}
+  .fine{font-size:.88rem;color:var(--muted);margin-top:10px}
+  .quote :focus-visible{outline-color:var(--focus)}
+
+  section{padding:56px 0}
+  h2{font-size:clamp(1.8rem,5.4vw,2.6rem);margin-bottom:22px}
+  .services li{padding:15px 0;border-top:1px solid var(--line)}
+  .services li:first-child{border-top:0;padding-top:0}
+  .services h3{font-size:1.16rem;line-height:1.3}
+  .services p{color:var(--muted);font-size:1rem}
+  .sample-note{display:none;font-size:.9rem;font-weight:600;color:var(--muted);margin-top:14px}
+  .concept .sample-note{display:block}
+
+  .band{background:var(--dark);color:var(--on-dark)}
+  .band .sample-note{color:var(--on-dark-muted)}
+  .steps{display:grid;counter-reset:s}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:54px 1fr;gap:2px 8px;padding:18px 0;border-top:1px solid var(--dark-line)}
+  .steps li:first-child{border-top:0;padding-top:0}
+  .steps li::before{content:counter(s);grid-row:1/3;display:grid;place-items:center;width:40px;height:40px;border-radius:var(--step-r);background:var(--accent-on-dark);color:var(--accent-on-dark-ink);font:800 1.1rem/1 var(--text)}
+  .steps h3{font-size:1.25rem;line-height:1.25}
+  .steps p{grid-column:2;color:var(--on-dark-muted)}
+
+  .area{display:grid;gap:40px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips span{border:1.5px solid var(--ink);background:var(--card);padding:8px 16px;border-radius:var(--chip-r);font-size:.96rem;font-weight:600}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:12px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:400}
+  th{font-weight:700}
+  td{text-align:right;color:var(--muted)}
+  tr:first-child th,tr:first-child td{border-top:1px solid var(--line)}
+
+  .cta{background:var(--cta-bg);color:var(--cta-ink)}
+  .cta .wrap{display:grid;gap:20px}
+  .cta h2{margin-bottom:6px}
+  .cta p{font-size:1.08rem}
+  .cta .btn{border-color:var(--cta-ink);color:var(--cta-ink)}
+  .cta .btn:hover{background:var(--cta-ink);color:var(--cta-bg)}
+  .cta .btn.fill{background:var(--cta-ink);color:var(--cta-bg)}
+  .cta .btn.fill:hover{filter:brightness(.92)}
+  .cta :focus-visible{outline-color:var(--cta-ink)}
+
+  footer{background:var(--dark);color:var(--on-dark-muted);padding:22px 0 28px;font-size:.9rem;border-top:1px solid var(--dark-line)}
+  footer .wrap{display:grid;gap:6px}
+  footer a{display:inline-flex;align-items:center;min-height:44px}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;z-index:6;padding-bottom:env(safe-area-inset-bottom);background:var(--dark);border-top:1px solid var(--dark-line)}
+  .bar a{display:flex;align-items:center;justify-content:center;min-height:56px;font-weight:700;text-decoration:none;background:var(--dark);color:var(--on-dark)}
+  .bar a.c{background:var(--accent-on-dark);color:var(--accent-on-dark-ink)}
+
+  @media (max-width:479px){header .btn .n{display:none}}
+  @media (min-width:900px){
+    :root{--head:72px}
+    body{padding-bottom:0}
+    .bar{display:none}
+    .wrap{padding:0 32px}
+    .logo{font-size:1.4rem}
+    .hero-grid{grid-template-columns:1.2fr .8fr;gap:64px;align-items:start}
+    .hero h1{font-size:clamp(3rem,4.8vw,3.9rem)}
+    .quote{padding:28px}
+    section{padding:80px 0}
+    .services{display:grid;grid-template-columns:1fr 1fr;column-gap:56px}
+    .services li:nth-child(2){border-top:0;padding-top:0}
+    .steps{grid-template-columns:repeat(3,1fr);gap:40px}
+    .steps li{grid-template-columns:1fr;border-top:0;padding:0;align-content:start}
+    .steps li::before{grid-row:auto;margin-bottom:14px}
+    .steps p{grid-column:1}
+    .area{grid-template-columns:1fr 1fr;gap:64px}
+    .cta .wrap{grid-template-columns:1fr auto;align-items:center}
+    footer .wrap{grid-template-columns:1fr auto}
+  }
+  @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  h1,h2,h3{font-weight:400;letter-spacing:-.01em}
+  .hero{padding:28px 0 48px}
+  .hero h1{font-size:clamp(2.6rem,11vw,4.6rem);line-height:1}
+  .hero .intro{color:var(--muted)}
+  .proof{color:var(--muted)} .proof b{color:var(--ink)}
+  /* a fan of paint chips */
+  .art{display:grid;grid-template-columns:repeat(5,1fr);margin:0 0 26px;border:1px solid var(--ink)}
+  .art span{height:74px;display:flex;align-items:flex-end;padding:6px 8px;font-size:.82rem;font-weight:700;border-left:1px solid var(--ink)}
+  .art span:first-child{border-left:0}
+  .services{counter-reset:n}
+  .services li{counter-increment:n;display:grid;grid-template-columns:56px 1fr;gap:0 8px}
+  .services li::before{content:counter(n,decimal-leading-zero);grid-row:1/3;font:400 1.5rem/1.2 var(--display);color:var(--accent)}
+  .services p{grid-column:2}
+  .services h3{font-family:var(--text);font-weight:700}
+  .quote h2{font-size:1.7rem}
+  @media (min-width:900px){.hero{padding:60px 0 80px}.art span{height:110px}.hero h1{font-size:clamp(3.6rem,5.6vw,4.8rem)}}
+  </style>
+</head>
+<body>
+<div class="demo" id="demoBar">Demo site with sample content · <a href="../../">&larr; Back to Jacob Kozin's portfolio</a></div>
+
+<header><div class="wrap">
+  <div class="logo"><span data-k="name">Brightwall Painting Co.</span><small><span data-k="tagline">Interior · Exterior · Cabinets</span></small></div>
+  <a class="btn solid" data-tel href="tel:5555550123" aria-label="Call">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5h3.1l1.6 4.6-2.2 1.7a12.4 12.4 0 0 0 6.1 6.1l1.7-2.2 4.6 1.6v3.1a2.6 2.6 0 0 1-2.8 2.6C10.2 19.3 4.7 13.8 4 5.3a2.6 2.6 0 0 1 2.6-2.8Z"/></svg>
+    <span class="n" data-k="phone">(555) 555-0123</span>
+  </a>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap hero-grid">
+  <div>
+    <div class="art" aria-hidden="true"><span style="background:#C96A4B;color:#1B1A17">Adobe</span><span style="background:#8FA58A;color:#1B1A17">Sage</span><span style="background:#2E4057;color:#fff">Dusk</span><span style="background:#F2C14E;color:#1B1A17">Marigold</span><span style="background:#EAD9CF;color:#1B1A17">Blush</span></div>
+    <h1 data-k="headline">Fresh paint, clean lines, no mess.</h1>
+    <p class="intro" data-k="intro">Interior, exterior and cabinet painting for homes and small businesses. Call, or text a photo of the room for a quote.</p>
+    <div class="row">
+      <a class="btn solid" data-tel href="tel:5555550123">Call now</a>
+      <a class="btn" href="#quote">Get a free quote</a>
+    </div>
+    <div class="proof">
+      <span id="serving">Serving <b data-k="area">Scottsdale &amp; North Phoenix</b></span>
+      <span class="rating" hidden><b data-k="rating"></b> on Google</span>
+      <span class="claim"><b>Floors and furniture covered</b></span>
+      <span class="claim"><b>Price first</b>, before any work</span>
+    </div>
+  </div>
+  <form class="quote" id="quote" onsubmit="return sendQuote(event)">
+    <h2>Request a quote</h2>
+    <p>Tell us what you'd like painted. A photo of the room or wall helps us price it. <span class="claim">We reply the same day.</span></p>
+    <label for="qn">Name</label><input id="qn" autocomplete="name" required>
+    <label for="qp">Phone</label><input id="qp" type="tel" autocomplete="tel" required>
+    <label for="qj">What would you like painted?</label><textarea id="qj" required></textarea>
+    <button class="btn solid" type="submit">Prepare my request</button>
+    <div class="fine">This opens a text (or an email on a computer) with your details filled in. Add a photo there, then press send.</div>
+  </form>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <h2 id="svcTitle">What we paint</h2>
+  <ol class="services" id="svcs">
+    <li><h3>Interior painting</h3><p>Walls, ceilings, trim and doors.</p></li>
+    <li><h3>Exterior painting</h3><p>Stucco, siding, fascia and block walls.</p></li>
+    <li><h3>Cabinets</h3><p>Kitchen and bath cabinets refinished.</p></li>
+  </ol>
+  <p class="sample-note">Example services. Your real list goes here.</p>
+</div></section>
+
+<section class="band on-dark"><div class="wrap">
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><h3>Call or text a photo</h3><p>Show us the room, the wall or the house.</p></li>
+    <li><h3>Get a price</h3><p>A written price before any work starts.</p></li>
+    <li><h3>We paint</h3><p>Prep, paint and clean up, on the days you pick.</p></li>
+  </ol>
+</div></section>
+
+<section><div class="wrap area">
+  <div>
+    <h2>Where we work</h2>
+    <div class="chips" id="areas"><span>Scottsdale &amp; North Phoenix</span></div>
+    <p class="sample-note" id="areaNote">Example towns. Your service area goes here.</p>
+  </div>
+  <div>
+    <h2>Hours</h2>
+    <table>
+      <tr><th scope="row">Monday – Friday</th><td>7am – 5pm</td></tr>
+      <tr><th scope="row">Saturday</th><td>8am – 1pm</td></tr>
+      <tr><th scope="row">Sunday</th><td>Closed</td></tr>
+    </table>
+    <p class="sample-note">Example hours. Yours go here.</p>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <div><h2>Ready for a new color?</h2><p>Call, or text a photo of the room for a price.</p></div>
+  <div class="row">
+    <a class="btn fill" data-tel href="tel:5555550123">Call <span data-k="phone">(555) 555-0123</span></a>
+    <a class="btn" data-sms href="#quote">Text a photo</a>
+  </div>
+</div></section>
+</main>
+
+<footer class="on-dark"><div class="wrap">
+  <span>© <span data-k="name">Brightwall Painting Co.</span><span id="footArea"> · <span data-k="area">Scottsdale &amp; North Phoenix</span></span></span>
+  <span id="credit">Demo website by Jacob Kozin · <a href="../../">&larr; Back to the portfolio</a></span>
+</div></footer>
+
+<div class="bar"><a class="c" data-tel href="tel:5555550123">Call</a><a href="#quote">Free quote</a></div>
+
+<script>
+  // ===== Reusable config. URL params override it (for quick mockups): ?name=&phone=&area=&rating=&tagline=&headline=&intro=&services=a;b;c&areas=a;b;c&concept=1
+  const CONFIG = {
+    name: "Brightwall Painting Co.",
+    tagline: "Interior · Exterior · Cabinets",
+    phone: "(555) 555-0123",
+    email: "hello@example.com",
+    area: "Scottsdale & North Phoenix",
+    rating: ""            /* e.g. "4.9★" once it is real and you can show where it comes from */,
+    headline: "Fresh paint, clean lines, no mess.",
+    intro: "Interior, exterior and cabinet painting for homes and small businesses. Call, or text a photo of the room for a quote.",
+    areas: ["Scottsdale", "Paradise Valley", "North Phoenix", "Fountain Hills", "Cave Creek", "Tempe"],
+    servicesTitle: "What we paint",
+    services: [["Interior painting", "Walls, ceilings, trim and doors."], ["Exterior painting", "Stucco, siding, fascia and block walls."], ["Cabinets", "Kitchen and bath cabinets refinished."], ["Drywall repair", "Patches and texture matched before paint."], ["Color samples", "See it on your wall before you commit."], ["Touch-ups", "Move-in, move-out and pre-listing."]]
+  };
+  const q = new URLSearchParams(location.search);
+  const concept = !!q.get("concept");
+  for (const k of ["name","tagline","phone","area","rating","email","headline","intro"]) if (q.get(k)) CONFIG[k] = q.get(k);
+  if (q.get("services")) CONFIG.services = q.get("services").split(";").map(s => [s.trim(), ""]);
+  if (q.get("areas")) CONFIG.areas = q.get("areas").split(";").map(s => s.trim()).filter(Boolean);
+  // A concept made for a real business only names the area it was given, not our sample towns.
+  else if (concept && q.get("area")) CONFIG.areas = [CONFIG.area];
+
+  // Everything from the link is placed as text, never as markup.
+  const el = (tag, text, attrs) => { const n = document.createElement(tag); if (text != null) n.textContent = text; for (const k in attrs) n.setAttribute(k, attrs[k]); return n; };
+  if (concept) {
+    const bar = document.getElementById("demoBar");
+    bar.textContent = "Concept preview made for " + CONFIG.name + " by Jacob Kozin. Not live, not affiliated.";
+    bar.append(" ", el("a", "See my work →", { href: "../../" }));
+    document.head.appendChild(el("meta", null, { name: "robots", content: "noindex" }));
+    document.body.classList.add("concept");
+    // Don't put claims we haven't verified in someone else's name.
+    document.querySelectorAll(".claim").forEach(n => n.remove());
+    // Only show a rating when the link carries one (checked by hand for that business); never a default.
+    if (!q.get("rating")) CONFIG.rating = "";
+    // Without an area in the link we don't know where they work, so don't say.
+    if (q.get("area") || q.get("areas")) document.getElementById("areaNote").remove();
+    else { document.getElementById("serving").remove(); document.getElementById("footArea").remove(); }
+    document.getElementById("credit").replaceChildren("Concept preview by Jacob Kozin · ", el("a", "see my work", { href: "../../" }), " · call or text ", el("a", "(602) 935-9847", { href: "tel:+16029359847" }));
+  }
+
+  document.querySelectorAll("[data-k]").forEach(n => n.textContent = CONFIG[n.dataset.k]);
+  document.querySelectorAll(".rating").forEach(n => n.hidden = !CONFIG.rating);
+  document.getElementById("svcTitle").textContent = CONFIG.servicesTitle;
+  const digits = CONFIG.phone.replace(/[^\d+]/g, "");
+  const smsTo = body => "sms:" + digits + "?&body=" + encodeURIComponent(body);
+  document.querySelectorAll("[data-tel]").forEach(a => a.href = "tel:" + digits);
+  document.querySelectorAll("[data-sms]").forEach(a => a.href = smsTo("Hi, I'd like a painting quote. Here's a photo:"));
+  document.title = CONFIG.name + (concept ? " · Concept" : " · Demo");
+  document.getElementById("svcs").replaceChildren(...CONFIG.services.map(([t, d]) => {
+    const li = el("li"); li.append(el("h3", t)); if (d) li.append(el("p", d)); return li;
+  }));
+  document.getElementById("areas").replaceChildren(...CONFIG.areas.map(a => el("span", a)));
+
+  // Phones open a prefilled text; desktops open email.
+  function quoteUrl() {
+    const body = `Quote request from ${qn.value} (${qp.value}): ${qj.value}`;
+    const mobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    return mobile ? smsTo(body)
+      : "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Quote request") + "&body=" + encodeURIComponent(body);
+  }
+  function sendQuote(e) {
+    e.preventDefault();
+    location.href = quoteUrl();
+    return false;
+  }
+</script>
+</body>
+</html>
