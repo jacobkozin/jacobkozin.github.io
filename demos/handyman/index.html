@@ -5,77 +5,142 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Saguaro Ridge Handyman · Demo</title>
 <meta name="description" content="Demo home-service website: handyman repairs, installs and punch lists. Tap to call or request a quote.">
+<meta name="theme-color" content="#22201C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#1c1a17;--muted:#5f5a52;--paper:#faf7f2;--card:#fff;--line:#e6dfd3;--accent:#c2551f;--accent-ink:#fff;--dark:#23201c}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;padding-bottom:64px}
+  :root{
+    --paper:#F5F1E8; --card:#FFFDF8; --line:#D8D0BF;
+    --ink:#1D1C19; --muted:#56524A; --dark:#22201C; --on-dark:#F3EEE3; --on-dark-muted:#C4BDAE;
+    --rust:#B4470F; --rust-d:#93390A;
+    --font:Archivo,"Arial Narrow",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --head:64px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-padding-top:calc(var(--head) + 14px);-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--dark);color:var(--ink);font:400 1.0625rem/1.55 var(--font);padding-bottom:calc(58px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%;height:auto}
   a{color:inherit}
-  .demo{background:var(--dark);color:#efe9df;text-align:center;font-size:13px;font-weight:600;padding:7px 12px}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-  h1,h2,h3{font-family:Archivo,Inter,sans-serif;line-height:1.08;margin:0;letter-spacing:-.01em}
-  header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-  header .wrap{display:flex;justify-content:space-between;align-items:center;height:66px;gap:12px}
-  .logo{font-family:Archivo;font-weight:800;font-size:19px}
-  .logo small{display:block;font:500 12px Inter;color:var(--muted)}
-  .call{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;padding:11px 18px;border-radius:8px;white-space:nowrap}
-  .call.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
-  .hero{padding:64px 0 56px}
-  .hero .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
-  .eyebrow{font-weight:600;color:var(--accent);font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
-  .hero h1{font-size:clamp(38px,5.6vw,62px);font-weight:800}
-  .hero p{font-size:19px;color:var(--muted);margin:18px 0 28px;max-width:46ch}
-  .row{display:flex;flex-wrap:wrap;gap:12px}
-  .proof{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;color:var(--muted);font-size:15px}
-  .proof b{color:var(--ink)}
-  .quote{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 10px 30px rgba(40,30,10,.06)}
-  .quote h3{font-size:22px;margin-bottom:6px}
-  .quote p{margin:0 0 16px;color:var(--muted);font-size:15px}
-  label{display:block;font-weight:600;font-size:14px;margin:12px 0 6px}
-  input,textarea,select{width:100%;font:16px Inter,sans-serif;padding:12px;border:1px solid #cfc6b6;border-radius:8px;background:#fff;color:var(--ink)}
-  textarea{min-height:90px;resize:vertical}
-  .quote button{margin-top:16px;width:100%;border:0;cursor:pointer;font:700 16px Inter,sans-serif;background:var(--ink);color:#fff;padding:14px;border-radius:8px}
-  .fine{font-size:13px;color:var(--muted);margin-top:10px}
-  section{padding:64px 0;border-top:1px solid var(--line)}
-  h2{font-size:clamp(30px,4vw,42px);margin-bottom:28px}
-  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .svc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
-  .svc h3{font-size:19px;margin-bottom:6px}
-  .svc p{margin:0;color:var(--muted);font-size:15px}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
-  .steps div{counter-increment:s;padding-top:8px}
-  .steps div::before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font:800 16px Archivo;margin-bottom:12px}
-  .steps h3{font-size:19px;margin-bottom:4px}
-  .steps p{margin:0;color:var(--muted)}
-  .area{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chips span{background:var(--card);border:1px solid var(--line);padding:7px 13px;border-radius:99px;font-size:14px;font-weight:500}
-  table{width:100%;border-collapse:collapse}
-  td{padding:9px 0;border-bottom:1px solid var(--line)} td:last-child{text-align:right;color:var(--muted)}
-  .cta{background:var(--dark);color:#f6f1e8;border-radius:18px;padding:44px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-  .cta h2{margin:0;color:#fff}
-  .cta p{margin:8px 0 0;color:#c9c1b4}
-  footer{padding:32px 0;color:var(--muted);font-size:14px}
-  .bar{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;z-index:6;box-shadow:0 -4px 16px rgba(0,0,0,.08)}
-  .bar a{text-align:center;padding:16px;font-weight:700;text-decoration:none;background:var(--card);color:var(--ink)}
-  .bar a.c{background:var(--accent);color:#fff}
-  @media (min-width:900px){.bar{display:none}body{padding-bottom:0}}
-  @media (max-width:860px){.hero .grid,.area{grid-template-columns:1fr}.services{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
-  @media (max-width:560px){.services{grid-template-columns:1fr}header .call span{display:none}.cta{padding:28px}}
+  p{margin:0}
+  ul,ol{margin:0;padding:0;list-style:none}
+  h1,h2,h3{font-family:var(--font);font-weight:800;font-stretch:118%;line-height:1.04;margin:0;letter-spacing:-.015em;text-wrap:balance}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  :focus-visible{outline:3px solid var(--rust);outline-offset:3px;border-radius:3px}
+  .on-dark :focus-visible{outline-color:var(--on-dark)}
 
-  /* photo hero */
-  .hero{position:relative;color:#fff;background:#111 center 40%/cover no-repeat;background-image:var(--hero-img)}
-  .hero::before{content:"";position:absolute;inset:0;background:var(--hero-shade)}
-  .hero .grid{position:relative;padding-top:24px;padding-bottom:24px}
-  .hero p{color:rgba(255,255,255,.86)}
-  .hero .call.ghost{color:#fff;border-color:rgba(255,255,255,.8)}
-  .proof{color:rgba(255,255,255,.8)} .proof b{color:#fff}
-  .quote{color:var(--ink)}
-  .photo-credit{position:absolute;right:12px;bottom:8px;font-size:12px;color:rgba(255,255,255,.7);z-index:1}
-  .photo-credit a{color:inherit}
-  :root{--hero-img:url('../assets/handyman-hero.jpg');--hero-shade:linear-gradient(90deg,rgba(20,14,8,.9) 0%,rgba(20,14,8,.7) 50%,rgba(20,14,8,.35) 100%)}
+  .demo{background:var(--dark);color:var(--on-dark);text-align:center;font-size:.84rem;font-weight:600;padding:7px 12px;line-height:1.35}
+
+  header{background:var(--card);border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:5}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;min-height:var(--head);gap:14px;padding-top:8px;padding-bottom:8px}
+  .logo{font-weight:800;font-stretch:112%;font-size:1.1rem;line-height:1.12;min-width:0;overflow-wrap:anywhere;text-transform:uppercase;letter-spacing:.01em}
+  .logo small{display:block;font:500 .82rem/1.3 var(--font);color:var(--muted);text-transform:none;letter-spacing:0;margin-top:2px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:11px 20px;border:2px solid var(--ink);border-radius:6px;background:transparent;color:var(--ink);font:700 1rem/1.2 var(--font);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+  .btn svg{width:1.1em;height:1.1em;fill:currentColor;flex:none}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.rust{background:var(--rust);border-color:var(--rust);color:#fff}
+  .btn.rust:hover{background:var(--rust-d);border-color:var(--rust-d)}
+  .btn.ink{background:var(--ink);color:var(--paper)}
+  .btn.ink:hover{background:#000}
+  header .btn{min-height:44px;padding:8px 14px;flex:none}
+
+  main{background:var(--paper)}
+  .hero{padding:28px 0 40px}
+  .hero-grid{display:grid;gap:28px}
+  .serving{font-weight:700;font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--rust-d);margin-bottom:12px}
+  .serving::before{content:"";display:inline-block;vertical-align:middle;width:22px;height:3px;background:var(--rust);margin-right:8px}
+  .hero h1{font-size:clamp(2.1rem,9vw,3.9rem);max-width:14ch}
+  .hero .intro{font-size:1.1rem;color:var(--muted);margin:16px 0 22px;max-width:46ch}
+  .row{display:flex;flex-wrap:wrap;gap:10px}
+  .proof{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:20px;font-size:.95rem;color:var(--muted)}
+  .proof b{color:var(--ink)}
+
+  .photo{position:relative;margin-top:28px;border:2px solid var(--ink);border-radius:8px;overflow:hidden;height:190px}
+  .photo img{width:100%;height:100%;object-fit:cover;object-position:30% 52%}
+  .photo span{position:absolute;right:8px;bottom:8px;font-size:.8rem;color:#fff;background:rgba(29,28,25,.72);padding:2px 8px;border-radius:4px}
+  .no-photo .photo{display:none}
+
+  .quote{background:var(--card);border:2px solid var(--ink);border-radius:8px;padding:0 20px 20px;align-self:start}
+  .quote .tab{display:block;margin:0 -20px 18px;padding:9px 20px;background:var(--ink);color:var(--paper);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+  .quote h2{font-size:1.5rem;margin-bottom:4px}
+  .quote>p{color:var(--muted);font-size:.98rem}
+  label{display:block;font-weight:700;font-size:.92rem;margin:14px 0 6px}
+  input,textarea{width:100%;font:400 1rem/1.4 var(--font);padding:12px;border:1.5px solid #7A756B;border-radius:6px;background:#fff;color:var(--ink)}
+  textarea{min-height:96px;resize:vertical}
+  .quote .btn{width:100%;margin-top:16px}
+  .fine{font-size:.88rem;color:var(--muted);margin-top:10px}
+
+  section{padding:56px 0;border-top:2px solid var(--ink)}
+  h2{font-size:clamp(1.8rem,5.4vw,2.6rem);margin-bottom:22px}
+  .services{display:grid;counter-reset:n}
+  .services li{counter-increment:n;display:grid;grid-template-columns:44px 1fr;gap:2px 6px;padding:15px 0;border-top:1px solid var(--line)}
+  .services li:first-child{border-top:0;padding-top:0}
+  .services li::before{content:counter(n,decimal-leading-zero);grid-row:1/3;font-weight:800;font-stretch:118%;font-size:1.05rem;color:var(--rust-d);line-height:1.5;font-variant-numeric:tabular-nums}
+  .services h3{font-size:1.15rem;font-stretch:108%;line-height:1.3;letter-spacing:0}
+  .services p{grid-column:2;color:var(--muted);font-size:1rem}
+  .sample-note{display:none;font-size:.9rem;font-weight:600;color:var(--muted);margin-top:14px}
+  .concept .sample-note{display:block}
+
+  .band{background:var(--dark);color:var(--on-dark)}
+  .steps{display:grid;counter-reset:s}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:54px 1fr;gap:2px 8px;padding:18px 0;border-top:1px solid #45413A}
+  .steps li:first-child{border-top:0;padding-top:0}
+  .steps li::before{content:counter(s);grid-row:1/3;display:grid;place-items:center;width:40px;height:40px;border:2px solid var(--on-dark);border-radius:50%;font-weight:800;font-size:1.1rem}
+  .steps h3{font-size:1.25rem;line-height:1.25}
+  .steps p{grid-column:2;color:var(--on-dark-muted)}
+
+  .area{display:grid;gap:40px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips span{border:1.5px solid var(--ink);background:var(--card);padding:6px 13px;border-radius:4px;font-size:.96rem;font-weight:600}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:12px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:400}
+  th{font-weight:700}
+  td{text-align:right;color:var(--muted)}
+  tr:first-child th,tr:first-child td{border-top:1px solid var(--line)}
+
+  .cta{background:var(--rust);color:#fff;border-top:0;text-align:left}
+  .cta .wrap{display:grid;gap:20px}
+  .cta h2{margin-bottom:6px}
+  .cta p{font-size:1.08rem}
+  .cta .btn{border-color:#fff;color:#fff}
+  .cta .btn:hover{background:#fff;color:var(--rust-d)}
+  .cta .btn.white{background:#fff;color:var(--ink)}
+  .cta .btn.white:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+
+  footer{background:var(--dark);color:var(--on-dark-muted);padding:22px 0 28px;font-size:.9rem}
+  footer .wrap{display:grid;gap:6px}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;z-index:6;border-top:2px solid var(--ink);padding-bottom:env(safe-area-inset-bottom);background:var(--card)}
+  .bar a{display:flex;align-items:center;justify-content:center;min-height:56px;font-weight:700;text-decoration:none;background:var(--card);color:var(--ink)}
+  .bar a.c{background:var(--rust);color:#fff}
+
+  @media (max-width:479px){header .btn .n{display:none}}
+  @media (min-width:900px){
+    :root{--head:72px}
+    body{padding-bottom:0}
+    .bar{display:none}
+    .wrap{padding:0 32px}
+    .logo{font-size:1.3rem}
+    .hero{padding:60px 0 72px}
+    .hero-grid{grid-template-columns:1.2fr .8fr;gap:64px;align-items:start}
+    .hero h1{font-size:clamp(3rem,4.9vw,3.9rem)}
+    .photo{height:250px;margin-top:36px}
+    .quote{padding:0 26px 26px}
+    .quote .tab{margin:0 -26px 22px;padding:10px 26px}
+    section{padding:80px 0}
+    .services{grid-template-columns:1fr 1fr;column-gap:56px}
+    .services li:nth-child(2){border-top:0;padding-top:0}
+    .steps{grid-template-columns:repeat(3,1fr);gap:40px}
+    .steps li{grid-template-columns:1fr;border-top:0;padding:0;align-content:start}
+    .steps li::before{grid-row:auto;margin-bottom:14px}
+    .steps p{grid-column:1}
+    .area{grid-template-columns:1fr 1fr;gap:64px}
+    .cta .wrap{grid-template-columns:1fr auto;align-items:center}
+    footer .wrap{grid-template-columns:1fr auto}
+  }
+  @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -83,87 +148,109 @@
 
 <header><div class="wrap">
   <div class="logo"><span data-k="name">Saguaro Ridge Handyman</span><small><span data-k="tagline">Repairs · Installs · Punch lists</span></small></div>
-  <a class="call" data-tel href="#">📞 <span data-k="phone">(555) 555-0123</span></a>
+  <a class="btn rust" data-tel href="tel:5555550123" aria-label="Call">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5h3.1l1.6 4.6-2.2 1.7a12.4 12.4 0 0 0 6.1 6.1l1.7-2.2 4.6 1.6v3.1a2.6 2.6 0 0 1-2.8 2.6C10.2 19.3 4.7 13.8 4 5.3a2.6 2.6 0 0 1 2.6-2.8Z"/></svg>
+    <span class="n" data-k="phone">(555) 555-0123</span>
+  </a>
 </div></header>
 
-<div class="hero"><span class="photo-credit">Sample photo: <a href="https://unsplash.com/photos/selective-focus-photography-blue-and-black-makita-power-drill-Klby0nxseY8" target="_blank" rel="noopener">Theme Photos / Unsplash</a></span><div class="wrap grid">
+<main>
+<div class="hero"><div class="wrap hero-grid">
   <div>
+    <p class="serving" id="serving">Serving <span data-k="area">Scottsdale &amp; North Phoenix</span></p>
     <h1 data-k="headline">The small jobs, done right the first time.</h1>
-    <p data-k="intro">Drywall patches, fixtures, doors, TV mounts, and the honey-do list you keep putting off. Call, or send a photo of the job for a quote.</p>
+    <p class="intro" data-k="intro">Drywall patches, fixtures, doors, TV mounts, and the honey-do list you keep putting off. Call, or send a photo of the job for a quote.</p>
     <div class="row">
-      <a class="call" data-tel href="#">Call now</a>
-      <a class="call ghost" href="#quote">Get a free quote</a>
+      <a class="btn rust" data-tel href="tel:5555550123">Call now</a>
+      <a class="btn" href="#quote">Get a free quote</a>
     </div>
     <div class="proof">
-      <span>📍 Serving <b data-k="area"></b></span>
-      <span class="rating"><b data-k="rating">5.0★</b> on Google</span>
-      <span class="claim"><b>Licensed &amp; insured</b></span>
+      <span class="rating" hidden><b data-k="rating"></b> on Google</span>
       <span class="claim"><b>Same-week</b> scheduling</span>
+      <span class="claim"><b>Price first</b>, before any work</span>
+    </div>
+    <div class="photo">
+      <img src="../assets/handyman-hero.jpg" alt="Hands using a cordless driver on a door latch" width="1600" height="1067" fetchpriority="high">
+      <span>Sample photo: <a href="https://unsplash.com/photos/selective-focus-photography-blue-and-black-makita-power-drill-Klby0nxseY8" target="_blank" rel="noopener">Theme Photos / Unsplash</a></span>
     </div>
   </div>
   <form class="quote" id="quote" onsubmit="return sendQuote(event)">
-    <h3>Request a quote</h3>
-    <p>Tell us what needs fixing. We reply the same day.</p>
+    <span class="tab">Free quote</span>
+    <h2>Request a quote</h2>
+    <p>Tell us about the job. A photo helps us price it. <span class="claim">We reply the same day.</span></p>
     <label for="qn">Name</label><input id="qn" autocomplete="name" required>
     <label for="qp">Phone</label><input id="qp" type="tel" autocomplete="tel" required>
     <label for="qj">What do you need done?</label><textarea id="qj" required></textarea>
-    <button type="submit">Send request</button>
-    <div class="fine">Opens a text or email to us with your request. No spam, ever.</div>
+    <button class="btn ink" type="submit">Prepare my request</button>
+    <div class="fine">This opens a text (or an email on a computer) with your details filled in. Add a photo of the job there, then press send.</div>
   </form>
 </div></div>
 
 <section id="services"><div class="wrap">
-  <h2>What we fix</h2>
-  <div class="services" id="svcs"></div>
+  <h2 id="svcTitle">What we fix</h2>
+  <ol class="services" id="svcs">
+    <li><h3>Drywall &amp; paint touch-ups</h3><p>Holes, cracks, water spots, patched and blended.</p></li>
+    <li><h3>Doors &amp; hardware</h3><p>Sticking doors, new locks, hinges, closers, weatherstripping.</p></li>
+    <li><h3>Fixtures &amp; fans</h3><p>Light fixtures, ceiling fans, faucets, garbage disposals.</p></li>
+  </ol>
+  <p class="sample-note">Example services. Your real list goes here.</p>
 </div></section>
 
-<section><div class="wrap">
+<section class="band on-dark"><div class="wrap">
   <h2>How it works</h2>
-  <div class="steps">
-    <div><h3>Call or send a photo</h3><p>Describe the job. A picture gets you a faster, more accurate price.</p></div>
-    <div><h3>Get a price</h3><p>You know the cost before any work starts.</p></div>
-    <div><h3>We do the job</h3><p>Schedule a time that works for you.</p></div>
-  </div>
+  <ol class="steps">
+    <li><h3>Call or send a photo</h3><p>Describe the job. A picture gets you a faster, more accurate price.</p></li>
+    <li><h3>Get a price</h3><p>You know the cost before any work starts.</p></li>
+    <li><h3>We do the job</h3><p>Schedule a time that works for you.</p></li>
+  </ol>
 </div></section>
 
 <section><div class="wrap area">
   <div>
     <h2>Where we work</h2>
-    <div class="chips" id="areas"></div>
+    <div class="chips" id="areas"><span>Scottsdale &amp; North Phoenix</span></div>
+    <p class="sample-note" id="areaNote">Example towns. Your service area goes here.</p>
   </div>
   <div>
     <h2>Hours</h2>
     <table>
-      <tr><td>Monday – Friday</td><td>7am – 6pm</td></tr>
-      <tr><td>Saturday</td><td>8am – 2pm</td></tr>
-      <tr><td>Sunday</td><td>Emergencies only</td></tr>
+      <tr><th scope="row">Monday – Friday</th><td>7am – 6pm</td></tr>
+      <tr><th scope="row">Saturday</th><td>8am – 2pm</td></tr>
+      <tr><th scope="row">Sunday</th><td>Closed</td></tr>
     </table>
+    <p class="sample-note">Example hours. Yours go here.</p>
   </div>
 </div></section>
 
-<section><div class="wrap">
-  <div class="cta">
-    <div><h2>Got a list? Send it over.</h2><p>Most quotes go out within a few hours.</p></div>
-    <a class="call" data-tel href="#">Call <span data-k="phone">(555) 555-0123</span></a>
+<section class="cta on-dark"><div class="wrap">
+  <div><h2>Got a job in mind?</h2><p>Call, or text a photo of it for a price.</p></div>
+  <div class="row">
+    <a class="btn white" data-tel href="tel:5555550123">Call <span data-k="phone">(555) 555-0123</span></a>
+    <a class="btn" data-sms href="#quote">Text a photo</a>
   </div>
 </div></section>
+</main>
 
-<footer><div class="wrap">© <span data-k="name">Saguaro Ridge Handyman</span> · <span data-k="area">Scottsdale &amp; North Phoenix</span></div></footer>
+<footer class="on-dark"><div class="wrap">
+  <span>© <span data-k="name">Saguaro Ridge Handyman</span><span id="footArea"> · <span data-k="area">Scottsdale &amp; North Phoenix</span></span></span>
+  <span id="credit">Demo website by <a href="../../">Jacob Kozin</a></span>
+</div></footer>
 
-<div class="bar"><a class="c" data-tel href="#">Call</a><a href="#quote">Free quote</a></div>
+<div class="bar"><a class="c" data-tel href="tel:5555550123">Call</a><a href="#quote">Free quote</a></div>
 
 <script>
-  // ===== Reusable config. URL params override it (for quick mockups): ?name=&phone=&area=&rating=&tagline=&services=a;b;c&concept=1
+  // ===== Reusable config. URL params override it (for quick mockups): ?name=&phone=&area=&rating=&tagline=&services=a;b;c&areas=a;b;c&trade=&concept=1
   const CONFIG = {
     name: "Saguaro Ridge Handyman",
     tagline: "Repairs · Installs · Punch lists",
     phone: "(555) 555-0123",
     email: "hello@example.com",
     area: "Scottsdale & North Phoenix",
-    rating: "5.0★",
+    rating: "",            // e.g. "4.9★" once it is real and you can show where it comes from
     headline: "The small jobs, done right the first time.",
     intro: "Drywall patches, fixtures, doors, TV mounts, and the honey-do list you keep putting off. Call, or send a photo of the job for a quote.",
     areas: ["Scottsdale","Paradise Valley","North Phoenix","Fountain Hills","Cave Creek","Tempe"],
+    servicesTitle: "What we fix",
     services: [
       ["Drywall & paint touch-ups","Holes, cracks, water spots, patched and blended."],
       ["Doors & hardware","Sticking doors, new locks, hinges, closers, weatherstripping."],
@@ -173,33 +260,92 @@
       ["Punch lists","Move-in, move-out, and pre-listing repair lists."]
     ]
   };
+
+  // Other trades that reuse this page. Picked by ?trade= or by a word in the business name or headline,
+  // so a painter or pool company doesn't get the handyman list and the drill photo.
+  const TRADES = {
+    paint: { match: /paint/i, tagline: "Interior · Exterior · Cabinets", title: "What we paint", services: [
+      ["Interior painting","Walls, ceilings, trim and doors."],
+      ["Exterior painting","Stucco, siding, fascia and block walls."],
+      ["Cabinets","Kitchen and bath cabinets refinished."],
+      ["Drywall repair","Patches and texture matched before paint."],
+      ["Color samples","See it on your wall before you commit."],
+      ["Touch-ups","Move-in, move-out and pre-listing."]] },
+    pool: { match: /pool/i, tagline: "Repairs · Equipment · Weekly service", title: "What we do", services: [
+      ["Pumps & motors","Noisy, leaking or dead pumps repaired or replaced."],
+      ["Filters","Cleaning, new grids and cartridges."],
+      ["Leaks","Found and fixed at the equipment and plumbing."],
+      ["Green pool cleanup","From swamp back to swimmable."],
+      ["Weekly service","Chemicals, brushing, baskets and a check of the equipment."],
+      ["Automation & heaters","Timers, salt systems and heaters."]] },
+    lawn: { match: /lawn|yard|landscap/i, tagline: "Lawn care · Landscaping · Irrigation", title: "What we do", services: [
+      ["Lawn care","Mowing, edging and blowing."],
+      ["Trimming","Shrubs, hedges and small trees."],
+      ["Desert landscaping","Rock, gravel and low-water plants."],
+      ["Irrigation repair","Leaks, valves, timers and drip lines."],
+      ["Cleanups","One-time yard cleanups and haul-away."],
+      ["Weed control","Treated before they take over."]] },
+    build: { match: /construction|remodel|contract|builder/i, tagline: "Remodels · Repairs · Construction", title: "What we build", services: [
+      ["Kitchen remodels","Cabinets, counters and layouts."],
+      ["Bathroom remodels","Showers, tile, vanities and fixtures."],
+      ["Repairs","Drywall, framing, doors and windows."],
+      ["Flooring","Tile, vinyl plank and wood."],
+      ["Additions & patios","Extra rooms and covered patios."],
+      ["Project help","Plans, permits and scheduling."]] }
+  };
+
   const q = new URLSearchParams(location.search);
+  const concept = !!q.get("concept");
   for (const k of ["name","tagline","phone","area","rating","email","headline","intro"]) if (q.get(k)) CONFIG[k] = q.get(k);
+  const trade = TRADES[q.get("trade")] || Object.values(TRADES).find(t => t.match.test(CONFIG.name + " " + CONFIG.headline));
+  if (trade) {
+    CONFIG.services = trade.services; CONFIG.servicesTitle = trade.title;
+    if (!q.get("tagline")) CONFIG.tagline = trade.tagline;
+    document.body.classList.add("no-photo");
+  }
   if (q.get("services")) CONFIG.services = q.get("services").split(";").map(s => [s.trim(), ""]);
-  if (q.get("concept")) {
+  if (q.get("areas")) CONFIG.areas = q.get("areas").split(";").map(s => s.trim()).filter(Boolean);
+  // A concept made for a real business only names the area it was given, not our sample towns.
+  else if (concept && q.get("area")) CONFIG.areas = [CONFIG.area];
+  if (concept) {
     document.getElementById("demoBar").textContent = "Concept preview made for " + CONFIG.name + " by Jacob Kozin. Not live, not affiliated.";
     const m = document.createElement("meta"); m.name = "robots"; m.content = "noindex"; document.head.appendChild(m);
+    document.body.classList.add("concept");
     // Don't put claims we haven't verified in someone else's name.
     document.querySelectorAll(".claim").forEach(el => el.remove());
-    if (!q.get("rating")) document.querySelectorAll(".rating").forEach(el => el.remove());
+    // Only show a rating when the link carries one (checked by hand for that business); never a default.
+    if (!q.get("rating")) CONFIG.rating = "";
+    // Without an area in the link we don't know where they work, so don't say.
+    if (q.get("area") || q.get("areas")) document.getElementById("areaNote").remove();
+    else { document.getElementById("serving").remove(); document.getElementById("footArea").remove(); }
+    document.getElementById("credit").innerHTML = 'Concept preview by <a href="../../">Jacob Kozin</a> · call or text <a href="tel:+16029359847">(602) 935-9847</a>';
   }
 
   document.querySelectorAll("[data-k]").forEach(el => el.textContent = CONFIG[el.dataset.k]);
-  const tel = "tel:" + CONFIG.phone.replace(/[^\d+]/g, "");
-  document.querySelectorAll("[data-tel]").forEach(a => a.href = tel);
-  document.title = CONFIG.name + (q.get("concept") ? " · Concept" : " · Demo");
-  document.getElementById("svcs").innerHTML = CONFIG.services.map(([t, d]) =>
-    `<div class="svc"><h3>${t.replace(/</g,"&lt;")}</h3>${d ? `<p>${d}</p>` : ""}</div>`).join("");
-  document.getElementById("areas").innerHTML = CONFIG.areas.map(a => `<span>${a}</span>`).join("");
+  document.querySelectorAll(".rating").forEach(el => el.hidden = !CONFIG.rating);
+  document.getElementById("svcTitle").textContent = CONFIG.servicesTitle;
+  const digits = CONFIG.phone.replace(/[^\d+]/g, "");
+  const smsTo = body => "sms:" + digits + "?&body=" + encodeURIComponent(body);
+  document.querySelectorAll("[data-tel]").forEach(a => a.href = "tel:" + digits);
+  document.querySelectorAll("[data-sms]").forEach(a => a.href = smsTo("Hi, I'd like a quote. Here's a photo of the job:"));
+  document.title = CONFIG.name + (concept ? " · Concept" : " · Demo");
 
+  const el = (tag, text) => { const n = document.createElement(tag); n.textContent = text; return n; };
+  document.getElementById("svcs").replaceChildren(...CONFIG.services.map(([t, d]) => {
+    const li = document.createElement("li"); li.append(el("h3", t)); if (d) li.append(el("p", d)); return li;
+  }));
+  document.getElementById("areas").replaceChildren(...CONFIG.areas.map(a => el("span", a)));
+
+  // Phones open a prefilled text; desktops open email.
+  function quoteUrl() {
+    const body = `Quote request from ${qn.value} (${qp.value}): ${qj.value}`;
+    const mobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    return mobile ? smsTo(body)
+      : "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Quote request") + "&body=" + encodeURIComponent(body);
+  }
   function sendQuote(e) {
     e.preventDefault();
-    const body = `Quote request from ${qn.value} (${qp.value}): ${qj.value}`;
-    // Phones open a prefilled text; desktops open email.
-    const mobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-    location.href = mobile
-      ? "sms:" + CONFIG.phone.replace(/[^\d+]/g, "") + "?&body=" + encodeURIComponent(body)
-      : "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Quote request") + "&body=" + encodeURIComponent(body);
+    location.href = quoteUrl();
     return false;
   }
 </script>

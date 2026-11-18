@@ -5,87 +5,165 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Desert Twinkle Lights · Demo</title>
 <meta name="description" content="Demo holiday lighting website: Christmas light installation, takedown and permanent lights. Send a photo for a fast quote.">
+<meta name="theme-color" content="#0B120F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Young+Serif&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#1c1a17;--muted:#5f5a52;--paper:#f7f6f1;--card:#fff;--line:#e6dfd3;--accent:#b3261e;--accent-ink:#fff;--dark:#10261b}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;padding-bottom:64px}
+  :root{
+    --night:#0B120F; --pine:#13241B; --pine-line:#2C4336;
+    --cream:#F7F0E1; --card:#FFFCF4; --line:#DDD3BD;
+    --ink:#17201B; --muted:#4F564C; --on-dark:#F7F0E1; --on-dark-muted:#BFBBA9;
+    --gold:#FFC44D; --gold-d:#F0AE2A; --berry:#B3261E;
+    --display:"Young Serif",Georgia,"Times New Roman",serif;
+    --text:Figtree,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --head:64px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-padding-top:calc(var(--head) + 12px);-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--night);color:var(--ink);font:400 1.0625rem/1.55 var(--text);padding-bottom:64px;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%;height:auto}
   a{color:inherit}
-  .demo{background:var(--dark);color:#efe9df;text-align:center;font-size:13px;font-weight:600;padding:7px 12px}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-  h1,h2,h3{font-family:Archivo,Inter,sans-serif;line-height:1.08;margin:0;letter-spacing:-.01em}
-  header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-  header .wrap{display:flex;justify-content:space-between;align-items:center;height:66px;gap:12px}
-  .logo{font-family:Archivo;font-weight:800;font-size:19px}
-  .logo small{display:block;font:500 12px Inter;color:var(--muted)}
-  .call{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;padding:11px 18px;border-radius:8px;white-space:nowrap}
-  .call.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
-  .hero{padding:64px 0 56px}
-  .hero .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
-  .eyebrow{font-weight:600;color:var(--accent);font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
-  .hero h1{font-size:clamp(38px,5.6vw,62px);font-weight:800}
-  .hero p{font-size:19px;color:var(--muted);margin:18px 0 28px;max-width:46ch}
-  .row{display:flex;flex-wrap:wrap;gap:12px}
-  .proof{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;color:var(--muted);font-size:15px}
-  .proof b{color:var(--ink)}
-  .quote{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 10px 30px rgba(40,30,10,.06)}
-  .quote h3{font-size:22px;margin-bottom:6px}
-  .quote p{margin:0 0 16px;color:var(--muted);font-size:15px}
-  label{display:block;font-weight:600;font-size:14px;margin:12px 0 6px}
-  input,textarea,select{width:100%;font:16px Inter,sans-serif;padding:12px;border:1px solid #cfc6b6;border-radius:8px;background:#fff;color:var(--ink)}
-  textarea{min-height:90px;resize:vertical}
-  .quote button{margin-top:16px;width:100%;border:0;cursor:pointer;font:700 16px Inter,sans-serif;background:var(--ink);color:#fff;padding:14px;border-radius:8px}
-  .fine{font-size:13px;color:var(--muted);margin-top:10px}
-  section{padding:64px 0;border-top:1px solid var(--line)}
-  h2{font-size:clamp(30px,4vw,42px);margin-bottom:28px}
-  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .svc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
-  .svc h3{font-size:19px;margin-bottom:6px}
-  .svc p{margin:0;color:var(--muted);font-size:15px}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
-  .steps div{counter-increment:s;padding-top:8px}
-  .steps div::before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font:800 16px Archivo;margin-bottom:12px}
-  .steps h3{font-size:19px;margin-bottom:4px}
-  .steps p{margin:0;color:var(--muted)}
-  .area{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  p{margin:0}
+  ul,ol{margin:0;padding:0;list-style:none}
+  h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0;letter-spacing:-.01em;text-wrap:balance}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+  .light :focus-visible{outline-color:var(--berry)}
+
+  .demo{background:var(--gold);color:var(--night);text-align:center;font-size:.82rem;font-weight:700;padding:7px 12px;line-height:1.35}
+
+  header{background:var(--night);color:var(--on-dark);position:sticky;top:0;z-index:5;border-bottom:1px solid var(--pine-line)}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;min-height:var(--head);gap:12px}
+  .logo{font-family:var(--display);font-size:1.18rem;line-height:1.15;min-width:0}
+  .logo small{display:block;font:600 .82rem/1.3 var(--text);color:var(--on-dark-muted);letter-spacing:.02em}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:11px 20px;border-radius:999px;border:2px solid transparent;font:700 1rem/1.2 var(--text);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .15s ease,color .15s ease}
+  .btn svg{width:1.1em;height:1.1em;fill:currentColor;flex:none}
+  .btn.gold{background:var(--gold);color:var(--night)}
+  .btn.gold:hover{background:var(--gold-d)}
+  .btn.line{border-color:rgba(247,240,225,.75);color:var(--on-dark)}
+  .btn.line:hover{background:var(--on-dark);color:var(--night)}
+  .btn.dark{background:var(--night);color:var(--on-dark)}
+  .btn.dark:hover{background:var(--pine)}
+  header .btn{min-height:44px;padding:8px 16px}
+
+  /* string of lights: one repeating tile, no images to download */
+  .strand{height:26px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='168' height='26'%3E%3Cpath d='M0 4Q42 20 84 4T168 4' fill='none' stroke='%232C4336' stroke-width='1.5'/%3E%3Ccircle cx='21' cy='13.500' r='4' fill='%23FFC44D'/%3E%3Ccircle cx='63' cy='13.500' r='4' fill='%23E5533B'/%3E%3Ccircle cx='105' cy='13.500' r='4' fill='%23FFC44D'/%3E%3Ccircle cx='147' cy='13.500' r='4' fill='%2357B98A'/%3E%3C/svg%3E") repeat-x center top}
+
+  .hero{background:var(--night);color:var(--on-dark)}
+  .hero-photo{position:relative;height:210px;overflow:hidden;margin:0 -20px}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 87%;transform:scale(1.25);transform-origin:46% 86%}
+  .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,15,0) 55%,var(--night) 100%)}
+  .credit{position:absolute;right:10px;top:8px;z-index:1;font-size:.82rem;color:rgba(247,240,225,.9);background:rgba(11,18,15,.55);padding:2px 8px;border-radius:99px}
+  .hero-copy{padding:8px 0 44px}
+  .hero h1{font-size:clamp(2.1rem,8.8vw,4rem);max-width:15ch}
+  .hero h1::first-line{color:var(--gold)}
+  .hero .intro{font-size:1.06rem;color:#E4DECD;margin:12px 0 20px;max-width:46ch}
+  .row{display:flex;flex-wrap:wrap;gap:10px}
+  .proof{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px;font-size:.93rem}
+  .proof span{border:1px solid var(--pine-line);background:var(--pine);border-radius:99px;padding:5px 12px;color:var(--on-dark-muted)}
+  .proof b{color:var(--on-dark);font-weight:700}
+
+  section{padding:60px 0}
+  .light{background:var(--cream)}
+  h2{font-size:clamp(1.9rem,5.6vw,2.7rem);margin-bottom:14px}
+  .lede{color:var(--muted);font-size:1.08rem;max-width:46ch;margin-bottom:18px}
+  .ticks li{position:relative;padding:9px 0 9px 30px;border-top:1px solid var(--line)}
+  .ticks li:first-child{border-top:0}
+  .ticks li::before{content:"";position:absolute;left:4px;top:1.05em;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(255,196,77,.3)}
+
+  .qgrid{display:grid;gap:28px}
+  .quote{background:var(--card);border:1.5px solid var(--ink);border-radius:14px;padding:22px 20px 20px}
+  .quote h3{font-size:1.45rem;margin-bottom:4px}
+  .quote>p{color:var(--muted);font-size:.97rem;margin-bottom:6px}
+  label{display:block;font-weight:700;font-size:.92rem;margin:14px 0 6px}
+  input,textarea{width:100%;font:400 1rem/1.4 var(--text);padding:12px;border:1.5px solid #7C8177;border-radius:8px;background:#fff;color:var(--ink)}
+  textarea{min-height:96px;resize:vertical}
+  .quote .btn{width:100%;margin-top:16px}
+  .fine{font-size:.88rem;color:var(--muted);margin-top:8px}
+  .opt{font-weight:400;color:var(--muted)}
+  .or{display:flex;align-items:center;gap:12px;margin:18px 0 12px;color:var(--muted);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+  .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+  .btn.berry{background:var(--berry);color:#fff;width:100%}
+  .btn.berry:hover{background:#96201A}
+
+  .dark{background:var(--pine);color:var(--on-dark)}
+  .dark .lede{color:var(--on-dark-muted)}
+  .svc-grid{display:grid;gap:28px}
+  .services li{display:grid;grid-template-columns:22px 1fr;gap:4px 12px;padding:14px 0;border-top:1px solid var(--pine-line)}
+  .services li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(255,196,77,.22);margin:.5em 0 0 4px}
+  .services li:nth-child(3n+2)::before{background:#E5533B;box-shadow:0 0 0 4px rgba(229,83,59,.25)}
+  .services li:nth-child(3n)::before{background:#57B98A;box-shadow:0 0 0 4px rgba(87,185,138,.25)}
+  .services h3{font:700 1.1rem/1.3 var(--text);letter-spacing:0}
+  .services p{grid-column:2;color:var(--on-dark-muted);font-size:.98rem}
+  figure{margin:0}
+  figure img{width:100%;aspect-ratio:3/2;object-fit:cover;object-position:78% 35%;border-radius:14px;border:1px solid var(--pine-line)}
+  figcaption{font-size:.82rem;color:var(--on-dark-muted);margin-top:8px}
+
+  .steps{display:grid;gap:0;counter-reset:s}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:2px 8px;padding:18px 0;border-top:1px solid var(--line)}
+  .steps li:first-child{border-top:2px solid var(--ink)}
+  .steps li::before{content:counter(s);grid-row:1/3;font:400 2.3rem/1 var(--display);color:var(--berry)}
+  .steps h3{font-size:1.3rem}
+  .steps p{grid-column:2;color:var(--muted)}
+
+  .split{padding-top:0}
+  .split .wrap{border-top:1px solid var(--line);padding-top:48px}
+  .area{display:grid;gap:36px}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chips span{background:var(--card);border:1px solid var(--line);padding:7px 13px;border-radius:99px;font-size:14px;font-weight:500}
+  .chips span{border:1.5px solid var(--ink);padding:6px 14px;border-radius:99px;font-size:.95rem;font-weight:600;background:var(--card)}
   table{width:100%;border-collapse:collapse}
-  td{padding:9px 0;border-bottom:1px solid var(--line)} td:last-child{text-align:right;color:var(--muted)}
-  .cta{background:var(--dark);color:#f6f1e8;border-radius:18px;padding:44px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-  .cta h2{margin:0;color:#fff}
-  .cta p{margin:8px 0 0;color:#c9c1b4}
-  footer{padding:32px 0;color:var(--muted);font-size:14px}
-  .bar{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;z-index:6;box-shadow:0 -4px 16px rgba(0,0,0,.08)}
-  .bar a{text-align:center;padding:16px;font-weight:700;text-decoration:none;background:var(--card);color:var(--ink)}
-  .bar a.c{background:var(--accent);color:#fff}
-  @media (min-width:900px){.bar{display:none}body{padding-bottom:0}}
-  @media (max-width:860px){.hero .grid,.area{grid-template-columns:1fr}.services{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
-  @media (max-width:560px){.services{grid-template-columns:1fr}header .call span{display:none}.cta{padding:28px}}
+  th,td{padding:12px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:400}
+  tr:first-child th,tr:first-child td{border-top:2px solid var(--ink)}
+  th{font-weight:700}
+  td{text-align:right;color:var(--muted)}
+  .sample-note{display:none;font-size:.88rem;font-weight:600;color:var(--muted);margin-top:12px}
+  .dark .sample-note{color:var(--on-dark-muted)}
+  .concept .sample-note{display:block}
 
-  /* photo hero */
-  .hero{position:relative;color:#fff;background:#111 center 78%/cover no-repeat;background-image:var(--hero-img)}
-  .hero::before{content:"";position:absolute;inset:0;background:var(--hero-shade)}
-  .hero .grid{position:relative;padding-top:24px;padding-bottom:24px}
-  .hero p{color:rgba(255,255,255,.86)}
-  .hero .call.ghost{color:#fff;border-color:rgba(255,255,255,.8)}
-  .proof{color:rgba(255,255,255,.8)} .proof b{color:#fff}
-  .quote{color:var(--ink)}
-  .photo-credit{position:absolute;right:12px;bottom:8px;font-size:12px;color:rgba(255,255,255,.7);z-index:1}
-  .photo-credit a{color:inherit}
-  :root{--hero-img:url('../assets/lights-hero.jpg');--hero-shade:linear-gradient(90deg,rgba(6,5,4,.95) 0%,rgba(6,5,4,.75) 40%,rgba(6,5,4,0) 70%)}
+  .cta{background:var(--night);color:var(--on-dark);text-align:center;padding:0 0 60px}
+  .cta .strand{margin-bottom:40px}
+  .cta h2{margin-bottom:8px}
+  .cta p{color:var(--on-dark-muted);margin-bottom:22px}
+  .cta .row{justify-content:center}
 
-  .hero{min-height:560px;display:flex;align-items:center;background:#060504 no-repeat;background-image:var(--hero-img);background-size:auto 118%;background-position:100% 90%}
-  .hero .grid{grid-template-columns:1fr}
-  .hero .grid>div{max-width:560px}
-  .qgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-  .lede{color:var(--muted);font-size:18px;margin:0 0 18px}
-  .ticks{margin:0;padding:0;list-style:none}
-  .ticks li{padding:8px 0 8px 28px;position:relative}
-  .ticks li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
-  @media (max-width:860px){.qgrid{grid-template-columns:1fr}.hero{min-height:520px;background-size:cover;background-position:60% 88%}}
+  footer{background:var(--night);color:var(--on-dark-muted);padding:22px 0 30px;font-size:.88rem;border-top:1px solid var(--pine-line)}
+  footer .wrap{display:grid;gap:6px}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;z-index:6;box-shadow:0 -4px 18px rgba(0,0,0,.22)}
+  .bar a{display:flex;align-items:center;justify-content:center;min-height:56px;padding-bottom:env(safe-area-inset-bottom);font-weight:700;text-decoration:none;background:var(--night);color:var(--on-dark)}
+  .bar a.c{background:var(--gold);color:var(--night)}
+
+  @media (max-width:420px){header .btn .n{display:none}}
+  @media (min-width:900px){
+    :root{--head:72px}
+    body{padding-bottom:0}
+    .bar{display:none}
+    .wrap{padding:0 32px}
+    section{padding:88px 0}
+    .logo{font-size:1.4rem}
+    .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-top:56px;padding-bottom:64px}
+    .hero-photo{order:2;height:520px;margin:0;border-radius:18px;border:1px solid var(--pine-line)}
+    .hero-photo img{object-position:50% 92%;transform:scale(1.7);transform-origin:44% 90%}
+    .hero-photo::after{background:linear-gradient(180deg,rgba(11,18,15,0) 70%,rgba(11,18,15,.5) 100%)}
+    .credit{top:auto;bottom:10px}
+    .hero-copy{padding:0}
+    .hero h1{font-size:clamp(2.9rem,4.2vw,3.6rem);max-width:none}
+    .qgrid{grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .quote{padding:30px}
+    .svc-grid{grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+    .steps{grid-template-columns:repeat(3,1fr);gap:32px}
+    .steps li{grid-template-columns:1fr;border-top:2px solid var(--ink)!important;padding:20px 0 0}
+    .steps li::before{grid-row:auto;font-size:3rem;margin-bottom:10px}
+    .steps p{grid-column:1}
+    .area{grid-template-columns:1fr 1fr;gap:64px}
+    .cta{padding-bottom:88px}
+    .cta .strand{margin-bottom:64px}
+    footer .wrap{grid-template-columns:1fr auto}
+  }
+  @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -93,94 +171,130 @@
 
 <header><div class="wrap">
   <div class="logo"><span data-k="name">Desert Twinkle Lights</span><small><span data-k="tagline">Christmas lights · Permanent lighting</span></small></div>
-  <a class="call" data-tel href="#">📞 <span data-k="phone">(555) 555-0123</span></a>
+  <a class="btn gold" data-tel href="tel:5555550123" aria-label="Call">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5h3.1l1.6 4.6-2.2 1.7a12.4 12.4 0 0 0 6.1 6.1l1.7-2.2 4.6 1.6v3.1a2.6 2.6 0 0 1-2.8 2.6C10.2 19.3 4.7 13.8 4 5.3a2.6 2.6 0 0 1 2.6-2.8Z"/></svg>
+    <span class="n" data-k="phone">(555) 555-0123</span>
+  </a>
 </div></header>
 
-<div class="hero"><span class="photo-credit">Sample photo: <a href="https://unsplash.com/photos/a-house-covered-in-christmas-lights-at-night--FG6wI-hDO8" target="_blank" rel="noopener">Nellie Adamyan / Unsplash</a></span><div class="wrap grid">
-  <div>
-    <h1 data-k="headline">Your house, lit up for the holidays. Without the ladder.</h1>
-    <p data-k="intro">Roofline, trees, palms and walkways, installed for you. Text a photo of the front of your house for a quote. Install dates fill up fast in December.</p>
-    <div class="row">
-      <a class="call" data-tel href="#">Call now</a>
-      <a class="call ghost" href="#quote-wrap">Get a free quote</a>
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-photo">
+      <img src="../assets/lights-hero.jpg" alt="A house at night with colored lights along the roofline, a lit wreath and a wrapped tree" width="1600" height="2071" fetchpriority="high">
+      <span class="credit">Sample photo: <a href="https://unsplash.com/photos/a-house-covered-in-christmas-lights-at-night--FG6wI-hDO8" target="_blank" rel="noopener">Nellie Adamyan / Unsplash</a></span>
     </div>
-    <div class="proof">
-      <span>📍 Serving <b data-k="area"></b></span>
-      <span class="rating"><b data-k="rating">5.0★</b> on Google</span>
-      <span class="claim"><b>Licensed &amp; insured</b></span>
-      <span class="claim"><b>Takedown</b> included</span>
+    <div class="hero-copy">
+      <h1 data-k="headline">Your house, lit up for the holidays. Without the ladder.</h1>
+      <p class="intro" data-k="intro">Roofline, trees, palms and walkways, installed for you. Text a photo of the front of your house and get a price before anything is booked.</p>
+      <div class="row">
+        <a class="btn gold" data-sms href="#quote">Text a photo</a>
+        <a class="btn line" data-tel href="tel:5555550123">Call now</a>
+      </div>
+      <div class="proof">
+        <span id="serving">Serving <b data-k="area">Scottsdale &amp; North Phoenix</b></span>
+        <span class="rating" hidden><b data-k="rating"></b> on Google</span>
+        <span class="claim"><b>Takedown</b> included</span>
+      </div>
     </div>
   </div>
-</div></div>
+  <div class="strand" aria-hidden="true"></div>
+</div>
 
-<section id="quote-wrap"><div class="wrap qgrid">
+<section id="quote-wrap" class="light"><div class="wrap qgrid">
   <div>
     <h2>One photo. One price.</h2>
     <p class="lede">Snap the front of your house from the street and send it with what you want lit. You'll get a price before anything is booked.</p>
     <ul class="ticks"><li>Roofline, trees, palms, walkways</li><li class="claim">Install now through Dec 23</li><li class="claim">Takedown in January</li></ul>
   </div>
   <form class="quote" id="quote" onsubmit="return sendQuote(event)">
-  <h3>Get a lighting quote</h3>
-  <p>Tell us about your home. A photo of the front gets the fastest price.</p>
-  <label for="qn">Name</label><input id="qn" autocomplete="name" required>
-  <label for="qp">Phone</label><input id="qp" type="tel" autocomplete="tel" required>
-  <label for="qj">Address area + what you want lit (roofline, trees, palms…)</label><textarea id="qj" required></textarea>
-  <button type="submit">Send request</button>
-  <div class="fine">Opens a text or email to us with your request. No spam, ever.</div>
+    <h3>Get a lighting quote</h3>
+    <p>Tell us about your home. A photo of the front gets the fastest price.</p>
+    <label for="qn">Name</label><input id="qn" autocomplete="name" required>
+    <label for="qp">Phone</label><input id="qp" type="tel" autocomplete="tel" required>
+    <label for="qj">Address area + what you want lit (roofline, trees, palms…)</label><textarea id="qj" required></textarea>
+    <label for="qd">Preferred install date <span class="opt">(optional)</span></label><input id="qd" type="date" aria-describedby="qd-help">
+    <div class="fine" id="qd-help">A request, not a booking. Nothing is scheduled until we confirm with you.</div>
+    <button class="btn dark" type="submit">Prepare my request</button>
+    <div class="fine">This opens a text (or an email on a computer) with your details filled in. Attach the photo of your house there, then press send.</div>
+    <div class="or">or</div>
+    <a class="btn berry" data-tel href="tel:5555550123">Call <span data-k="phone">(555) 555-0123</span></a>
   </form>
 </div></section>
 
-<section id="services"><div class="wrap">
-  <h2>What we light</h2>
-  <div class="services" id="svcs"></div>
-</div></section>
-
-<section><div class="wrap">
-  <h2>How it works</h2>
-  <div class="steps">
-    <div><h3>Text a photo</h3><p>Send a picture of the front of your house. That's all we need to price it.</p></div>
-    <div><h3>Pick an install date</h3><p>You know the price before we book. Choose a day that works.</p></div>
-    <div><h3>Enjoy, then we take it down</h3><p>We come back after the holidays to take everything down.</p></div>
+<section id="services" class="dark"><div class="wrap svc-grid">
+  <div>
+    <h2>What we light</h2>
+    <ul class="services" id="svcs">
+      <li><h3>Roofline lights</h3><p>Clean, straight lines along the roof and gutters.</p></li>
+      <li><h3>Palm &amp; tree wrapping</h3><p>Trunks and canopies wrapped in warm white or color.</p></li>
+      <li><h3>Walkways &amp; patios</h3><p>Path lights, fences, patio covers and railings.</p></li>
+    </ul>
+    <p class="sample-note">Example services. Your real list goes here.</p>
   </div>
+  <figure>
+    <img src="../assets/lights-tree.jpg" alt="Tree trunks wrapped in white lights along a street at night" width="1200" height="800" loading="lazy" decoding="async">
+    <figcaption>Sample photo: <a href="https://unsplash.com/photos/a-tree-wrapped-in-lights-at-night-S-bQLiX7vyk" target="_blank" rel="noopener">Unsplash</a></figcaption>
+  </figure>
 </div></section>
 
-<section><div class="wrap area">
+<section class="light"><div class="wrap">
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><h3>Text a photo</h3><p>Send a picture of the front of your house and say what you want lit.</p></li>
+    <li><h3>Get your price</h3><p>You know the price before anything is booked.</p></li>
+    <li><h3>Pick a date, we install</h3><p>Ask for the day you'd like. We confirm it with you, then put everything up.</p></li>
+  </ol>
+</div></section>
+
+<section class="light split"><div class="wrap area">
   <div>
     <h2>Where we work</h2>
-    <div class="chips" id="areas"></div>
+    <div class="chips" id="areas"><span>Scottsdale &amp; North Phoenix</span></div>
+    <p class="sample-note" id="areaNote">Example towns. Your service area goes here.</p>
   </div>
   <div>
     <h2>Season</h2>
     <table>
-      <tr><td>Installs</td><td>Now through Dec 23</td></tr>
-      <tr><td>Takedowns</td><td>Jan 2 – Jan 31</td></tr>
-      <tr><td>Quotes</td><td>7 days a week</td></tr>
+      <tr><th scope="row">Installs</th><td>Now through Dec 23</td></tr>
+      <tr><th scope="row">Takedowns</th><td>Jan 2 – Jan 31</td></tr>
+      <tr><th scope="row">Quotes</th><td>7 days a week</td></tr>
     </table>
+    <p class="sample-note">Example dates. Your real season goes here.</p>
   </div>
 </div></section>
 
-<section><div class="wrap">
-  <div class="cta">
-    <div><h2>December books up fast.</h2><p>Text a photo now and lock in your install date.</p></div>
-    <a class="call" data-tel href="#">Call <span data-k="phone">(555) 555-0123</span></a>
+<div class="cta">
+  <div class="strand" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2>Want your house lit this season?</h2>
+    <p>Text a photo of the front of your house and get a price.</p>
+    <div class="row">
+      <a class="btn gold" data-sms href="#quote">Text a photo</a>
+      <a class="btn line" data-tel href="tel:5555550123">Call <span data-k="phone">(555) 555-0123</span></a>
+    </div>
   </div>
-</div></section>
+</div>
+</main>
 
-<footer><div class="wrap">© <span data-k="name">Desert Twinkle Lights</span> · <span data-k="area">Scottsdale &amp; North Phoenix</span></div></footer>
+<footer><div class="wrap">
+  <span>© <span data-k="name">Desert Twinkle Lights</span><span id="footArea"> · <span data-k="area">Scottsdale &amp; North Phoenix</span></span></span>
+  <span id="credit">Demo website by <a href="../../">Jacob Kozin</a></span>
+</div></footer>
 
-<div class="bar"><a class="c" data-tel href="#">Call</a><a href="#quote">Free quote</a></div>
+<div class="bar"><a class="c" data-tel href="tel:5555550123">Call</a><a href="#quote">Free quote</a></div>
 
 <script>
-  // ===== Reusable config. URL params override it (for quick mockups): ?name=&phone=&area=&rating=&tagline=&services=a;b;c&concept=1
+  // ===== Reusable config. URL params override it (for quick mockups): ?name=&phone=&area=&rating=&tagline=&services=a;b;c&areas=a;b;c&concept=1
   const CONFIG = {
     name: "Desert Twinkle Lights",
     tagline: "Christmas lights · Permanent lighting",
     phone: "(555) 555-0123",
     email: "hello@example.com",
     area: "Scottsdale & North Phoenix",
-    rating: "5.0★",
+    rating: "",            // e.g. "4.9★" once it is real and you can show where it comes from
     headline: "Your house, lit up for the holidays. Without the ladder.",
-    intro: "Roofline, trees, palms and walkways, installed for you. Text a photo of the front of your house for a quote. Install dates fill up fast in December.",
+    intro: "Roofline, trees, palms and walkways, installed for you. Text a photo of the front of your house and get a price before anything is booked.",
     areas: ["Scottsdale","Paradise Valley","North Phoenix","Fountain Hills","Cave Creek","Tempe"],
     services: [
       ["Roofline lights","Clean, straight lines along the roof and gutters."],
@@ -192,32 +306,51 @@
     ]
   };
   const q = new URLSearchParams(location.search);
+  const concept = !!q.get("concept");
   for (const k of ["name","tagline","phone","area","rating","email","headline","intro"]) if (q.get(k)) CONFIG[k] = q.get(k);
   if (q.get("services")) CONFIG.services = q.get("services").split(";").map(s => [s.trim(), ""]);
-  if (q.get("concept")) {
-    document.getElementById("demoBar").textContent = "Concept preview made for " + CONFIG.name + " by Jacob Kozin. Not live, not affiliated.";
+  if (q.get("areas")) CONFIG.areas = q.get("areas").split(";").map(s => s.trim()).filter(Boolean);
+  // A concept made for a real business only names the area it was given, not our sample towns.
+  else if (concept && q.get("area")) CONFIG.areas = [CONFIG.area];
+  if (concept) {
+    const bar = document.getElementById("demoBar");
+    bar.textContent = "Concept preview made for " + CONFIG.name + " by Jacob Kozin. Not live, not affiliated.";
     const m = document.createElement("meta"); m.name = "robots"; m.content = "noindex"; document.head.appendChild(m);
+    document.body.classList.add("concept");
     // Don't put claims we haven't verified in someone else's name.
     document.querySelectorAll(".claim").forEach(el => el.remove());
-    if (!q.get("rating")) document.querySelectorAll(".rating").forEach(el => el.remove());
+    // Only show a rating when the link carries one (checked by hand for that business); never a default.
+    if (!q.get("rating")) CONFIG.rating = "";
+    // Without an area in the link we don't know where they work, so don't say.
+    if (q.get("area") || q.get("areas")) document.getElementById("areaNote").remove();
+    else { document.getElementById("serving").remove(); document.getElementById("footArea").remove(); }
+    document.getElementById("credit").innerHTML = 'Concept preview by <a href="../../">Jacob Kozin</a> · call or text <a href="tel:+16029359847">(602) 935-9847</a>';
   }
 
   document.querySelectorAll("[data-k]").forEach(el => el.textContent = CONFIG[el.dataset.k]);
-  const tel = "tel:" + CONFIG.phone.replace(/[^\d+]/g, "");
-  document.querySelectorAll("[data-tel]").forEach(a => a.href = tel);
-  document.title = CONFIG.name + (q.get("concept") ? " · Concept" : " · Demo");
-  document.getElementById("svcs").innerHTML = CONFIG.services.map(([t, d]) =>
-    `<div class="svc"><h3>${t.replace(/</g,"&lt;")}</h3>${d ? `<p>${d}</p>` : ""}</div>`).join("");
-  document.getElementById("areas").innerHTML = CONFIG.areas.map(a => `<span>${a}</span>`).join("");
+  document.querySelectorAll(".rating").forEach(el => el.hidden = !CONFIG.rating);
+  const digits = CONFIG.phone.replace(/[^\d+]/g, "");
+  const smsTo = body => "sms:" + digits + "?&body=" + encodeURIComponent(body);
+  document.querySelectorAll("[data-tel]").forEach(a => a.href = "tel:" + digits);
+  document.querySelectorAll("[data-sms]").forEach(a => a.href = smsTo("Hi, I'd like a holiday lighting quote. Here's a photo of the front of my house:"));
+  document.title = CONFIG.name + (concept ? " · Concept" : " · Demo");
 
+  const el = (tag, text) => { const n = document.createElement(tag); n.textContent = text; return n; };
+  document.getElementById("svcs").replaceChildren(...CONFIG.services.map(([t, d]) => {
+    const li = document.createElement("li"); li.append(el("h3", t)); if (d) li.append(el("p", d)); return li;
+  }));
+  document.getElementById("areas").replaceChildren(...CONFIG.areas.map(a => el("span", a)));
+
+  // Phones open a prefilled text; desktops open email.
+  function quoteUrl() {
+    const body = `Quote request from ${qn.value} (${qp.value}): ${qj.value}` + (qd.value ? `. Preferred install date: ${qd.value} (to be confirmed)` : "") + ". Photo of the house to follow.";
+    const mobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    return mobile ? smsTo(body)
+      : "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Quote request") + "&body=" + encodeURIComponent(body);
+  }
   function sendQuote(e) {
     e.preventDefault();
-    const body = `Quote request from ${qn.value} (${qp.value}): ${qj.value}`;
-    // Phones open a prefilled text; desktops open email.
-    const mobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-    location.href = mobile
-      ? "sms:" + CONFIG.phone.replace(/[^\d+]/g, "") + "?&body=" + encodeURIComponent(body)
-      : "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Quote request") + "&body=" + encodeURIComponent(body);
+    location.href = quoteUrl();
     return false;
   }
 </script>

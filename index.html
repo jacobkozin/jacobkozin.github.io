@@ -108,6 +108,7 @@
   /* ---------- demos ---------- */
   .demos{display:grid;gap:18px}
   .demo{display:grid;background:var(--sheet);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+  .demo:not(.compact){grid-template-rows:auto 1fr}
   .demo:hover{transform:translateY(-3px);box-shadow:0 10px 0 -6px var(--ink)}
   .shot{background:var(--bg,var(--tint));height:270px;overflow:hidden;display:flex;justify-content:center;padding-top:26px;border-bottom:1.5px solid var(--ink)}
   .shot img{width:228px;height:auto;align-self:flex-start;border:3px solid var(--ink);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:0 14px 30px rgba(27,26,23,.28)}
@@ -334,12 +335,12 @@
           </div>
         </a>
         <a class="demo compact" href="demos/barber/">
-          <div class="shot" style="--bg:#2A2622"><img src="assets/demo-barber.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
+          <div class="shot" style="--bg:#0E1830"><img src="assets/demo-barber.jpg" alt="" width="375" height="600" loading="lazy" decoding="async"></div>
           <div class="demo-body">
             <span class="tag">Demo</span>
             <h3>Northside Fade Co.</h3>
             <p class="kind">Barbershop website</p>
-            <p class="desc">Services and prices, booking, hours, and a mobile call bar</p>
+            <p class="desc">Services and prices, hours, a mobile call bar, and a spot for your booking link</p>
             <span class="go">Open the demo <span aria-hidden="true">→</span></span>
           </div>
         </a>
@@ -349,12 +350,12 @@
             <span class="tag">Demo</span>
             <h3>Casa Verde Taqueria</h3>
             <p class="kind">Restaurant website</p>
-            <p class="desc">Full menu, online ordering, and hours that update open/closed live</p>
+            <p class="desc">Full menu, a spot for your ordering link, and hours that update open/closed live</p>
             <span class="go">Open the demo <span aria-hidden="true">→</span></span>
           </div>
         </a>
       </div>
-      <p class="honest">The business names, reviews and phone numbers inside the demos are placeholders. Your site gets your own name, photos and details.</p>
+      <p class="honest">The business names, prices and phone numbers inside the demos are placeholders. Your site gets your own name, photos and details.</p>
     </div>
   </section>
 
