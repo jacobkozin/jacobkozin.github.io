@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Logo concepts, round 2 · Jacob Kozin</title>
+<title>Logo concepts · Jacob Kozin</title>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
   .now{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:20px;padding:14px 16px;background:var(--sheet);border:2px solid var(--ink);border-radius:12px;max-width:520px}
   .now span{font-weight:700}
   .now img{width:151px;height:28px}
-  main{display:grid;gap:52px;padding:36px 0 40px}
+  main{display:grid;gap:52px;padding:22px 0 40px}
   .concept{min-width:0}
   .num{font-weight:700;font-size:.82rem;letter-spacing:.11em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
   h2{font-size:2.2rem;margin-bottom:8px}
@@ -73,6 +73,25 @@
   .contact b,.contact span{display:block;line-height:1.3}
   .contact span{font-size:.9rem;color:var(--soft)}
 
+
+  .feature{padding:36px 0 40px;border-bottom:2px solid var(--ink)}
+  .feature h2{font-size:clamp(2.2rem,6vw,2.8rem)}
+  .feature .why{max-width:62ch;min-height:0}
+  .feature-grid{display:grid;gap:10px}
+  .feature .hero-stage{background:var(--sheet);margin-bottom:0}
+  .feature .hero-stage img{width:min(260px,66%)}
+  .feature .col{display:flex;flex-direction:column;min-width:0}
+  .feature .col .mock:last-child,.feature .cards{margin-bottom:0}
+  .kit{display:grid;gap:0 20px}
+  .from{font-size:1.5rem;padding-top:34px}
+  @media (min-width:980px){
+    .feature-grid{grid-template-columns:1.1fr 1fr .72fr}
+    .feature .cards.stack{grid-template-columns:1fr;height:100%;align-content:space-between}
+    .feature .contact{flex:1}
+    .kit{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,1.55fr) minmax(0,1fr)}
+    .kit .stage{padding:12px;gap:12px}
+    .kit .stage.wide img{width:88%}
+  }
   .research{padding-bottom:44px}
   .research h2{font-size:1.5rem;margin-bottom:12px}
   .research ul{margin:0;padding-left:1.2em;max-width:78ch}
@@ -90,12 +109,64 @@
 </head>
 <body>
 <header><div class="wrap">
-  <span class="draft">Round 2 · for Jacob to pick · not live</span>
-  <h1>Three logo concepts, redrawn</h1>
-  <p>You were right about round one: those were letters dropped onto a shape. The logos in the articles each have one idea built into the letters, and they are shown in use. So these three are redrawn from scratch around one idea each, and every one is shown where it would actually appear: in a text, in a browser tab, on a card and as a profile picture. Nothing on the live site changes until you choose.</p>
+  <span class="draft">Round 2 + combination · for Jacob to pick · not live</span>
+  <h1>Logo concepts, with the combination</h1>
+  <p>You were right about round one: those were letters dropped onto a shape. The logos in the articles each have one idea built into the letters, and they are shown in use. So these three are redrawn from scratch around one idea each, and every one is shown where it would actually appear: in a text, in a browser tab, on a card and as a profile picture. <b>New at the top: concepts 1 and 3 combined.</b> Nothing on the live site changes until you choose.</p>
   <div class="now"><span>Current logo, for comparison</span><img src="../logo.svg" alt="Current Jacob Kozin logo" width="151" height="28"></div>
 </div></header>
 
+
+<div class="wrap"><section class="feature" aria-labelledby="r4-bracket-block">
+  <p class="num">New · concept 4</p>
+  <h2 id="r4-bracket-block">Bracket + Block</h2>
+  <p class="why">Concepts 1 and 3 combined, as you asked: the J and the code bracket still share one stem, now drawn as slanted block letters with the solid 3D side.</p>
+  <div class="feature-grid">
+    <div class="hero-stage"><img src="r4-bracket-block-mark.svg" alt="Bracket + Block logo mark" width="260" height="260"></div>
+    <div class="col">
+      <div class="mock text" aria-label="Mock-up of a text message with a link preview">
+        <p class="bubble">Hi, this is Jacob. I build websites for local businesses. Here is my work:</p>
+        <div class="preview"><img src="r4-bracket-block-profile.svg" alt="" width="52" height="52"><div><b>Jacob Kozin</b><span>Websites for local businesses</span><span class="url">jacobkozin.github.io</span></div></div>
+      </div>
+      <div class="mock tabbar" aria-label="Mock-up of a browser tab">
+        <div class="tab"><img src="r4-bracket-block-small.svg" alt="" width="16" height="16"><span>Jacob Kozin</span><i>×</i></div><div class="tab ghost"></div>
+      </div>
+      <div class="mock contact" aria-label="Mock-up of a profile picture">
+        <img class="circle" src="r4-bracket-block-profile.svg" alt="Bracket + Block cropped to a circle" width="72" height="72">
+        <div><b>Jacob Kozin</b><span>Scottsdale, AZ</span></div>
+        <img class="circle" src="r4-bracket-block-profile.svg" alt="" width="40" height="40"><img class="circle" src="r4-bracket-block-profile.svg" alt="" width="24" height="24">
+      </div>
+    </div>
+    <div class="col">
+      <div class="cards stack" aria-label="Mock-up of a business card, front and back">
+        <div class="card front"><img src="r4-bracket-block-lockup.svg" alt="" width="182" height="48"><p>Websites for local businesses<br>(602) 935-9847<br>jacobkozin.support@gmail.com</p></div>
+        <div class="card back"><img src="r4-bracket-block-profile.svg" alt="" width="200" height="200"></div>
+      </div>
+    </div>
+  </div>
+  <div class="kit">
+    <div><h3>With your name</h3>
+      <div class="stage light wide"><img src="r4-bracket-block-lockup.svg" alt="Bracket + Block lockup with the name Jacob Kozin" width="243" height="64"></div>
+      <div class="stage dark wide"><img src="r4-bracket-block-lockup-on-dark.svg" alt="Bracket + Block lockup on a dark background" width="243" height="64"></div></div>
+    <div><h3>Without the tile</h3>
+      <div class="pair">
+        <div class="stage light"><img src="r4-bracket-block-bare.svg" alt="Bracket + Block without the tile, on light" width="104" height="104"></div>
+        <div class="stage dark"><img src="r4-bracket-block-bare-on-dark.svg" alt="Bracket + Block without the tile, on dark" width="104" height="104"></div>
+      </div></div>
+    <div><h3>Actual sizes: 16, 32, 64 px</h3>
+      <div class="pair">
+        <div class="stage light sizes"><img src="r4-bracket-block-small.svg" alt="" width="16" height="16"><img src="r4-bracket-block-mark.svg" alt="" width="32" height="32"><img src="r4-bracket-block-mark.svg" alt="" width="64" height="64"></div>
+        <div class="stage dark sizes"><img src="r4-bracket-block-small.svg" alt="" width="16" height="16"><img src="r4-bracket-block-mark.svg" alt="" width="32" height="32"><img src="r4-bracket-block-mark.svg" alt="" width="64" height="64"></div>
+      </div>
+      <p class="tip">The 16px one is a simplified cut made for browser tabs.</p></div>
+    <div><h3>One colour</h3>
+      <div class="pair">
+        <div class="stage light"><img src="r4-bracket-block-mono.svg" alt="Bracket + Block in one colour, dark on light" width="92" height="92"></div>
+        <div class="stage dark"><img src="r4-bracket-block-mono-reverse.svg" alt="Bracket + Block in one colour, light on dark" width="92" height="92"></div>
+      </div></div>
+  </div>
+</section></div>
+
+<div class="wrap"><h2 class="from">The three from round 2</h2></div>
 <div class="wrap"><main>
     <section class="concept" aria-labelledby="r1-bracket">
       <p class="num">Concept 1</p>
