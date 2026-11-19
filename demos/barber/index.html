@@ -223,5 +223,29 @@
     document.querySelector("#today span").textContent = (hours === "Closed" ? "Closed" : "Open " + hours) + " · sample hours";
   }
 </script>
+<script>
+// Same-page shortcuts scroll without leaving "#section" in the address bar.
+(() => {
+  const clean = () => history.replaceState(history.state, "", location.pathname + location.search);
+  document.addEventListener("click", e => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest('a[href^="#"]'), id = a && a.getAttribute("href");
+    if (!id || id.length < 2) return;
+    const t = document.getElementById(decodeURIComponent(id.slice(1)));
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    if (!t.matches("a,button,input,select,textarea,[tabindex]")) { t.setAttribute("tabindex", "-1"); t.style.outline = "none"; }
+    t.focus({ preventScroll: true });
+    clean();
+  });
+  // Old links with #section still land on the section; then the address is cleaned.
+  if (location.hash) addEventListener("load", () => {
+    const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (t) try { t.scrollIntoView({ behavior: "instant", block: "start" }); } catch { t.scrollIntoView(true); }
+    clean();
+  });
+})();
+</script>
 </body>
 </html>
