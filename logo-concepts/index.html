@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Logo concepts · Jacob Kozin</title>
+<title>Logo concepts, round 2 · Jacob Kozin</title>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,163 +24,230 @@
   header{padding:30px 0 26px;border-bottom:2px solid var(--ink)}
   .draft{display:inline-block;font-weight:700;font-size:.82rem;letter-spacing:.11em;text-transform:uppercase;background:var(--ink);color:var(--paper);border-radius:6px;padding:4px 10px;margin-bottom:14px}
   h1{font-size:clamp(2.1rem,7vw,3.2rem);margin-bottom:10px}
-  header p{color:var(--soft);max-width:64ch}
+  header p{color:var(--soft);max-width:66ch}
   .now{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:20px;padding:14px 16px;background:var(--sheet);border:2px solid var(--ink);border-radius:12px;max-width:520px}
   .now span{font-weight:700}
   .now img{width:151px;height:28px}
-  main{display:grid;gap:44px;padding:36px 0 56px}
+  main{display:grid;gap:52px;padding:36px 0 40px}
   .concept{min-width:0}
   .num{font-weight:700;font-size:.82rem;letter-spacing:.11em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
-  h2{font-size:2rem;margin-bottom:8px}
-  .why{color:var(--soft);margin-bottom:10px}
-  .applied{font-size:.95rem;margin-bottom:18px;padding:10px 12px;background:var(--sheet);border:1px solid var(--rule);border-radius:8px}
-  .research{padding-top:36px;padding-bottom:4px}
-  .research h2{font-size:1.5rem;margin-bottom:12px}
-  .research ol{margin:0;padding-left:1.3em;max-width:78ch}
-  .research li{margin:8px 0}
-  .research .src{color:var(--soft);font-size:.95rem;margin-top:12px;max-width:78ch}
-  h3{font-size:1.05rem;margin:22px 0 10px}
+  h2{font-size:2.2rem;margin-bottom:8px}
+  .why{font-size:1.1rem;margin-bottom:16px}
+  .applied{font-size:.95rem;color:var(--soft);margin-top:12px}
+  h3{font-size:1.05rem;margin:26px 0 10px}
+  .hero-stage{display:flex;align-items:center;justify-content:center;padding:34px 18px;border:2px solid var(--ink);border-radius:12px;background:var(--sheet)}
+  .hero-stage img{width:min(220px,62%);filter:drop-shadow(0 10px 14px rgba(27,26,23,.22))}
   .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .stage{display:flex;align-items:center;justify-content:center;gap:18px;min-height:150px;padding:18px;border:2px solid var(--ink);border-radius:12px;background:var(--paper)}
+  .stage{display:flex;align-items:center;justify-content:center;gap:18px;min-height:140px;padding:18px;border:2px solid var(--ink);border-radius:12px}
   .stage.light{background:#FFFDF7}
   .stage.dark{background:#1B1A17}
   .stage.wide{min-height:104px;margin-bottom:10px}
   .stage.sizes{align-items:flex-end;min-height:112px}
   .circle{border-radius:50%}
   .tip{font-size:.92rem;color:var(--soft);margin-top:8px}
+
+  /* mock-ups: plain CSS, no photos */
+  .mock{border:2px solid var(--ink);border-radius:12px;margin-bottom:10px}
+  .text{background:#fff;padding:16px 14px}
+  .bubble{background:#E9E9EB;color:#111;border-radius:18px 18px 18px 5px;padding:9px 13px;font-size:.95rem;line-height:1.35;max-width:270px}
+  .preview{display:flex;align-items:center;gap:12px;margin-top:6px;background:#E9E9EB;border-radius:14px;padding:10px 12px;max-width:270px}
+  .preview img{border-radius:10px;flex:none}
+  .preview b,.preview span{display:block;line-height:1.25}
+  .preview b{font-size:.95rem}
+  .preview span{font-size:.82rem;color:#3C3C43}
+  .preview .url{color:#5A5A60}
+  .tabbar{display:flex;align-items:flex-end;gap:2px;background:#DEE1E6;padding:9px 10px 0;overflow:hidden}
+  .tab{display:flex;align-items:center;gap:9px;background:#fff;border-radius:9px 9px 0 0;padding:9px 12px;font-size:.82rem;min-width:0;width:200px;color:#202124}
+  .tab span{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tab i{font-style:normal;color:#5F6368}
+  .tab.ghost{background:#CDD1D8;width:64px;height:30px;opacity:.7}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .card{aspect-ratio:7/4;border-radius:10px;border:2px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between;padding:9% 8%;min-width:0;overflow:hidden;box-shadow:0 4px 0 var(--ink)}
+  .card.front{background:var(--sheet)}
+  .card.front img{width:86%}
+  .card.front p{font-size:clamp(.5rem,1.9vw,.62rem);line-height:1.5;color:var(--soft);overflow-wrap:anywhere}
+  .card.back{padding:0;align-items:center;justify-content:center}
+  .card.back img{width:100%;height:100%;object-fit:cover}
+  .contact{display:flex;align-items:center;gap:14px;background:var(--sheet);padding:14px 16px}
+  .contact div{flex:1;min-width:0}
+  .contact b,.contact span{display:block;line-height:1.3}
+  .contact span{font-size:.9rem;color:var(--soft)}
+
+  .research{padding-bottom:44px}
+  .research h2{font-size:1.5rem;margin-bottom:12px}
+  .research ul{margin:0;padding-left:1.2em;max-width:78ch}
+  .research li{margin:8px 0}
+  .research .src{color:var(--soft);font-size:.95rem;margin-top:12px;max-width:78ch}
   footer{border-top:2px solid var(--ink);padding:22px 0 40px;color:var(--soft);font-size:.95rem}
   @media (min-width:980px){
     .wrap{padding:0 32px}
     main{grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}
-    .stage img[width="150"]{width:132px;height:132px}
+    .card.front p{font-size:.56rem}
+    .why{min-height:5.1em}
+    .applied{min-height:4.6em}
   }
 </style>
 </head>
 <body>
 <header><div class="wrap">
-  <span class="draft">Draft · for Jacob to pick · not live</span>
-  <h1>Three logo concepts</h1>
-  <p>I read five current guides on logo design before settling these, and each concept below follows what they agree on. Each is drawn as vector paths and shown the ways a logo actually gets used: on light and dark, with your name, at favicon size, in a circle crop, and in one colour. Nothing on the live site changes until you choose.</p>
+  <span class="draft">Round 2 · for Jacob to pick · not live</span>
+  <h1>Three logo concepts, redrawn</h1>
+  <p>You were right about round one: those were letters dropped onto a shape. The logos in the articles each have one idea built into the letters, and they are shown in use. So these three are redrawn from scratch around one idea each, and every one is shown where it would actually appear: in a text, in a browser tab, on a card and as a profile picture. Nothing on the live site changes until you choose.</p>
   <div class="now"><span>Current logo, for comparison</span><img src="../logo.svg" alt="Current Jacob Kozin logo" width="151" height="28"></div>
 </div></header>
 
-<div class="wrap research">
-  <h2>What the research says</h2>
-  <ol>
-    <li><b>Design for the smallest size first.</b> If it fails as an avatar or a 16px tab icon, it fails. Simplify until it reads.</li>
-    <li><b>Keep your initials readable.</b> Abstract symbols suit big brands; a one-person business needs the letters to be legible.</li>
-    <li><b>Stop at about two colours</b>, and make sure it still works in one colour on light and on dark.</li>
-    <li><b>One memorable quirk beats many details:</b> a single cut, tilt or small surprise on an otherwise simple shape.</li>
-    <li><b>Think of a small kit, not one file:</b> a main mark, a tiny version, a lockup with the name, and a one-colour version.</li>
-    <li><b>What is current:</b> pixel-grid marks, badges and seals, chunky lettering, and warm, human palettes.</li>
-  </ol>
-  <p class="src">Sources read: <a href="https://www.vistaprint.com/hub/logo-design-trends">VistaPrint, 10 logo design trends for 2026</a> · <a href="https://www.shopify.com/blog/logo-trends">Shopify, 7 logo trends for 2026</a> · <a href="https://www.kittl.com/blogs/logo-design-trends-2026-dsi/">Kittl, logo design trends 2026</a> · <a href="https://www.manypixels.co/blog/brand-design/personal-logo">ManyPixels, 20 personal logo examples</a> · <a href="https://www.ebaqdesign.com/blog/monogram-logo-design">Ebaqdesign, monogram logo design guide</a>. These are design blogs, so treat them as informed opinion.</p>
-</div>
-
 <div class="wrap"><main>
-    <section class="concept" aria-labelledby="c1-build">
+    <section class="concept" aria-labelledby="r1-bracket">
       <p class="num">Concept 1</p>
-      <h2 id="c1-build">The build</h2>
-      <p class="why">A browser window with JK laid in chunky blocks and a cursor on the corner: it says websites, built piece by piece.</p>
-      <p class="applied"><b>From the research:</b> Pixel-grid letters are a named 2026 trend because they stay sharp when tiny. Two colours, one quirk (the cursor).</p>
+      <h2 id="r1-bracket">Bracket</h2>
+      <p class="why">A J plus a code bracket makes the K. Your initials and what you do, in one shape.</p>
+      <div class="hero-stage"><img src="r1-bracket-mark.svg" alt="Bracket logo mark" width="220" height="220"></div>
+      <p class="applied">The two letters share one stem, the way the best monograms merge their letters instead of sitting side by side.</p>
 
-      <div class="pair">
-        <div class="stage light"><img src="c1-build-mark.svg" alt="The build mark in full colour on a light background" width="150" height="150"></div>
-        <div class="stage dark"><img src="c1-build-mark-on-dark.svg" alt="The build mark in full colour on a dark background" width="150" height="150"></div>
+      <h3>In use (mock-ups)</h3>
+      <div class="mock text" aria-label="Mock-up of a text message with a link preview">
+        <p class="bubble">Hi, this is Jacob. I build websites for local businesses. Here is my work:</p>
+        <div class="preview"><img src="r1-bracket-profile.svg" alt="" width="52" height="52"><div><b>Jacob Kozin</b><span>Websites for local businesses</span><span class="url">jacobkozin.github.io</span></div></div>
+      </div>
+      <div class="mock tabbar" aria-label="Mock-up of a browser tab">
+        <div class="tab"><img src="r1-bracket-small.svg" alt="" width="16" height="16"><span>Jacob Kozin</span><i>×</i></div><div class="tab ghost"></div>
+      </div>
+      <div class="cards" aria-label="Mock-up of a business card, front and back">
+        <div class="card front"><img src="r1-bracket-lockup.svg" alt="" width="182" height="48"><p>Websites for local businesses<br>(602) 935-9847<br>jacobkozin.support@gmail.com</p></div>
+        <div class="card back r1-bracket"><img src="r1-bracket-profile.svg" alt="" width="200" height="200"></div>
+      </div>
+      <div class="mock contact" aria-label="Mock-up of a profile picture">
+        <img class="circle" src="r1-bracket-profile.svg" alt="Bracket cropped to a circle" width="72" height="72">
+        <div><b>Jacob Kozin</b><span>Scottsdale, AZ</span></div>
+        <img class="circle" src="r1-bracket-profile.svg" alt="" width="40" height="40"><img class="circle" src="r1-bracket-profile.svg" alt="" width="24" height="24">
       </div>
 
-      <h3>Lockup</h3>
-      <div class="stage light wide"><img src="c1-build-lockup.svg" alt="The build lockup with the name Jacob Kozin" width="243" height="64"></div>
-      <div class="stage dark wide"><img src="c1-build-lockup-on-dark.svg" alt="The build lockup on a dark background" width="243" height="64"></div>
+      <h3>With your name</h3>
+      <div class="stage light wide"><img src="r1-bracket-lockup.svg" alt="Bracket lockup with the name Jacob Kozin" width="243" height="64"></div>
+      <div class="stage dark wide"><img src="r1-bracket-lockup-on-dark.svg" alt="Bracket lockup on a dark background" width="243" height="64"></div>
+      
+      <h3>Without the tile (headers, invoices)</h3>
+      <div class="pair">
+        <div class="stage light"><img src="r1-bracket-bare.svg" alt="Bracket without the tile, on light" width="104" height="104"></div>
+        <div class="stage dark"><img src="r1-bracket-bare-on-dark.svg" alt="Bracket without the tile, on dark" width="104" height="104"></div>
+      </div>
 
       <h3>Actual sizes: 16, 32, 64 px</h3>
       <div class="pair">
-        <div class="stage light sizes"><img src="c1-build-small.svg" alt="" width="16" height="16"><img src="c1-build-mark.svg" alt="" width="32" height="32"><img src="c1-build-mark.svg" alt="" width="64" height="64"></div>
-        <div class="stage dark sizes"><img src="c1-build-small.svg" alt="" width="16" height="16"><img src="c1-build-mark-on-dark.svg" alt="" width="32" height="32"><img src="c1-build-mark-on-dark.svg" alt="" width="64" height="64"></div>
+        <div class="stage light sizes"><img src="r1-bracket-small.svg" alt="" width="16" height="16"><img src="r1-bracket-mark.svg" alt="" width="32" height="32"><img src="r1-bracket-mark.svg" alt="" width="64" height="64"></div>
+        <div class="stage dark sizes"><img src="r1-bracket-small.svg" alt="" width="16" height="16"><img src="r1-bracket-mark.svg" alt="" width="32" height="32"><img src="r1-bracket-mark.svg" alt="" width="64" height="64"></div>
       </div>
-      <p class="tip">The 16px tile is the tiny cut from the kit: the tile and letters only, as a favicon would be.</p>
-
-      <h3>Circle crop (profile picture)</h3>
-      <div class="pair">
-        <div class="stage light"><img class="circle" src="c1-build-profile.svg" alt="The build cropped to a circle, on a light page" width="104" height="104"></div>
-        <div class="stage dark"><img class="circle" src="c1-build-profile.svg" alt="The build cropped to a circle, on a dark page" width="104" height="104"></div>
-      </div>
+      <p class="tip">The 16px one is a simplified cut made for browser tabs.</p>
 
       <h3>One colour</h3>
       <div class="pair">
-        <div class="stage light"><img src="c1-build-mono.svg" alt="The build in one colour, dark on light" width="92" height="92"></div>
-        <div class="stage dark"><img src="c1-build-mono-reverse.svg" alt="The build in one colour, light on dark" width="92" height="92"></div>
+        <div class="stage light"><img src="r1-bracket-mono.svg" alt="Bracket in one colour, dark on light" width="92" height="92"></div>
+        <div class="stage dark"><img src="r1-bracket-mono-reverse.svg" alt="Bracket in one colour, light on dark" width="92" height="92"></div>
       </div>
     </section>
-    <section class="concept" aria-labelledby="c2-desert">
+    <section class="concept" aria-labelledby="r2-sunset">
       <p class="num">Concept 2</p>
-      <h2 id="c2-desert">Desert local</h2>
-      <p class="why">A Scottsdale sunset behind a rounded JK whose hook turns up like a saguaro arm: local and warm, and still clearly your initials.</p>
-      <p class="applied"><b>From the research:</b> Warm, human marks are in, and the guides say to stop at two colours. This is one sunset orange plus ink.</p>
+      <h2 id="r2-sunset">Sunset</h2>
+      <p class="why">A heavy JK cut out of an Arizona sunset. The slits are the sun going down behind the horizon.</p>
+      <div class="hero-stage"><img src="r2-sunset-mark.svg" alt="Sunset logo mark" width="220" height="220"></div>
+      <p class="applied">Colour and one bold effect carry it. A plain cut without the slits takes over at tab-icon size.</p>
 
-      <div class="pair">
-        <div class="stage light"><img src="c2-desert-mark.svg" alt="Desert local mark in full colour on a light background" width="150" height="150"></div>
-        <div class="stage dark"><img src="c2-desert-mark-on-dark.svg" alt="Desert local mark in full colour on a dark background" width="150" height="150"></div>
+      <h3>In use (mock-ups)</h3>
+      <div class="mock text" aria-label="Mock-up of a text message with a link preview">
+        <p class="bubble">Hi, this is Jacob. I build websites for local businesses. Here is my work:</p>
+        <div class="preview"><img src="r2-sunset-profile.svg" alt="" width="52" height="52"><div><b>Jacob Kozin</b><span>Websites for local businesses</span><span class="url">jacobkozin.github.io</span></div></div>
+      </div>
+      <div class="mock tabbar" aria-label="Mock-up of a browser tab">
+        <div class="tab"><img src="r2-sunset-small.svg" alt="" width="16" height="16"><span>Jacob Kozin</span><i>×</i></div><div class="tab ghost"></div>
+      </div>
+      <div class="cards" aria-label="Mock-up of a business card, front and back">
+        <div class="card front"><img src="r2-sunset-lockup.svg" alt="" width="182" height="48"><p>Websites for local businesses<br>(602) 935-9847<br>jacobkozin.support@gmail.com</p></div>
+        <div class="card back r2-sunset"><img src="r2-sunset-profile.svg" alt="" width="200" height="200"></div>
+      </div>
+      <div class="mock contact" aria-label="Mock-up of a profile picture">
+        <img class="circle" src="r2-sunset-profile.svg" alt="Sunset cropped to a circle" width="72" height="72">
+        <div><b>Jacob Kozin</b><span>Scottsdale, AZ</span></div>
+        <img class="circle" src="r2-sunset-profile.svg" alt="" width="40" height="40"><img class="circle" src="r2-sunset-profile.svg" alt="" width="24" height="24">
       </div>
 
-      <h3>Lockup</h3>
-      <div class="stage light wide"><img src="c2-desert-lockup.svg" alt="Desert local lockup with the name Jacob Kozin" width="243" height="64"></div>
-      <div class="stage dark wide"><img src="c2-desert-lockup-on-dark.svg" alt="Desert local lockup on a dark background" width="243" height="64"></div>
+      <h3>With your name</h3>
+      <div class="stage light wide"><img src="r2-sunset-lockup.svg" alt="Sunset lockup with the name Jacob Kozin" width="243" height="64"></div>
+      <div class="stage dark wide"><img src="r2-sunset-lockup-on-dark.svg" alt="Sunset lockup on a dark background" width="243" height="64"></div>
+      
 
       <h3>Actual sizes: 16, 32, 64 px</h3>
       <div class="pair">
-        <div class="stage light sizes"><img src="c2-desert-mark.svg" alt="" width="16" height="16"><img src="c2-desert-mark.svg" alt="" width="32" height="32"><img src="c2-desert-mark.svg" alt="" width="64" height="64"></div>
-        <div class="stage dark sizes"><img src="c2-desert-mark.svg" alt="" width="16" height="16"><img src="c2-desert-mark-on-dark.svg" alt="" width="32" height="32"><img src="c2-desert-mark-on-dark.svg" alt="" width="64" height="64"></div>
+        <div class="stage light sizes"><img src="r2-sunset-small.svg" alt="" width="16" height="16"><img src="r2-sunset-mark.svg" alt="" width="32" height="32"><img src="r2-sunset-mark.svg" alt="" width="64" height="64"></div>
+        <div class="stage dark sizes"><img src="r2-sunset-small.svg" alt="" width="16" height="16"><img src="r2-sunset-mark.svg" alt="" width="32" height="32"><img src="r2-sunset-mark.svg" alt="" width="64" height="64"></div>
       </div>
-      
-
-      <h3>Circle crop (profile picture)</h3>
-      <div class="pair">
-        <div class="stage light"><img class="circle" src="c2-desert-profile.svg" alt="Desert local cropped to a circle, on a light page" width="104" height="104"></div>
-        <div class="stage dark"><img class="circle" src="c2-desert-profile.svg" alt="Desert local cropped to a circle, on a dark page" width="104" height="104"></div>
-      </div>
+      <p class="tip">The 16px one is a simplified cut made for browser tabs.</p>
 
       <h3>One colour</h3>
       <div class="pair">
-        <div class="stage light"><img src="c2-desert-mono.svg" alt="Desert local in one colour, dark on light" width="92" height="92"></div>
-        <div class="stage dark"><img src="c2-desert-mono-reverse.svg" alt="Desert local in one colour, light on dark" width="92" height="92"></div>
+        <div class="stage light"><img src="r2-sunset-mono.svg" alt="Sunset in one colour, dark on light" width="92" height="92"></div>
+        <div class="stage dark"><img src="r2-sunset-mono-reverse.svg" alt="Sunset in one colour, light on dark" width="92" height="92"></div>
       </div>
     </section>
-    <section class="concept" aria-labelledby="c3-badge">
+    <section class="concept" aria-labelledby="r3-block">
       <p class="num">Concept 3</p>
-      <h2 id="c3-badge">Bold badge</h2>
-      <p class="why">A hex-nut badge in cobalt and marigold with a heavy slanted JK: loud, simple, and made for a profile picture.</p>
-      <p class="applied"><b>From the research:</b> Badges and seals with chunky lettering are back. It is built to work as an avatar first, as the guides advise.</p>
+      <h2 id="r3-block">Block</h2>
+      <p class="why">Sign-painter block letters with a solid 3D side, the kind painted on the door of a work truck.</p>
+      <div class="hero-stage"><img src="r3-block-mark.svg" alt="Block logo mark" width="220" height="220"></div>
+      <p class="applied">Chunky lettering with real depth. Straight edges only, so it stays crisp at every size.</p>
 
-      <div class="pair">
-        <div class="stage light"><img src="c3-badge-mark.svg" alt="Bold badge mark in full colour on a light background" width="150" height="150"></div>
-        <div class="stage dark"><img src="c3-badge-mark-on-dark.svg" alt="Bold badge mark in full colour on a dark background" width="150" height="150"></div>
+      <h3>In use (mock-ups)</h3>
+      <div class="mock text" aria-label="Mock-up of a text message with a link preview">
+        <p class="bubble">Hi, this is Jacob. I build websites for local businesses. Here is my work:</p>
+        <div class="preview"><img src="r3-block-profile.svg" alt="" width="52" height="52"><div><b>Jacob Kozin</b><span>Websites for local businesses</span><span class="url">jacobkozin.github.io</span></div></div>
+      </div>
+      <div class="mock tabbar" aria-label="Mock-up of a browser tab">
+        <div class="tab"><img src="r3-block-small.svg" alt="" width="16" height="16"><span>Jacob Kozin</span><i>×</i></div><div class="tab ghost"></div>
+      </div>
+      <div class="cards" aria-label="Mock-up of a business card, front and back">
+        <div class="card front"><img src="r3-block-lockup.svg" alt="" width="182" height="48"><p>Websites for local businesses<br>(602) 935-9847<br>jacobkozin.support@gmail.com</p></div>
+        <div class="card back r3-block"><img src="r3-block-profile.svg" alt="" width="200" height="200"></div>
+      </div>
+      <div class="mock contact" aria-label="Mock-up of a profile picture">
+        <img class="circle" src="r3-block-profile.svg" alt="Block cropped to a circle" width="72" height="72">
+        <div><b>Jacob Kozin</b><span>Scottsdale, AZ</span></div>
+        <img class="circle" src="r3-block-profile.svg" alt="" width="40" height="40"><img class="circle" src="r3-block-profile.svg" alt="" width="24" height="24">
       </div>
 
-      <h3>Lockup</h3>
-      <div class="stage light wide"><img src="c3-badge-lockup.svg" alt="Bold badge lockup with the name Jacob Kozin" width="243" height="64"></div>
-      <div class="stage dark wide"><img src="c3-badge-lockup-on-dark.svg" alt="Bold badge lockup on a dark background" width="243" height="64"></div>
+      <h3>With your name</h3>
+      <div class="stage light wide"><img src="r3-block-lockup.svg" alt="Block lockup with the name Jacob Kozin" width="243" height="64"></div>
+      <div class="stage dark wide"><img src="r3-block-lockup-on-dark.svg" alt="Block lockup on a dark background" width="243" height="64"></div>
+      
+      <h3>Without the tile (headers, invoices)</h3>
+      <div class="pair">
+        <div class="stage light"><img src="r3-block-bare.svg" alt="Block without the tile, on light" width="104" height="104"></div>
+        <div class="stage dark"><img src="r3-block-bare-on-dark.svg" alt="Block without the tile, on dark" width="104" height="104"></div>
+      </div>
 
       <h3>Actual sizes: 16, 32, 64 px</h3>
       <div class="pair">
-        <div class="stage light sizes"><img src="c3-badge-mark.svg" alt="" width="16" height="16"><img src="c3-badge-mark.svg" alt="" width="32" height="32"><img src="c3-badge-mark.svg" alt="" width="64" height="64"></div>
-        <div class="stage dark sizes"><img src="c3-badge-mark.svg" alt="" width="16" height="16"><img src="c3-badge-mark-on-dark.svg" alt="" width="32" height="32"><img src="c3-badge-mark-on-dark.svg" alt="" width="64" height="64"></div>
+        <div class="stage light sizes"><img src="r3-block-small.svg" alt="" width="16" height="16"><img src="r3-block-mark.svg" alt="" width="32" height="32"><img src="r3-block-mark.svg" alt="" width="64" height="64"></div>
+        <div class="stage dark sizes"><img src="r3-block-small.svg" alt="" width="16" height="16"><img src="r3-block-mark.svg" alt="" width="32" height="32"><img src="r3-block-mark.svg" alt="" width="64" height="64"></div>
       </div>
-      
-
-      <h3>Circle crop (profile picture)</h3>
-      <div class="pair">
-        <div class="stage light"><img class="circle" src="c3-badge-profile.svg" alt="Bold badge cropped to a circle, on a light page" width="104" height="104"></div>
-        <div class="stage dark"><img class="circle" src="c3-badge-profile.svg" alt="Bold badge cropped to a circle, on a dark page" width="104" height="104"></div>
-      </div>
+      <p class="tip">The 16px one is a simplified cut made for browser tabs.</p>
 
       <h3>One colour</h3>
       <div class="pair">
-        <div class="stage light"><img src="c3-badge-mono.svg" alt="Bold badge in one colour, dark on light" width="92" height="92"></div>
-        <div class="stage dark"><img src="c3-badge-mono-reverse.svg" alt="Bold badge in one colour, light on dark" width="92" height="92"></div>
+        <div class="stage light"><img src="r3-block-mono.svg" alt="Block in one colour, dark on light" width="92" height="92"></div>
+        <div class="stage dark"><img src="r3-block-mono-reverse.svg" alt="Block in one colour, light on dark" width="92" height="92"></div>
       </div>
     </section>
 </main></div>
+
+<div class="wrap research">
+  <h2>What I took from the articles</h2>
+  <ul>
+    <li><b>The idea lives in the letters.</b> The monograms people remember merge, share or cut their letters. Concept 1 does this most directly.</li>
+    <li><b>Shown in use, a logo is easier to judge.</b> That is why each concept has mock-ups, not only the mark on a blank square.</li>
+    <li><b>It has to survive being tiny.</b> Each concept has a simplified 16px cut and a one-colour version.</li>
+    <li><b>Current styles these lean on:</b> chunky lettering, warm sunset colour, and letters with depth.</li>
+  </ul>
+  <p class="src">Sources read: <a href="https://www.vistaprint.com/hub/logo-design-trends">VistaPrint, 10 logo design trends for 2026</a> · <a href="https://www.shopify.com/blog/logo-trends">Shopify, 7 logo trends for 2026</a> · <a href="https://www.kittl.com/blogs/logo-design-trends-2026-dsi/">Kittl, logo design trends 2026</a> · <a href="https://www.manypixels.co/blog/brand-design/personal-logo">ManyPixels, 20 personal logo examples</a> · <a href="https://www.ebaqdesign.com/blog/monogram-logo-design">Ebaqdesign, monogram logo design guide</a>. These are design blogs, so treat them as informed opinion. Everything here is drawn as vector shapes; the mock-ups are illustrations, not photos.</p>
+</div>
 
 <footer><div class="wrap">Concepts only. The header, footer, favicon and share image still use the current JK. <a href="../">Back to the site</a></div></footer>
 </body>
